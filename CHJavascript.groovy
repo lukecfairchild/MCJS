@@ -22,9 +22,6 @@ jsEngine.eval( 'var CString = TEMP.static; TEMP = undefined;' );
 jsEngine.put( 'TEMP', com.laytonsmith.core.constructs.CInt );
 jsEngine.eval( 'var CInt = TEMP.static; TEMP = undefined;' );
 
-jsEngine.put( 'commandHelperEnvironment', commandHelperEnvironment );
-jsEngine.eval(
-	'var Require = load( \'plugins/CommandHelper/js/require.js\' );' +
-	'var require = Require( \'./\' , [ \'libpath1\', \'libpath2\' ] );' +
-	'require( \'./plugins/CommandHelper/main.js\' );'
-);
+jsEngine.put( 'commandHelperEnvironment', _Environment );
+jsEngine.put( 'PATH', _ScriptPath );
+jsEngine.eval( _Javascript );

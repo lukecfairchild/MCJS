@@ -64,13 +64,13 @@ function setTimeout () {
 	};
 };
 
-var CH = require( './plugins/CommandHelper/js/CH.js' );
-var bind = require( './plugins/CommandHelper/js/Events.js' );
+var CH = require( './js/CH.js' );
+var bind = require( './js/Events.js' );
 
 
 print( JSON.stringify( CH.ploc( 'kookster' ) ) );
 
-bind( 'player.PlayerInteractEvent', function ( event ) {
+bind( 'player.PlayerChatEvent', function ( event ) {
 
 	print( 'EVENT!!!' );
 	print( JSON.stringify( event ) );

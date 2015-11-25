@@ -1,6 +1,6 @@
 'use strict';
 
-var Require = load( 'plugins/CommandHelper/js/require.js' );
+var Require = load( PATH + '/js/require.js' );
 var require = Require( './' , [ 'libpath1', 'libpath2' ] );
 
 var Timer  = Java.type( 'java.util.Timer' );
@@ -87,4 +87,4 @@ if ( !Object.prototype.slice ) {
 	} );
 }
 
-require( './main.js' );
+require( PATH + './main.js' );

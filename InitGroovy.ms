@@ -17,4 +17,8 @@
 	return( json_encode( array( 'value' : @returns ) ) );
 };
 
-groovy( read( 'CHJavascript.groovy' ), array( 'commandHelperEnvironment' : get_script_environment(), 'javascriptFile' : read( 'Global.js' ) ) );
+groovy( read( 'CHJavascript.groovy' ), array(
+	'_Environment' : get_script_environment(),
+	'_Javascript'  : read( 'Global.js' ),
+	'_ScriptPath'  : replace( pwd(), '\\', '/' )
+) );

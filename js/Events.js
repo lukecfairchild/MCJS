@@ -78,7 +78,7 @@ module.exports = function ( /* eventType, callBack, [ priority ] */ ) {
 		} 
 	} );
 
-	listener.reg = new bkRegisteredListener( eventListener, eventExecutor, priority, __plugin, true );
+	listener.reg = new bkRegisteredListener( null, eventExecutor, priority, __plugin, true );
 	handlerList.register( listener.reg );
 
 	result.unregister = function () {
