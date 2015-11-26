@@ -22,6 +22,7 @@ jsEngine.eval( 'var CString = TEMP.static; TEMP = undefined;' );
 jsEngine.put( 'TEMP', com.laytonsmith.core.constructs.CInt );
 jsEngine.eval( 'var CInt = TEMP.static; TEMP = undefined;' );
 
+jsEngine.eval( 'var global = {};' );
 jsEngine.put( 'commandHelperEnvironment', _Environment );
 jsEngine.put( 'PATH', _ScriptPath );
 jsEngine.eval( _Javascript );

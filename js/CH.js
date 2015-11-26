@@ -33,7 +33,7 @@ var CH = function () {
 };
 
 /*==================================================*\
- *					Private Methods					*
+|*					Private Methods					*|
 \*==================================================*/
 Object.defineProperty( CH.prototype, 'private', {
 	'enumerable' : false,
@@ -118,9 +118,8 @@ CH.prototype.private.getValue = function ( object ) {
 
 }.bind( CH.prototype );
 
-
 /*==================================================*\
- *					Public Methods					*
+|*					Public Methods					*|
 \*==================================================*/
 CH.prototype.eval = function ( code ) {
 
