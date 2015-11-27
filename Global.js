@@ -1,9 +1,20 @@
 'use strict';
 
-var Require = load( PATH + '/global/require.js' );
+// Initiate require()
+var Require = load( PATH + '/lib/require.js' );
 var require = Require( PATH , [ 'libpath1', 'libpath2' ] );
 
-require( './global/Timers.js' );
-require( './global/Object.js' );
+// Load globals
+var File  = java.io.File;
+var files = new File( PATH + './global' ).listFiles();
 
+for ( var fileIndex in files ) {
+	var properties = require( files[ fileIndex ] );
+
+	for ( var property in properties ) {
+		global[ property ] = properties[ property ];
+	}
+}
+
+// Run main.js file
 require( './main.js' );

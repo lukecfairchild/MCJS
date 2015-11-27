@@ -12,8 +12,14 @@ bind( 'player.PlayerChatEvent', function ( event ) {
 	print( JSON.stringify( event ) );
 } );
 
-var id = setTimeout( function () {
+setTimeout( function () {
 
 	print( 'YAY!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!' );
 }, 1000 );
 
+setTimeout( function () {
+
+	print( 'YAY!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!' );
+}, 1000 );
+
+//clearAllTasks();

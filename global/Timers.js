@@ -12,8 +12,8 @@ var uuid = function () {
 	return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
 };
 
-var Timers = function () {
-};
+var Timers = function () {};
+
 Timers.prototype.clearTask = function ( timer ) {
 
 	timer.cancel();
@@ -77,9 +77,4 @@ Timers.prototype.setTimeout = function () {
 	};
 };
 
-var TimersObject = new Timers();
-
-global.setTimeout     = TimersObject.setTimeout;
-global.setInterval    = TimersObject.setInterval;
-global.clearTask      = TimersObject.clearTask;
-global.clearAllTasks  = TimersObject.clearAllTasks;
+module.exports = new Timers();
