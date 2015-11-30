@@ -1,9 +1,13 @@
 'use strict';
 
 // Load modules from the mc folder
-var files = new java.io.File( './mc' ).listFiles();
+var files = new java.io.File( PATH + '/mc' ).listFiles();
 
-for ( var fileIndex in files ) {
-//	require( files[ fileIndex ] );
-	print( fileIndex );
+for ( var index in files ) {
+	var file  = String( files[ index ] );
+	var match = file.match( /([^\.\\]+)\.js/ );
+
+	if ( match[ 1 ] ) {
+		module.exports[ match[ 1 ] ] = require( file );
+	}
 }

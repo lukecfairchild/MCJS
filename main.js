@@ -1,17 +1,18 @@
 'use strict';
 
 //var CH   = require( './js/CH.js' );
-var bind = require( './js/Events.js' );
+//var bind = require( './js/Events.js' );
+var mc = require( './MC.js' );
 
 
 //print( JSON.stringify( CH.ploc( 'kookster' ) ) );
-/*
-bind( 'player.PlayerChatEvent', function ( event ) {
 
-	print( 'EVENT!!!' );
+mc.on( 'player.PlayerChatEvent', function ( event ) {
+
+	print( 'EVENT2!!!' );
 	print( JSON.stringify( event ) );
 } );
-*/
+
 setInterval( function () {
 
 	print( 'yep' );
