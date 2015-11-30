@@ -17,6 +17,8 @@
 	return( json_encode( array( 'value' : @returns ) ) );
 };
 
+export( 'lastReload', time() );
+
 groovy( read( 'InitJavascript.groovy' ), array(
 	'_Environment' : get_script_environment(),
 	'_Javascript'  : read( 'Global.js' ),

@@ -1,7 +1,5 @@
 'use strict';
 
-var timers = {};
-
 var uuid = function () {
 
 	function s4 () {
@@ -12,13 +10,14 @@ var uuid = function () {
 	return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
 };
 
-var Timers = function () {};
+var Timers = function () {
 
-Timers.prototype.clearTask = function ( timer ) {
-
-	timer.cancel();
+	this.timers = {};
 };
+
 Timers.prototype.clearAllTasks = function () {
+
+	var timers = this.properties.timers;
 
 	for ( var index in timers ) {
 		timers[ index ].cancel();
@@ -26,24 +25,33 @@ Timers.prototype.clearAllTasks = function () {
 
 	timers = {};
 };
-Timers.prototype.setInterval = function () {
 
-	var javaTimer = Java.type( 'java.util.Timer' );
-	var timer     = new javaTimer( 'setTimerRequest', true );
-	var handler   = arguments[ 0 ] || function () {};
-	var delay     = arguments[ 1 ] || 1;
-	var id        = uuid();
-	var closure   = function () {
+Timers.prototype.setTimeout = function ( callback, delayInMillis ) {
 
-		delete timers[ id ];
-		handler.call( timer );
-	};
+	var timers = this.properties.timers;
+	var delay  = Math.ceil( delayInMillis / 50 );
+	var id     = uuid();
+	var timer  = org.bukkit.Bukkit.scheduler.runTaskLater( __plugin, function () {
 
-	timer.schedule( closure, delay, delay );
+		var lastCHReload = com.laytonsmith.core.Globals.GetGlobalConstruct( 'lastReload' ).getInt();
+
+		if ( lastCHReload > loadTime ) {
+			module.exports.clearAllTasks();
+
+		} else {
+			delete timers[ id ];
+			callback.call( {
+				'cancel' : function () {
+
+					timer.cancel();
+				}
+			} );
+		}
+	}, delay );
 
 	timers[ id ] = timer;
 
-	return { 
+	return {
 		'cancel' : function () {
 
 			delete timers[ id ];
@@ -51,24 +59,32 @@ Timers.prototype.setInterval = function () {
 		}
 	};
 };
-Timers.prototype.setTimeout = function () {
+Timers.prototype.setInterval = function ( callback, intervalInMillis ) {
 
-	var javaTimer = Java.type( 'java.util.Timer' );
-	var timer     = new javaTimer( 'setTimerRequest', true );
-	var handler   = arguments[ 0 ] || function () {};
-	var delay     = arguments[ 1 ] || 1;
-	var id        = uuid();
-	var closure   = function () {
+	var timers = this.properties.timers;
+	var delay  = Math.ceil( intervalInMillis / 50 );
+	var id     = uuid();
+	var timer  = org.bukkit.Bukkit.scheduler.runTaskTimer( __plugin, function () {
 
-		delete timers[ id ];
-		handler.call( timer );
-	};
+		var lastCHReload = com.laytonsmith.core.Globals.GetGlobalConstruct( 'lastReload' ).getInt();
 
-	timer.schedule( closure, delay );
+		if ( lastCHReload > loadTime ) {
+			module.exports.clearAllTasks();
+
+		} else {
+			callback.call( {
+				'cancel' : function () {
+
+					delete timers[ id ];
+					timer.cancel();
+				}
+			} );
+		}
+	}, delay, delay );
 
 	timers[ id ] = timer;
 
-	return { 
+	return {
 		'cancel' : function () {
 
 			delete timers[ id ];

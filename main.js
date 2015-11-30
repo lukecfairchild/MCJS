@@ -1,10 +1,10 @@
 'use strict';
 
-var CH   = require( './js/CH.js' );
+//var CH   = require( './js/CH.js' );
 var bind = require( './js/Events.js' );
 
 
-print( JSON.stringify( CH.ploc( 'kookster' ) ) );
+//print( JSON.stringify( CH.ploc( 'kookster' ) ) );
 
 bind( 'player.PlayerChatEvent', function ( event ) {
 
@@ -12,14 +12,16 @@ bind( 'player.PlayerChatEvent', function ( event ) {
 	print( JSON.stringify( event ) );
 } );
 
+setInterval( function () {
+
+	print( 'yep' );
+}, 1000 );
+
+
+
 setTimeout( function () {
 
 	print( 'YAY!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!' );
-}, 1000 );
+}, 2000 );
 
-setTimeout( function () {
-
-	print( 'YAY!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!' );
-}, 1000 );
-
-//clearAllTasks();
+clearAllTasks();

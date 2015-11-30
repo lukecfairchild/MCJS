@@ -1,8 +1,5 @@
-
-
 'use strict';
 
-var __plugin             = org.bukkit.Bukkit.getPluginManager().getPlugin( 'CommandHelper' );
 var bkEventListener      = org.bukkit.event.Listener;
 var bkEventPriority      = org.bukkit.event.EventPriority;
 var bkEventExecutor      = org.bukkit.plugin.EventExecutor;
