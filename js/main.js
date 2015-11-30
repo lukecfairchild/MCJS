@@ -1,11 +1,10 @@
 'use strict';
 
-//var CH   = require( './js/CH.js' );
-//var bind = require( './js/Events.js' );
+var ch = require( './js/CH.js' );
 var mc = require( './MC.js' );
 
 
-//print( JSON.stringify( CH.ploc( 'kookster' ) ) );
+//print( JSON.stringify( ch.ploc( 'kookster' ) ) );
 
 mc.on( 'player.PlayerChatEvent', function ( event ) {
 

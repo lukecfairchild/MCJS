@@ -6,6 +6,7 @@ var bkEventExecutor      = org.bukkit.plugin.EventExecutor;
 var bkRegisteredListener = org.bukkit.plugin.RegisteredListener;
 var bkEventPackage       = 'org.bukkit.event.';
 var nashorn              = ( typeof Java != 'undefined' );
+var eventTasks           = {};
 
 function getHandlerListForEventType ( eventType ) {
 

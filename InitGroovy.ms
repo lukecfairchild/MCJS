@@ -21,6 +21,6 @@ export( 'lastReload', time() );
 
 groovy( read( 'InitJavascript.groovy' ), array(
 	'_Environment' : get_script_environment(),
-	'_Javascript'  : read( 'Global.js' ),
+	'_Javascript'  : read( 'js/Global.js' ),
 	'_ScriptPath'  : replace( pwd(), '\\', '/' )
 ) );

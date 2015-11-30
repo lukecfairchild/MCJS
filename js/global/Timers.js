@@ -36,7 +36,7 @@ Timers.prototype.setTimeout = function ( callback, delayInMillis ) {
 		var lastCHReload = com.laytonsmith.core.Globals.GetGlobalConstruct( 'lastReload' ).getInt();
 
 		if ( lastCHReload > loadTime ) {
-			module.exports.clearAllTasks();
+			Cleanup.trigger();
 
 		} else {
 			delete timers[ id ];
@@ -69,7 +69,7 @@ Timers.prototype.setInterval = function ( callback, intervalInMillis ) {
 		var lastCHReload = com.laytonsmith.core.Globals.GetGlobalConstruct( 'lastReload' ).getInt();
 
 		if ( lastCHReload > loadTime ) {
-			module.exports.clearAllTasks();
+			Cleanup.trigger();
 
 		} else {
 			callback.call( {
@@ -93,4 +93,7 @@ Timers.prototype.setInterval = function ( callback, intervalInMillis ) {
 	};
 };
 
-module.exports = new Timers();
+var TimerObject = new Timers();
+module.exports  = TimerObject;
+
+Cleanup.add( TimerObject.clearAllTasks );
