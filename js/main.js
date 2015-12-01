@@ -1,6 +1,6 @@
 'use strict';
 
-var ch = require( './js/CH.js' );
+var ch = require( './CH.js' );
 var mc = require( './MC.js' );
 
 
@@ -8,8 +8,7 @@ var mc = require( './MC.js' );
 
 mc.on( 'player.PlayerChatEvent', function ( event ) {
 
-	print( 'EVENT2!!!' );
-	print( JSON.stringify( event ) );
+	print( 'Chat Event!!!' );
 } );
 
 setInterval( function () {

@@ -7,21 +7,27 @@ var Cleanup = function () {
 
 Cleanup.prototype.trigger = function () {
 
-	var tasks = this.properties.tasks;
+	var tasks = this.tasks;
 
 	for ( var index in tasks ) {
 		var task = tasks[ index ];
 
 		if ( typeof task === 'function' ) {
-			task();
+
+			try {
+				task();
+
+			} catch ( error ) { }
 		}
 	}
+
+	this.tasks =[];
 };
 
 Cleanup.prototype.add = function ( task ) {
 
 	if ( typeof task === 'function' ) {
-		this.properties.tasks.push( task );
+		this.tasks.push( task );
 
 	} else {
 		throw new error( 'Invalid cleanup task' );

@@ -4,10 +4,10 @@ global.__plugin  = org.bukkit.Bukkit.getPluginManager().getPlugin( 'CommandHelpe
 
 // Initiate require()
 var Require = load( PATH + '/lib/require.js' );
-var require = Require( PATH , [ 'libpath1', 'libpath2' ] );
+var require = Require( PATH, [ 'libpath1', 'libpath2' ] );
 
 // Load globals
-var files = new java.io.File( PATH + './global' ).listFiles();
+var files = new java.io.File( PATH + '/global' ).listFiles();
 
 for ( var fileIndex in files ) {
 	var properties = require( files[ fileIndex ] );

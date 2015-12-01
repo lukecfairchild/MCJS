@@ -72,7 +72,15 @@ module.exports = function ( /* eventType, callBack, [ priority ] */ ) {
 
 	eventExecutor = new bkEventExecutor( {
 		'execute' : function ( l, evt ) {
-			callBack.call( result, evt );
+
+			var lastCHReload = com.laytonsmith.core.Globals.GetGlobalConstruct( 'lastReload' ).getInt();
+
+			if ( lastCHReload > loadTime ) {
+				Cleanup.trigger();
+
+			} else {
+				callBack.call( result, evt );
+			}
 		} 
 	} );
 
@@ -83,6 +91,8 @@ module.exports = function ( /* eventType, callBack, [ priority ] */ ) {
 
 		handlerList.unregister( listener.reg );
 	};
+
+	Cleanup.add( result.unregister );
 
 	return result;
 };
