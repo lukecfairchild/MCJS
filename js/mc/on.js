@@ -7,14 +7,6 @@ var bkRegisteredListener = org.bukkit.plugin.RegisteredListener;
 var bkEventPackage       = 'org.bukkit.event.';
 var nashorn              = ( typeof Java != 'undefined' );
 
-var events = {};
-var files  = new java.io.File( PATH + '/mc/events' ).listFiles();
-
-for ( var fileIndex in files ) {
-	var eventName       = String( files[ fileIndex ] ).match( /([^\\]+)\.js/ )[ 1 ];
-	events[ eventName ] = require( files[ fileIndex ] );
-}
-
 function getHandlerListForEventType ( eventType ) {
 
 	var result = null;
@@ -77,6 +69,16 @@ module.exports = function ( /* eventType, callBack, [ priority ] */ ) {
 		handlerList = getHandlerListForEventType( eventType );
 	}
 
+	var eventObject;
+
+	var returns  = {};
+	var filePath = PATH + '/mc/events/' + eventType + '.js';
+	var file     = new java.io.File( filePath );
+	
+	if ( file.exists() ) {
+		eventObject = require( filePath );
+	}
+
 	eventExecutor = new bkEventExecutor( {
 		'execute' : function ( l, event ) {
 
@@ -86,23 +88,14 @@ module.exports = function ( /* eventType, callBack, [ priority ] */ ) {
 				Cleanup.trigger();
 
 			} else {
-				var returns;
-
-				if ( events[ eventType ] ) {
-
-					returns = events[ eventType ];
-
-					for ( var i in returns ) {
-						returns[ i ] = returns[ i ].bind( event );
-					}
+				if ( eventObject ) {
 
 					var rawMethods = event.getClass().getMethods()
-					var methods    = {};
 
 					for ( var i in rawMethods ) {
 						var method = rawMethods[ i ].getName().toString();
 
-						if ( !returns[ method ] ) {
+						if ( eventObject[ method ] === undefined ) {
 							returns[ method ] = ( function () {
 
 								var args = [];
@@ -111,17 +104,21 @@ module.exports = function ( /* eventType, callBack, [ priority ] */ ) {
 									args.push( arguments[ i ] );
 								}
 
-								if ( arguments.length ) {
+								if ( args.length ) {
 									return event[ this ]( args );
 
 								} else {
 									return event[ this ]();
 								}
 							} ).bind( method );
+
+						} else {
+							returns[ method ] = eventObject[ method ].bind( event );
 						}
 					}
+
 				} else {
-					returns = event;
+					methods = event;
 				}
 
 				callBack.call( result, returns );
