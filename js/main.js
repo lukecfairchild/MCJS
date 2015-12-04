@@ -9,8 +9,11 @@ var mc = require( './MC.js' );
 mc.on( 'player.PlayerChatEvent', function ( event ) {
 
 	print( event.getMessage() );
-	print( event.getRecipients() );
-	print( 'Chat Event!!!' );
+	print( JSON.stringify( event.getRecipients() ) );
+
+//	print( event.getEventName() );
+	event.setMessage( 'yay' );
+	event.setPlayer( 'kookster' );
 } );
 
 setInterval( function () {

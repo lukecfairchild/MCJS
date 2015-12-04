@@ -1,22 +1,24 @@
 'use strict';
 
-module.exports = function ( event ) {
+module.exports.getRecipients = function () {
 
-	return {
-		'message'  : event.getMessage(),
-		'recipients'  : event.getRecipients().toArray(),
-		'state'       : event.isCancelled(),
-		'setState'    : function ( state ) {
+	var rawRecipients = this.getRecipients()
+	var iterator      = rawRecipients.iterator();
+	var size          = rawRecipients.size();
+	var recipients    = [];
 
-			event.setCancelled( state );
-		},
-		'setPlayer'   : function ( player ) {
 
-			event.setPlayer( /* this needs a bukkit player object */ );
-		},
-		'setMessage'  : function ( message ) {
+	for ( var i = 0; i < size + 1; i ++ ) {
 
-			event.setMessage( message );
+		if ( iterator.hasNext() ) {
+			recipients.push( iterator.next().getName() );
 		}
-	};
+	}
+
+	return recipients;
+};
+
+module.exports.setPlayer = function ( username ) {
+
+	this.setPlayer( org.bukkit.Bukkit.getPlayer( username ) );
 };

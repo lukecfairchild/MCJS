@@ -7,7 +7,7 @@ for ( var index in files ) {
 	var file  = String( files[ index ] );
 	var match = file.match( /([^\.\\]+)\.js/ );
 
-	if ( match[ 1 ] ) {
+	if ( match && match[ 1 ] ) {
 		module.exports[ match[ 1 ] ] = require( file );
 	}
 }

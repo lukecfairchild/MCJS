@@ -7,6 +7,14 @@ var bkRegisteredListener = org.bukkit.plugin.RegisteredListener;
 var bkEventPackage       = 'org.bukkit.event.';
 var nashorn              = ( typeof Java != 'undefined' );
 
+var events = {};
+var files  = new java.io.File( PATH + '/mc/events' ).listFiles();
+
+for ( var fileIndex in files ) {
+	var eventName       = String( files[ fileIndex ] ).match( /([^\\]+)\.js/ )[ 1 ];
+	events[ eventName ] = require( files[ fileIndex ] );
+}
+
 function getHandlerListForEventType ( eventType ) {
 
 	var result = null;
@@ -70,7 +78,7 @@ module.exports = function ( /* eventType, callBack, [ priority ] */ ) {
 	}
 
 	eventExecutor = new bkEventExecutor( {
-		'execute' : function ( l, evt ) {
+		'execute' : function ( l, event ) {
 
 			var lastCHReload = com.laytonsmith.core.Globals.GetGlobalConstruct( 'lastReload' ).getInt();
 
@@ -78,7 +86,45 @@ module.exports = function ( /* eventType, callBack, [ priority ] */ ) {
 				Cleanup.trigger();
 
 			} else {
-				callBack.call( result, evt );
+				var returns;
+
+				if ( events[ eventType ] ) {
+
+					returns = events[ eventType ];
+
+					for ( var i in returns ) {
+						returns[ i ] = returns[ i ].bind( event );
+					}
+
+					var rawMethods = event.getClass().getMethods()
+					var methods    = {};
+
+					for ( var i in rawMethods ) {
+						var method = rawMethods[ i ].getName().toString();
+
+						if ( !returns[ method ] ) {
+							returns[ method ] = ( function () {
+
+								var args = [];
+
+								for ( var i in arguments ) {
+									args.push( arguments[ i ] );
+								}
+
+								if ( arguments.length ) {
+									return event[ this ]( args );
+
+								} else {
+									return event[ this ]();
+								}
+							} ).bind( method );
+						}
+					}
+				} else {
+					returns = event;
+				}
+
+				callBack.call( result, returns );
 			}
 		} 
 	} );
