@@ -8,10 +8,12 @@ var mc = require( './MC.js' );
 
 mc.on( 'player.PlayerChatEvent', function ( event ) {
 
+	print( Object.keys( event ) );
+	print( event.getPlayer() );
 	print( event.getMessage() );
 	print( JSON.stringify( event.getRecipients() ) );
 
-//	print( event.getEventName() );
+	print( event.getEventName() );
 	event.setMessage( 'yay' );
 	event.setPlayer( 'kookster' );
 } );
