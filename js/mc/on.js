@@ -5,7 +5,6 @@ var bkEventPriority      = org.bukkit.event.EventPriority;
 var bkEventExecutor      = org.bukkit.plugin.EventExecutor;
 var bkRegisteredListener = org.bukkit.plugin.RegisteredListener;
 var bkEventPackage       = 'org.bukkit.event.';
-var nashorn              = ( typeof Java != 'undefined' );
 
 function getHandlerListForEventType ( eventType ) {
 
@@ -13,25 +12,12 @@ function getHandlerListForEventType ( eventType ) {
 	var clazz  = null;
 
 	if ( typeof eventType != 'string' ) {
-
-		if ( nashorn ) {
-			clazz  = eventType[ 'class' ];
-			result = clazz.getMethod( 'getHandlerList' ).invoke( null );
-
-		} else { 
-			result = eventType.getHandlerList();
-		}
+		clazz  = eventType[ 'class' ];
+		result = clazz.getMethod( 'getHandlerList' ).invoke( null );
 
 	} else { 
-
-		if ( nashorn ) { 
-			clazz  = java.lang.Class.forName( bkEventPackage + '' + eventType );
-			result = clazz.getMethod( 'getHandlerList' ).invoke( null );
-
-		} else {
-			var eventType2 = eval( bkEventPackage + eventType );
-			result         = eventType2.getHandlerList();
-		}
+		clazz  = java.lang.Class.forName( bkEventPackage + '' + eventType );
+		result = clazz.getMethod( 'getHandlerList' ).invoke( null );
 	}
 
 	return result;
@@ -138,4 +124,3 @@ module.exports = function ( /* eventType, callBack, [ priority ] */ ) {
 
 	return result;
 };
-
