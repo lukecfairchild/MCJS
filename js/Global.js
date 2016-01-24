@@ -3,7 +3,7 @@
 global.__plugin  = org.bukkit.Bukkit.getPluginManager().getPlugin( 'CommandHelper' );
 
 // Initiate require()
-var Require = load( PATH + '/lib/require.js' );
+var Require = load( PATH + '/lib/Require.js' );
 var require = Require( PATH, [ 'libpath1', 'libpath2' ] );
 
 // Load globals
