@@ -1,6 +1,6 @@
 'use strict';
 
-var Console = function () {};
+var Console = new Class( function () {} );
 
 Console.prototype.log = function ( message ) {
 
@@ -286,6 +286,13 @@ Console.prototype.log = function ( message ) {
 		java.lang.System.out.println( String( message ) );
 	}
 };
+
+/*
+Object.defineProperty( Console.prototype, 'private', {
+	'enumerable' : false,
+	'value'      : {}
+} );
+*/
 
 Console.prototype.info = function () {
 
