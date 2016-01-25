@@ -6,6 +6,8 @@ global.__plugin  = org.bukkit.Bukkit.getPluginManager().getPlugin( 'CommandHelpe
 var Require = load( PATH + '/lib/Require.js' );
 var require = Require( PATH, [ 'libpath1', 'libpath2' ] );
 
+global.Class = require( '/lib/Class.js' );
+
 // Load globals
 var files = new java.io.File( PATH + '/global' ).listFiles();
 
