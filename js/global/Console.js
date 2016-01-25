@@ -282,6 +282,9 @@ Console.prototype.log = function ( message ) {
 	if ( typeof message == 'object' ) {
 		java.lang.System.out.println( jsonAlign( message, null, '	', true ) );
 
+	} else if ( typeof message === 'string' ) {
+		java.lang.System.out.println( enclosure + String( message ).replace( /\\/g, '\\\\' ).replace( new RegExp( enclosure, 'g' ), '\\' + enclosure ) + enclosure );
+
 	} else {
 		java.lang.System.out.println( String( message ) );
 	}
