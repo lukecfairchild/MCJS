@@ -2,12 +2,19 @@
 
 module.exports = function ( object ) {
 
-	object = object || function () {};
+	var actualClass = function () {
 
-	Object.defineProperty( object.prototype, 'private', {
+		object.call( this, arguments );
+
+		for ( var i in this.private ) {
+			this.private[ i ] = this.private[ i ].bind( this );
+		}
+	};
+
+	Object.defineProperty( actualClass.prototype, 'private', {
 		'enumerable' : false,
 		'value'      : {}
 	} );
 
-	return object;
+	return actualClass;
 };

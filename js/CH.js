@@ -1,6 +1,6 @@
 'use strict';
 
-var CH = function () {
+var CH = new Class( function () {
 
 	this.private.globalEnv = null;
 	this.private.functions = {};
@@ -30,15 +30,12 @@ var CH = function () {
 		var instance = iterator.next();
 		this.private.functions[ instance.getName() ] = instance;
 	}
-};
+} );
 
 /*==================================================*\
 |*					Private Methods					*|
 \*==================================================*/
-Object.defineProperty( CH.prototype, 'private', {
-	'enumerable' : false,
-	'value'      : {}
-} );
+
 CH.prototype.private.execute = function () {
 
 	var varName = arguments[ 0 ];
@@ -57,7 +54,7 @@ CH.prototype.private.execute = function () {
 	} else {
 		throw new Error( 'Unable to find the ' + varName + ' variable. Please define it in MethodScript before calling this javascript file.' );
 	}
-}.bind( CH.prototype );
+};
 CH.prototype.private.getValue = function ( object ) {
 
 	var type  = object.getClass().getName();
@@ -115,8 +112,7 @@ CH.prototype.private.getValue = function ( object ) {
 	} else {
 		throw new error( 'Error in: CH.js: CH.prototype.private.getValue(): Unimplimented type: ' + type );
 	}
-
-}.bind( CH.prototype );
+};
 
 /*==================================================*\
 |*					Public Methods					*|
