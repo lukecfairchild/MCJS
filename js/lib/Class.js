@@ -52,11 +52,13 @@ module.exports = function ( InternalObject ) {
 		} );
 	};
 
+	// Add ExternalObject .private attribute
 	Object.defineProperty( ExternalObject.prototype, 'private', {
 		'enumerable' : false,
 		'value'      : {}
 	} );
 
+	// Add index for extending other classes
 	ExternalObject.extends = function ( extendingClass ) {
 
 		for ( var property in extendingClass.prototype ) {
