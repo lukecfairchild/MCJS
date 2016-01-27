@@ -57,5 +57,18 @@ module.exports = function ( InternalObject ) {
 		'value'      : {}
 	} );
 
+	ExternalObject.extends = function ( extendingClass ) {
+
+		for ( var property in extendingClass.prototype ) {
+			ExternalObject.prototype[ property ] = extendingClass.prototype[ property ];
+		}
+
+		for ( var property in extendingClass.prototype.private ) {
+			ExternalObject.prototype.private[ property ] = extendingClass.prototype.private[ property ];
+		}
+
+		console.log( 'EXTENDED' );
+	};
+
 	return ExternalObject;
 };
