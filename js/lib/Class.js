@@ -8,45 +8,28 @@ module.exports = function ( InternalObject ) {
 
 	var ExternalObject = function () {
 
-		var initiatedObject = new InternalObject( arguments );
-
-		// Add internal
+		// Add internal .private attribute
 		Object.defineProperty( InternalObject.prototype, 'private', {
 			'enumerable' : false,
 			'value'      : {}
 		} );
 
-		// Add public methods to InternalObject
+		// Add public properties to InternalObject
 		for ( var property in this ) {
-
-			if ( typeof ExternalObject.prototype[ property ] === 'function' ) {
-				InternalObject.prototype[ property ] = ExternalObject.prototype[ property ].bind( initiatedObject );
-
-			} else {
-				InternalObject.prototype[ property ] = ExternalObject.prototype[ property ];
-			}
+			InternalObject.prototype[ property ] = ExternalObject.prototype[ property ];
 		}
 
-		// Add private methods to InternalObject
+		// Add private properties to InternalObject
 		for ( var property in this.private ) {
-
-			if ( typeof ExternalObject.prototype.private[ property ] === 'function' ) {
-				InternalObject.prototype.private[ property ] = ExternalObject.prototype.private[ property ].bind( initiatedObject );
-
-			} else {
-				InternalObject.prototype.private[ property ] = ExternalObject.prototype.private[ property ];
-			}
+			InternalObject.prototype.private[ property ] = ExternalObject.prototype.private[ property ];
 		}
+
+		// Initiate the object after adding all properties
+		var initiatedObject = new InternalObject( arguments );
 
 		// Remap ExternalObject to initiatedObject
-		for ( var property in this ) {
-
-			if ( typeof initiatedObject[ property ] === 'function' ) {
-				this[ property ] = initiatedObject[ property ].bind( initiatedObject );
-
-			} else {
-				this[ property ] = initiatedObject[ property ];
-			}
+		for ( var property in initiatedObject ) {
+			this[ property ] = initiatedObject[ property ];
 		}
 
 		// Delete ExternalObject .private attribute
