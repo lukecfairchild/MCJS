@@ -1,5 +1,9 @@
 'use strict';
 
+/* ====================================== *\
+         Class Constructor Function
+\* ====================================== */
+
 module.exports = function ( InternalObject ) {
 
 	var ExternalObject = function () {
