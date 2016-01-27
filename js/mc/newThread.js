@@ -1,10 +1,12 @@
 
-var newThread = function () {};
+var NewThread = function () {};
 
-newThread.prototype.setTimeout = function ( handler ) {
+NewThread.prototype.setTimeout = function ( handler ) {
 
 	var javaTimer = Java.type( 'java.util.Timer' );
 	var timer     = new javaTimer( 'setTimerRequest', true );
 
 	timer.schedule( handler, 0 );
 };
+
+module.exports = new NewThread();
