@@ -2,17 +2,16 @@
 
 var Class = require( './Class.js' );
 
+
 var Car = new Class( function () {
 
 	this.name = 'InternalObject';
 } );
 
-
 Car.prototype.private.test = function () {
 
 	console.log( 'Car.private.test(): ' + this.name );
 }
-
 
 Car.prototype.test = function () {
 
@@ -21,10 +20,12 @@ Car.prototype.test = function () {
 };
 
 
+
+
 var x = new Car();
 
+x.test();
 
-x.test()
-
+console.log( x.private ); // this returns undefined since .private is not public.
 
 
