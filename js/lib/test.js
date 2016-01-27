@@ -10,14 +10,14 @@ var Car = new Class( function () {
 
 Car.prototype.private.test = function () {
 
-	console.log( 'yay' );
+	console.log( 'Car.private.test(): ' + this.name );
 }
 
 
 Car.prototype.test = function () {
 
-	console.log( this );
-	this.private.test();
+	console.log( 'Car.test(): ' + this.name );
+	this.private.test()
 };
 
 
@@ -25,3 +25,6 @@ var x = new Car();
 
 
 x.test()
+
+
+
