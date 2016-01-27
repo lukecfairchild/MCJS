@@ -14,17 +14,35 @@ module.exports = function ( InternalObject ) {
 
 		// Add public methods to InternalObject
 		for ( var property in this ) {
-			InternalObject.prototype[ property ] = ExternalObject.prototype[ property ].bind( initiatedObject );
+
+			if ( typeof ExternalObject.prototype[ property ] === 'function' ) {
+				InternalObject.prototype[ property ] = ExternalObject.prototype[ property ].bind( initiatedObject );
+
+			} else {
+				InternalObject.prototype[ property ] = ExternalObject.prototype[ property ];
+			}
 		}
 
 		// Add private methods to InternalObject
 		for ( var property in this.private ) {
-			InternalObject.prototype.private[ property ] = ExternalObject.prototype.private[ property ].bind( initiatedObject );
+
+			if ( typeof ExternalObject.prototype.private[ property ] === 'function' ) {
+				InternalObject.prototype.private[ property ] = ExternalObject.prototype.private[ property ].bind( initiatedObject );
+
+			} else {
+				InternalObject.prototype.private[ property ] = ExternalObject.prototype.private[ property ];
+			}
 		}
 
 		// Remap ExternalObject to initiatedObject
 		for ( var property in this ) {
-			this[ property ] = initiatedObject[ property ].bind( initiatedObject );
+
+			if ( typeof initiatedObject[ property ] === 'function' ) {
+				this[ property ] = initiatedObject[ property ].bind( initiatedObject );
+
+			} else {
+				this[ property ] = initiatedObject[ property ];
+			}
 		}
 
 		// Delete ExternalObject .private attribute
