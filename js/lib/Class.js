@@ -4,25 +4,16 @@
          Class Constructor Function
 \* ====================================== */
 
-module.exports = function ( InternalObject ) {
-
-	var initiators = [];
+var Class = function ( InternalObject ) {
 
 	var ExternalObject = function () {
 
 		// Add internal .private attribute
-		Object.defineProperty( InternalObject.prototype, 'private', {
-			'enumerable' : false,
-			'value'      : {}
-		} );
-
-		for ( var initiator in initiators ) {
-			
-			var tempObject = new initiators[ initiator ]( arguments );
-
-			for ( var property in tempObject ) {
-				InternalObject.prototype[ property ] = tempObject[ property ];
-			}
+		if ( InternalObject.prototype.private === undefined ) {
+			Object.defineProperty( InternalObject.prototype, 'private', {
+				'enumerable' : false,
+				'value'      : {}
+			} );
 		}
 
 		// Add public properties to InternalObject
@@ -59,8 +50,6 @@ module.exports = function ( InternalObject ) {
 	// Add index for extending other classes
 	ExternalObject.extends = function ( extendingClass ) {
 
-		initiators.push( extendingClass );
-
 		for ( var property in extendingClass.prototype ) {
 			ExternalObject.prototype[ property ] = extendingClass.prototype[ property ];
 		}
@@ -72,3 +61,5 @@ module.exports = function ( InternalObject ) {
 
 	return ExternalObject;
 };
+
+module.exports = Class;
