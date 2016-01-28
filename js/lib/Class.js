@@ -6,6 +6,8 @@
 
 module.exports = function ( InternalObject ) {
 
+	var initiators = [];
+
 	var ExternalObject = function () {
 
 		// Add internal .private attribute
@@ -13,6 +15,15 @@ module.exports = function ( InternalObject ) {
 			'enumerable' : false,
 			'value'      : {}
 		} );
+
+		for ( var initiator in initiators ) {
+			
+			var tempObject = new initiators[ initiator ]( arguments );
+
+			for ( var property in tempObject ) {
+				InternalObject.prototype[ property ] = tempObject[ property ];
+			}
+		}
 
 		// Add public properties to InternalObject
 		for ( var property in this ) {
@@ -47,6 +58,8 @@ module.exports = function ( InternalObject ) {
 
 	// Add index for extending other classes
 	ExternalObject.extends = function ( extendingClass ) {
+
+		initiators.push( extendingClass );
 
 		for ( var property in extendingClass.prototype ) {
 			ExternalObject.prototype[ property ] = extendingClass.prototype[ property ];
