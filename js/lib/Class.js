@@ -40,7 +40,7 @@ module.exports = function ( InternalObject ) {
 
 		// Remap ExternalObject to initiatedObject
 		for ( var property in initiatedObject ) {
-			this[ property ] = initiatedObject[ property ];
+			this[ property ] = initiatedObject[ property ].bind( initiatedObject );
 		}
 
 		// Delete ExternalObject .private attribute
