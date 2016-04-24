@@ -76,7 +76,7 @@ module.exports = function ( /* eventType, callBack, [ priority ] */ ) {
 			} else {
 				if ( eventObject ) {
 
-					var rawMethods = event.getClass().getMethods()
+					var rawMethods = event.getClass().getMethods();
 
 					for ( var i in rawMethods ) {
 						var method = rawMethods[ i ].getName().toString();

@@ -96,7 +96,7 @@ CH.prototype.private.getValue = function ( object ) {
 
 			} else {
 				var returns  = [];
-				var rawArray = object.asList()
+				var rawArray = object.asList();
 
 				for ( var index in rawArray ) {
 					returns.push( this.private.getValue( rawArray[ index ] ) );

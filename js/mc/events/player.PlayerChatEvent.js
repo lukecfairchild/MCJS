@@ -2,7 +2,7 @@
 
 module.exports.getRecipients = function () {
 
-	var rawRecipients = this.getRecipients()
+	var rawRecipients = this.getRecipients();
 	var iterator      = rawRecipients.iterator();
 	var size          = rawRecipients.size();
 	var recipients    = [];
