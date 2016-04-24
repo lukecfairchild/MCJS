@@ -29,6 +29,6 @@ var Second = new Class( function () {
 
 Second.extends( First );
 
-var x = new Second()
+var x = new Second();
 
-x.test()
+x.test();
