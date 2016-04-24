@@ -1,5 +1,4 @@
 install:
   - npm install eslint
 script:
-  - node -e "console.log('yay')"
   - eslint -c .eslint.json ./js/*
