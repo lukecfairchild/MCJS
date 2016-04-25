@@ -1,3 +1,5 @@
+'use strict';
+
 ( function ( rootDir, modulePaths, hooks ) {
 
 	var fmt            = java.lang.String.format;
@@ -47,7 +49,7 @@
 
 	var _canonize = function ( file ) { 
 
-		return '' + file.canonicalPath.replaceAll( '\\\\', '/' ); 
+		return String( file.canonicalPath.replaceAll( '\\\\', '/' ) ); 
 	};
 
 	var resolveModuleToFile = function ( moduleName, parentDir ) {
@@ -109,6 +111,14 @@
 	require() function implementation
 	*/
 
+	var _requireClosure = function ( parent ) {
+
+		return function( path ) {
+			var module = _require( parent, path );
+			return module.exports;
+		};
+	};
+
 	var _require = function ( parentFile, path ) {
 
 		var buffered;
@@ -126,15 +136,15 @@
 		}
 
 		if ( !file ) {
-			var errMsg = '' + fmt(
+			var errMsg = String( fmt(
 				"require() failed to find matching file for module '%s' " + 
 				"in working directory '%s' "
 			, [
 				path,
 				parentFile.canonicalPath
-			] );
+			] ) );
 
-			if ( !( ( '' + path ).match( /^\./ ) ) ) {
+			if ( !( ( String( path ) ).match( /^\./ ) ) ) {
 				errMsg = errMsg + ' and not found in paths ' + JSON.stringify( modulePaths );
 			}
 
@@ -214,14 +224,6 @@
 
 		moduleInfo.loaded = true;
 		return moduleInfo;
-	};
-
-	var _requireClosure = function ( parent ) {
-
-		return function( path ) {
-			var module = _require( parent, path );
-			return module.exports;
-		};
 	};
 
 	return _requireClosure( new java.io.File( rootDir ) );
