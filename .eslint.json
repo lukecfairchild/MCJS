@@ -1,12 +1,60 @@
 {
-	"parserOptions" : {
-		"ecmaVersion"  : 6,
-		"sourceType"   : "module",
-		"ecmaFeatures" : {
-			"jsx" : true
-		}
-	},
-	"rules" : {
-		"semi" : 2
-	}
+    "parserOptions": {
+        "ecmaVersion"  : 6,
+        "ecmaFeatures" : {
+            "jsx" : true
+        }
+    },
+    "globals" : {
+        "Ti"            : true,
+        "Titanium"      : true,
+        "require"       : true,
+        "module"        : true,
+        "exports"       : true,
+        "setTimeout"    : true,
+        "setInterval"   : true,
+        "clearInterval" : true,
+        "alert"         : true,
+        "console"       : true,
+        "global"        : true,
+        "GLOBAL"        : true
+    },
+    "rules": {
+        "semi"                       : 2,
+        "curly"                      : "error",
+        "no-dupe-keys"               : "error",
+        "no-extra-boolean-cast"      : "error",
+        "no-func-assign"             : "error",
+        "no-inner-declarations"      : "error",
+        "no-negated-in-lhs"          : "error",
+        "no-sparse-arrays"           : "error",
+        "no-unexpected-multiline"    : "error",
+        "no-unreachable"             : "error",
+        "use-isnan"                  : "error",
+        "valid-typeof"               : "error",
+        "dot-notation"               : "error",
+        "eqeqeq"                     : "error",
+        "no-floating-decimal"        : "error",
+        "no-implicit-coercion"       : "error",
+        "no-labels"                  : "error",
+        "no-lone-blocks"             : "error",
+        "no-multi-str"               : "error",
+        "no-param-reassign"          : "error",
+        "no-return-assign"           : "error",
+        "no-self-assign"             : "error",
+        "no-self-compare"            : "error",
+        "no-sequences"               : "error",
+        "no-unused-expressions"      : "error",
+        "strict"                     : [ "error", "global" ],
+        "no-shadow-restricted-names" : "error",
+        "no-undef"                   : "error",
+        "no-unused-vars"             : "error",
+        "no-use-before-define"       : "error",
+        "array-bracket-spacing"      : [ "error", "always" ],
+        "brace-style"                : "error",
+        "camelcase"                  : [ "error", { "properties": "never" } ],
+        "comma-spacing"              : [ "error", { "before" : false, "after" : true } ],
+        "computed-property-spacing"  : [ "error", "always" ],
+        "eol-last"                   : "error"
+    }
 }
