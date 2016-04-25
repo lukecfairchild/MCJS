@@ -11,6 +11,8 @@ Console.prototype.log = function ( message ) {
 		var rep;
 		var indent;
 
+		var enclosure = '\'';
+		// var cx        = /[\u0000\u00ad\u0600-\u0604\u070f\u17b4\u17b5\u200c-\u200f\u2028-\u202f\u2060-\u206f\ufeff\ufff0-\uffff]/g;
 		var escapable = /[\\\"\x00-\x1f\x7f-\x9f\u00ad\u0600-\u0604\u070f\u17b4\u17b5\u200c-\u200f\u2028-\u202f\u2060-\u206f\ufeff\ufff0-\uffff]/g;
 
 		var meta = {    // table of character substitutions
@@ -24,7 +26,7 @@ Console.prototype.log = function ( message ) {
 
 		meta[ enclosure ] = '\\' + enclosure;
 
-		function quote ( string ) {
+		var quote = function ( string ) {
 
 			// If the string contains no control characters, no quote characters, and no
 			// backslash characters, then we can safely slap some quotes around it.
@@ -33,14 +35,15 @@ Console.prototype.log = function ( message ) {
 			escapable.lastIndex = 0;
 			return escapable.test( string ) ? enclosure + string.replace( escapable, function ( a ) {
 
-				var c = meta[a];
+				var c = meta[ a ];
+
 				return typeof c === 'string'
 					? c
 					: '\\u' + ( '0000' + a.charCodeAt( 0 ).toString( 16 ) ).slice( -4 );
 			} ) + enclosure : enclosure + string + enclosure;
-		}
+		};
 
-		function str ( key, holder, alignAllValues ) {
+		var str = function ( key, holder, alignAllValues ) {
 
 			// Produce a string from holder[key].
 
@@ -73,24 +76,31 @@ Console.prototype.log = function ( message ) {
 			}
 
 			// What happens next depends on the value's type.
-				switch ( typeof value ) {
-				case 'string' :
-					return quote(value);
+			switch ( typeof value ) {
+				case 'function' : {
+					return '[FUNCTION]';
+				}
 
-				case 'number' :
+				case 'string' : {
+					return quote( value );
+				}
+
+				case 'number' : {
 					// JSON numbers must be finite. Encode non-finite numbers as null.
 					return isFinite( value ) ? String( value ) : 'null';
+				}
 
 				case 'boolean' :
-				case 'null' :
+				case 'null' : {
 					// If the value is a boolean or null, convert it to a string. Note:
 					// typeof null does not produce 'null'. The case is included here in
 					// the remote chance that this gets fixed someday.
-					return String(value);
+					return String( value );
+				}
 
 				// If the type is 'object', we might be dealing with an object or an array or
 				// null.
-				case 'object':
+				case 'object' : {
 					// Due to a specification blunder in ECMAScript, typeof null is 'object',
 					// so watch out for that case.
 					if ( !value ) {
@@ -168,9 +178,12 @@ Console.prototype.log = function ( message ) {
 						start = false;
 
 						for ( i = 0; i <= partial.length; i++ ) {
-							if ( i == partial.length || /\n/.test( partial[ i ].v ) ) {
 
-								if ( i == partial.length && alignAllValues ) {
+							if ( i === partial.length || /\n/.test( partial[ i ].v ) ) {
+
+								if ( i === partial.length
+								&&   alignAllValues ) {
+
 									start = 0;
 								}
 
@@ -195,15 +208,17 @@ Console.prototype.log = function ( message ) {
 								}
 
 							} else {
-								if ( start === false && !alignAllValues ) {
+								if ( start === false
+								&&   !alignAllValues ) {
+
 									start = i;
 								}
 							}
 						}
 					}
 
-					for ( i = 0; i < partial.length; i++ ) {
-						partial[ i ] = partial[i].k + ( gap ? ' : ' : ':' ) + partial[ i ].v;
+					for ( i in partial ) {
+						partial[ i ] = partial[ i ].k + ( gap ? ' : ' : ':' ) + partial[ i ].v;
 					}
 
 					v = partial.length === 0
@@ -212,11 +227,13 @@ Console.prototype.log = function ( message ) {
 						? '{\n' + gap + partial.join( ',\n' + gap ) + '\n' + mind + '}'
 						: '{' + partial.join( ',' ) + '}';
 					gap = mind;
-					return v;
-			}
-		}
 
-		return function ( value, replacer, space, alignAllValues ) {
+					return v;
+				}
+			}
+		};
+
+		return function ( value, rawReplacer, rawSpace, rawAlignAllValues ) {
 
 			// The stringify method takes a value and an optional replacer, and an optional
 			// space parameter, and returns a JSON text. The replacer can be a function
@@ -229,12 +246,15 @@ Console.prototype.log = function ( message ) {
 			// encountered.  If this option is set to true, then each object will have all
 			// of its values aligned together.
 			var i;
+			var space          = rawSpace;
+			var replacer       = rawReplacer;
+			var alignAllValues = rawAlignAllValues;
 			gap = '';
 			indent = '';
 
 			// Since this module aligns JSON strings, set a default number of spaces so
 			// the output will always be indented.
-			if (typeof space === 'undefined') {
+			if ( space === undefined ) {
 				space = 4;
 			}
 
@@ -260,7 +280,7 @@ Console.prototype.log = function ( message ) {
 				)
 			) {
 
-				if ( typeof replacer == 'boolean' ) {
+				if ( typeof replacer === 'boolean' ) {
 					alignAllValues = replacer;
 					replacer       = null;
 
