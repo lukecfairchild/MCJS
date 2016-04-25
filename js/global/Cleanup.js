@@ -17,7 +17,9 @@ Cleanup.prototype.trigger = function () {
 			try {
 				task();
 
-			} catch ( error ) { }
+			} catch ( error ) {
+				console.log( error );
+			}
 		}
 	}
 
