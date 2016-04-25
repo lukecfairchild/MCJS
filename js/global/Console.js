@@ -279,7 +279,7 @@ Console.prototype.log = function ( message ) {
 		};
 	} )();
 
-	if ( typeof message == 'object' ) {
+	if ( typeof message === 'object' ) {
 		java.lang.System.out.println( jsonAlign( message, null, '	', true ) );
 
 	} else if ( typeof message === 'string' ) {
@@ -289,13 +289,6 @@ Console.prototype.log = function ( message ) {
 		java.lang.System.out.println( String( message ) );
 	}
 };
-
-/*
-Object.defineProperty( Console.prototype, 'private', {
-	'enumerable' : false,
-	'value'      : {}
-} );
-*/
 
 Console.prototype.info = function () {
 
@@ -336,6 +329,5 @@ Console.prototype.assert = function () {
 
 	throw new Error( 'NOT IMPLIMENTED' );
 };
-
 
 module.exports.console = new Console();
