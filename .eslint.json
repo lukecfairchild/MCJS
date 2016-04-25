@@ -6,15 +6,12 @@
         }
     },
     "globals" : {
-        "Ti"            : true,
-        "Titanium"      : true,
         "require"       : true,
         "module"        : true,
         "exports"       : true,
         "setTimeout"    : true,
         "setInterval"   : true,
         "clearInterval" : true,
-        "alert"         : true,
         "console"       : true,
         "global"        : true,
         "GLOBAL"        : true
@@ -47,7 +44,7 @@
         "no-unused-expressions"      : "error",
         "strict"                     : [ "error", "global" ],
         "no-shadow-restricted-names" : "error",
-        "no-undef"                   : "error",
+//        "no-undef"                   : "error",
         "no-unused-vars"             : "error",
         "no-use-before-define"       : "error",
         "array-bracket-spacing"      : [ "error", "always" ],
