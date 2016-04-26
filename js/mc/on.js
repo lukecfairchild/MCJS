@@ -1,7 +1,6 @@
 'use strict';
 
 var bkEventListener      = org.bukkit.event.Listener;
-var bkEventPriority      = org.bukkit.event.EventPriority;
 var bkEventExecutor      = org.bukkit.plugin.EventExecutor;
 var bkRegisteredListener = org.bukkit.plugin.RegisteredListener;
 var bkEventPackage       = 'org.bukkit.event.';
@@ -11,12 +10,12 @@ function getHandlerListForEventType ( eventType ) {
 	var result = null;
 	var clazz  = null;
 
-	if ( typeof eventType != 'string' ) {
-		clazz  = eventType[ 'class' ];
+	if ( typeof eventType !== 'string' ) {
+		clazz  = eventType.class;
 		result = clazz.getMethod( 'getHandlerList' ).invoke( null );
 
 	} else { 
-		clazz  = java.lang.Class.forName( bkEventPackage + '' + eventType );
+		clazz  = java.lang.Class.forName( String( bkEventPackage ) + String( eventType ) );
 		result = clazz.getMethod( 'getHandlerList' ).invoke( null );
 	}
 
@@ -34,14 +33,14 @@ module.exports = function ( /* eventType, callBack, [ priority ] */ ) {
 	var listener = { };
 	var result   = { };
 
-	if ( typeof priority == 'undefined' ) {
+	if ( priority === undefined ) {
 		priority = bkEventPriority.HIGHEST;
 
 	} else {
 		priority = bkEventPriority[ priority.toUpperCase() ];
 	}
 
-	if ( typeof eventType == 'string' ) {
+	if ( typeof eventType === 'string' ) {
 		var parseObjectParts = eventType.split( '.' );
 		var parseObjectLast  = org.bukkit.event;
 
