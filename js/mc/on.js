@@ -1,5 +1,6 @@
 'use strict';
 
+var bkEventPriority      = org.bukkit.event.EventPriority;
 var bkEventExecutor      = org.bukkit.plugin.EventExecutor;
 var bkRegisteredListener = org.bukkit.plugin.RegisteredListener;
 var bkEventPackage       = 'org.bukkit.event.';
