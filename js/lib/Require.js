@@ -1,10 +1,4 @@
-/**eslint
- * {
- *   "rules": {
- *     "no-unused-expressions" : 0
- *   }
- * }
- */
+/*eslint-disable*/
 'use strict';
 
 ( function ( rootDir, modulePaths, hooks ) {
