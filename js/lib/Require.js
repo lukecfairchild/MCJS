@@ -107,9 +107,7 @@
 		return null;
 	};
 
-	/*
-	require() function implementation
-	*/
+	var _require;
 
 	var _requireClosure = function ( parent ) {
 
@@ -119,7 +117,7 @@
 		};
 	};
 
-	var _require = function ( parentFile, path ) {
+	_require = function ( parentFile, path ) {
 
 		var buffered;
 		var moduleInfo;
@@ -194,7 +192,8 @@
 			);
 		}
 
-		var __dirname = '' + file.parentFile.canonicalPath;
+		var __dirname = String( file.parentFile.canonicalPath );
+
 		var parameters = [
 			moduleInfo.exports, /* exports */
 			moduleInfo,         /* module */
