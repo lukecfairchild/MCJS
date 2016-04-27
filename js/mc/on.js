@@ -1,10 +1,11 @@
 'use strict';
 
+var bkEventPriority      = org.bukkit.event.EventPriority;
 var bkEventExecutor      = org.bukkit.plugin.EventExecutor;
 var bkRegisteredListener = org.bukkit.plugin.RegisteredListener;
 var bkEventPackage       = 'org.bukkit.event.';
 
-function getHandlerListForEventType ( eventType ) {
+var getHandlerListForEventType = function ( eventType ) {
 
 	var result = null;
 	var clazz  = null;
@@ -19,7 +20,7 @@ function getHandlerListForEventType ( eventType ) {
 	}
 
 	return result;
-}
+};
 
 module.exports = function ( /* eventType, callBack, [ priority ] */ ) {
 

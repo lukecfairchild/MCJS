@@ -8,26 +8,17 @@ var mc = require( './MC.js' );
 
 mc.on( 'player.PlayerChatEvent', function ( event ) {
 
-	print( Object.keys( event ) );
-	print( event.getPlayer() );
-	print( event.getMessage() );
-	print( JSON.stringify( event.getRecipients() ) );
+	console.log( Object.keys( event ) );
+	console.log( event.getPlayer() );
+	console.log( event.getMessage() );
+	console.log( event.getRecipients() );
 
-	print( event.getEventName() );
+	console.log( event.getEventName() );
 	event.setMessage( 'yay' );
 	event.setPlayer( 'kookster' );
 } );
 
-setInterval( function () {
+mc.on( 'player.PlayerMoveEvent', function ( event ) {
 
-	print( 'yep' );
-}, 1000 );
-
-
-
-setTimeout( function () {
-
-	print( 'YAY!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!' );
-}, 2000 );
-
-clearAllTasks();
+	console.log( event );
+} );

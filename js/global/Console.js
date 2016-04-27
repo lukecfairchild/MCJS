@@ -4,7 +4,7 @@ var Console = new Class( function () {} );
 
 Console.prototype.log = function ( message ) {
 
-	var enclosure = '\"';
+	var enclosure = '\'';
 	var jsonAlign = ( function () {
 
 		var gap;

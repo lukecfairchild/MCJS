@@ -22,7 +22,23 @@ jsEngine.eval( 'var CString = TEMP.static; TEMP = undefined;' );
 jsEngine.put( 'TEMP', com.laytonsmith.core.constructs.CInt );
 jsEngine.eval( 'var CInt = TEMP.static; TEMP = undefined;' );
 
+/**
+ * Globally declare the variable 'global'.
+ */
+
 jsEngine.eval( 'var global = {};' );
+
+
+/**
+ * Initialize needed variables passed from commandhelper.
+ */
+
 jsEngine.put( 'commandHelperEnvironment', _Environment );
 jsEngine.put( 'PATH', _ScriptPath );
+
+
+/**
+ * Run the main javascript file passed into groovy.
+ */
+
 jsEngine.eval( _Javascript );
