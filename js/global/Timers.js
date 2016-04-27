@@ -14,12 +14,9 @@ var uuid = function () {
 
 var Timers = function () {
 
-	//this.timers = {};
 };
 
 Timers.prototype.clearAllTasks = function () {
-
-	//var timers = this.timers;
 
 	for ( var index in timers ) {
 		timers[ index ].cancel();
@@ -30,7 +27,6 @@ Timers.prototype.clearAllTasks = function () {
 
 Timers.prototype.setTimeout = function ( callback, delayInMillis ) {
 
-	//var timers = this.timers;
 	var delay  = Math.ceil( delayInMillis / 50 ) || 1;
 	var id     = uuid();
 	var timer  = org.bukkit.Bukkit.scheduler.runTaskLater( __plugin, function () {
@@ -63,7 +59,6 @@ Timers.prototype.setTimeout = function ( callback, delayInMillis ) {
 };
 Timers.prototype.setInterval = function ( callback, intervalInMillis ) {
 
-	//var timers = this.timers;
 	var delay  = Math.ceil( intervalInMillis / 50 ) || 1;
 	var id     = uuid();
 	var timer  = org.bukkit.Bukkit.scheduler.runTaskTimer( __plugin, function () {
