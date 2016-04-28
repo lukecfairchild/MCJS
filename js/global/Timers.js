@@ -1,7 +1,5 @@
 'use strict';
 
-var timers = {};
-
 var uuid = function () {
 
 	function s4 () {
