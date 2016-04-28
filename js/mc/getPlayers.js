@@ -11,7 +11,6 @@ module.exports = function ( world ) {
 	if ( world ) {
 
 		for ( var i = 0; i < playerCount; i++ ) {
-
 			var instance = iterator.next();
 
 			if ( instance.getWorld().getName() === world ) {
