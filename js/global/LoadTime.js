@@ -1,3 +1,3 @@
 'use strict';
 
-module.exports.loadTime = java.lang.System.currentTimeMillis();
+module.exports.loadTime = ( new Date() ).getTime();
