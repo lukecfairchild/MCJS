@@ -36,4 +36,4 @@ Cleanup.prototype.add = function ( task ) {
 	}
 };
 
-module.exports.Cleanup = new Cleanup();
+module.exports = new Cleanup();

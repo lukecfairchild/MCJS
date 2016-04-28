@@ -12,7 +12,19 @@ var uuid = function () {
 
 var Timers = function () {
 
+	var Cleanup = require( '../lib/Cleanup.js' );
+
 	this.timers = {};
+
+	Cleanup.add( function () {
+
+		for ( var index in this.timers ) {
+			this.timers[ index ].cancel();
+		}
+
+		this.timers = {};
+
+	}.bind( this ) );
 };
 
 Timers.prototype.clearAllTasks = function () {
@@ -32,7 +44,9 @@ Timers.prototype.setTimeout = function ( callback, delayInMillis ) {
 
 		var lastCHReload = com.laytonsmith.core.Globals.GetGlobalConstruct( 'lastReload' ).getInt();
 
-		if ( lastCHReload > loadTime ) {
+		if ( lastCHReload > Script.loadTime ) {
+			var Cleanup = require( '../lib/Cleanup.js' );
+
 			Cleanup.trigger();
 
 		} else {
@@ -64,8 +78,10 @@ Timers.prototype.setInterval = function ( callback, intervalInMillis ) {
 	var timer  = org.bukkit.Bukkit.scheduler.runTaskTimer( __plugin, function () {
 
 		var lastCHReload = com.laytonsmith.core.Globals.GetGlobalConstruct( 'lastReload' ).getInt();
-		
-		if ( lastCHReload > loadTime ) {
+
+		if ( lastCHReload > Script.loadTime ) {
+			var Cleanup = require( '../lib/Cleanup.js' );
+
 			Cleanup.trigger();
 
 		} else {
@@ -90,11 +106,4 @@ Timers.prototype.setInterval = function ( callback, intervalInMillis ) {
 	};
 };
 
-var TimerObject = new Timers();
-
-module.exports  = TimerObject;
-
-Cleanup.add( function () {
-
-	TimerObject.clearAllTasks();
-} );
+module.exports  = new Timers();

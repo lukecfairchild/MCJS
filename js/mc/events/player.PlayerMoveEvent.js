@@ -27,3 +27,8 @@ module.exports.getFrom = function () {
 		'world' : location.getWorld().getName()
 	};
 };
+
+module.exports.getPlayer = function () {
+
+	return this.getPlayer().getName();
+};

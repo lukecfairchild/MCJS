@@ -186,11 +186,7 @@
 			compiledWrapper = eval( code );
 
 		} catch ( error ) {
-			throw new Error(
-				'Error evaluating module ' + path +
-				' line #' + error.lineNumber +
-				' : ' + error.message, canonizedFilename, error.lineNumber
-			);
+			throw error;
 		}
 
 		var __dirname = String( file.parentFile.canonicalPath );
@@ -211,11 +207,7 @@
 			);
 
 		} catch ( error ) {
-			throw new Error(
-				'Error executing module ' + path +
-				' line #' + error.lineNumber +
-				' : ' + error.message, canonizedFilename, error.lineNumber
-			);
+			throw error;
 		}
 
 		if ( hooks ) { 

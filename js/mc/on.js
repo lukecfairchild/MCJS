@@ -69,7 +69,9 @@ module.exports = function ( /* eventType, callBack, [ priority ] */ ) {
 
 			var lastCHReload = com.laytonsmith.core.Globals.GetGlobalConstruct( 'lastReload' ).getInt();
 
-			if ( lastCHReload > loadTime ) {
+			if ( lastCHReload > Script.loadTime ) {
+				var Cleanup = require( '../lib/Cleanup.js' );
+
 				Cleanup.trigger();
 
 			} else {
@@ -118,6 +120,8 @@ module.exports = function ( /* eventType, callBack, [ priority ] */ ) {
 
 		handlerList.unregister( listener.reg );
 	};
+
+	var Cleanup = require( '../lib/Cleanup.js' );
 
 	Cleanup.add( result.unregister );
 
