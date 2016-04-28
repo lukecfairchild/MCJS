@@ -14,15 +14,16 @@ var uuid = function () {
 
 var Timers = function () {
 
+	this.timers = {};
 };
 
 Timers.prototype.clearAllTasks = function () {
 
-	for ( var index in timers ) {
-		timers[ index ].cancel();
+	for ( var index in this.timers ) {
+		this.timers[ index ].cancel();
 	}
 
-	timers = {};
+	this.timers = {};
 };
 
 Timers.prototype.setTimeout = function ( callback, delayInMillis ) {
@@ -37,7 +38,7 @@ Timers.prototype.setTimeout = function ( callback, delayInMillis ) {
 			Cleanup.trigger();
 
 		} else {
-			delete timers[ id ];
+			delete this.timers[ id ];
 			callback.call( {
 				'cancel' : function () {
 
@@ -45,18 +46,19 @@ Timers.prototype.setTimeout = function ( callback, delayInMillis ) {
 				}
 			} );
 		}
-	}, delay );
+	}.bind( this ), delay );
 
-	timers[ id ] = timer;
+	this.timers[ id ] = timer;
 
 	return {
 		'cancel' : function () {
 
-			delete timers[ id ];
+			delete this.timers[ id ];
 			timer.cancel();
-		}
+		}.bind( this )
 	};
 };
+
 Timers.prototype.setInterval = function ( callback, intervalInMillis ) {
 
 	var delay  = Math.ceil( intervalInMillis / 50 ) || 1;
@@ -64,7 +66,7 @@ Timers.prototype.setInterval = function ( callback, intervalInMillis ) {
 	var timer  = org.bukkit.Bukkit.scheduler.runTaskTimer( __plugin, function () {
 
 		var lastCHReload = com.laytonsmith.core.Globals.GetGlobalConstruct( 'lastReload' ).getInt();
-
+		
 		if ( lastCHReload > loadTime ) {
 			Cleanup.trigger();
 
@@ -72,21 +74,21 @@ Timers.prototype.setInterval = function ( callback, intervalInMillis ) {
 			callback.call( {
 				'cancel' : function () {
 
-					delete timers[ id ];
+					delete this.timers[ id ];
 					timer.cancel();
-				}
+				}.bind( this )
 			} );
 		}
-	}, delay, delay );
+	}.bind( this ), delay, delay );
 
-	timers[ id ] = timer;
+	this.timers[ id ] = timer;
 
 	return {
 		'cancel' : function () {
 
-			delete timers[ id ];
+			delete this.timers[ id ];
 			timer.cancel();
-		}
+		}.bind( this )
 	};
 };
 
@@ -94,4 +96,7 @@ var TimerObject = new Timers();
 
 module.exports  = TimerObject;
 
-Cleanup.add( TimerObject.clearAllTasks );
+Cleanup.add( function () {
+
+	TimerObject.clearAllTasks();
+} );
