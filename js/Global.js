@@ -36,10 +36,16 @@ var files = new java.io.File( PATH + '/global' ).listFiles();
 for ( var fileIndex in files ) {
 	var properties = require( files[ fileIndex ] );
 
-	if (typeof properties === 'object' ) {
+	if ( typeof properties === 'object' ) {
 
 		for ( var property in properties ) {
-			global[ property ] = properties[ property ];
+
+			if ( typeof properties[ property ] === 'function' ) {
+				global[ property ] = properties[ property ].bind( properties );
+
+			} else {
+				global[ property ] = properties[ property ];
+			}
 		}
 	}
 }
