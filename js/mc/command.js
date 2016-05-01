@@ -296,7 +296,7 @@ var commandCreate = function( alias, callBack ){
 	} );
 };
 
-var commandCall = function ( event, command, player ) {
+var commandCall = function ( event, command ) {
 
 	for ( var index in aliases ) {
 		var variables = aliases[ index ].variables;
@@ -316,8 +316,6 @@ var commandCall = function ( event, command, player ) {
 					results[ defaultVar ] = defaults[ defaultVar ];
 				}
 			}
-
-			aliases[ index ].player = player;
 
 			event.arguments = results;
 
@@ -346,8 +344,13 @@ on( 'server.ServerCommandEvent', function ( event ) {
 	var command	= '/' + event.getCommand();
 
 	if ( commandExists( command ) ) {
+		event.getPlayer = function () {
+
+			return require( '../Class/Console.js' );
+		};
+
 		event.setCancelled( true );
-		commandCall( event, command, '' );
+		commandCall( event, command );
 	}
 } );
 
@@ -363,7 +366,7 @@ on( 'player.PlayerCommandPreprocessEvent', function ( event ) {
 		}.bind( event );
 
 		event.setCancelled( true );
-		commandCall( event, command, '' );
+		commandCall( event, command );
 	}
 } );
 

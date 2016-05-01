@@ -1,24 +1,36 @@
 'use strict';
 
-// var ch = require( './CH.js' );
 var mc = require( './MC.js' );
-
-
-//print( JSON.stringify( ch.ploc( 'kookster' ) ) );
 
 mc.on( 'player.PlayerChatEvent', function ( event ) {
 
-	console.log( Object.keys( event ) );
-	console.log( event.getPlayer() );
-	console.log( event.getMessage() );
-	console.log( event.getRecipients() );
-
-	console.log( event.getEventName() );
-	event.setMessage( 'yay' );
-	event.setPlayer( 'kookster' );
+	print( Object.keys( event ) );
+	print( event.getPlayer() );
+	print( event.getMessage() );
+	print( event.getRecipients() );
+	print( event.getEventName() );
 } );
+
+
+var delay = java.lang.System.currentTimeMillis();
 
 mc.on( 'player.PlayerMoveEvent', function ( event ) {
 
-	console.log( event );
+	var now = java.lang.System.currentTimeMillis();
+
+	if ( now > delay + 1000 ) {
+
+		delay = now;
+		console.log( 'yay4' + event.getPlayer() );
+	}
+} );
+
+mc.on( 'player.PlayerJoinEvent', function ( event ) {
+
+	mc.broadcast( 'Welcome ' + event.getPlayer() );
+} );
+
+mc.command( '/test [$]', function ( event ) {
+
+	event.getPlayer().sendMessage( event.arguments.$ );
 } );
