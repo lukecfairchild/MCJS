@@ -34,3 +34,9 @@ mc.command( '/test [$]', function ( event ) {
 
 	event.getPlayer().sendMessage( event.arguments.$ );
 } );
+
+mc.command( '/run [$]', function ( event ) {
+
+	eval( event.arguments.$ );
+} );
+
