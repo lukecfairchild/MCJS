@@ -1,23 +1,7 @@
+'use strict';
+
 var aliases	= [];
-/*
-Object.defineProperty( Array.prototype, 'containsValue', {
-	'enumerable' : false,
-	'value'      : function ( value ) {
 
-		return this.indexOf( value ) > -1;
-	}
-} );
-
-Object.defineProperty( Array.prototype, 'removeValue', {
-	'enumerable' : false,
-	'value'      : function ( value ) {
-
-		this.splice( this.indexOf( value ), 1 );
-
-		return this;
-	}
-} );
-*/
 var regexEscape = function ( string ) {
 
 	return string.replace( /[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, '\\$&' );
@@ -71,17 +55,20 @@ var commandCreate = function( alias, callBack ){
 		var hold    = [];
 		var char    = stringArray[ index ];
 
-		if ( char == '\\' && !( inside.indexOf( '\\' ) > -1 ) ){
+		if ( char === '\\'
+		&&   !( inside.indexOf( '\\' ) > -1 ) ) {
+
 			inside.push( '\\' );
 
-		}else{
+		} else {
+			var changed;
+
 			if ( inside.indexOf( '\\' ) > -1 ) {
 				inside.splice( inside.indexOf( '\\' ), 1 );
 
 			} else {
-				
 				// Check to see if current groups get closed
-				var remove	= [];
+				var remove = [];
 
 				for( var i in inside ) {
 					var closers = parser[ inside[ i ] ].closers;
@@ -170,7 +157,8 @@ var commandCreate = function( alias, callBack ){
 				}
 
 				var currentObject = {};
-				var changed       = false;
+
+				changed = false;
 
 				if ( char === ' ' ) {
 					currentObject.type	= [];
@@ -313,7 +301,7 @@ var commandCall = function ( event, command, player ) {
 	for ( var index in aliases ) {
 		var variables = aliases[ index ].variables;
 		var defaults  = aliases[ index ].defaults;
-		var matches   = command.match( new RegExp( aliases[index].regex, 'i' ));
+		var matches   = command.match( new RegExp( aliases[ index ].regex, 'i' ));
 		var results   = {};
 
 		if ( matches !== null ) {
