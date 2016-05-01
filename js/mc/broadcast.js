@@ -4,11 +4,9 @@ module.exports = function ( message ) {
 
 	console.log( message );
 
-	var rawPlayers  = org.bukkit.Bukkit.getOnlinePlayers();
-	var players     = rawPlayers.iterator();
-	var playerCount = rawPlayers.size();
+	var players = this.getPlayers();
 
-	for ( var i = 0; i < playerCount; i++ ) {
-		players.next().sendMessage( message );
+	for ( var i in players ) {
+		players[ i ].sendMessage( message );
 	}
 };

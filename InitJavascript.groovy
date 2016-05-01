@@ -22,6 +22,7 @@ jsEngine.eval( 'var CString = TEMP.static; TEMP = undefined;' );
 jsEngine.put( 'TEMP', com.laytonsmith.core.constructs.CInt );
 jsEngine.eval( 'var CInt = TEMP.static; TEMP = undefined;' );
 
+
 /**
  * Globally declare the variable 'global'.
  */
@@ -30,15 +31,32 @@ jsEngine.eval( 'var global = {};' );
 
 
 /**
- * Initialize needed variables passed from commandhelper.
+ * Figure out the current Directory.
  */
 
 jsEngine.put( 'commandHelperEnvironment', _Environment );
-jsEngine.put( 'PATH', _ScriptPath );
+
+_serverDir = java.lang.System.getProperty( 'user.dir' ) + '\\';
+_pluginDir = org.bukkit.Bukkit.getPluginManager().getPlugin( 'CommandHelper' ).getDataFolder();
+_targetDir = '\\LocalPackages\\MCJS\\js';
+
+_PATH = _serverDir + _pluginDir + _targetDir;
+
+jsEngine.put( 'PATH', _PATH );
+
 
 
 /**
- * Run the main javascript file passed into groovy.
+ * Read in Global.js and eval it.
  */
 
+/*
+bufferReader = new java.io.BufferedReader( new java.io.FileReader( _PATH + '/CH.js' ) );
+
+while ( ( line = bufferReader.readLine() ) !== null ) {
+	java.lang.System.out.println( line );
+}
+
+bufferReader.close();
+*/
 jsEngine.eval( _Javascript );

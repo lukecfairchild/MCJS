@@ -4,24 +4,30 @@ module.exports = function ( world ) {
 
 	var players = [];
 
-	var rawPlayers  = org.bukkit.Bukkit.getOnlinePlayers();
-	var iterator    = rawPlayers.iterator();
-	var playerCount = rawPlayers.size();
+	var players = org.bukkit.Bukkit.getOnlinePlayers();
 
-	if ( world ) {
+	try {
+		var iterator    = rawPlayers.iterator();
+		var playerCount = rawPlayers.size();
 
-		for ( var i = 0; i < playerCount; i++ ) {
-			var instance = iterator.next();
+		if ( world ) {
 
-			if ( instance.getWorld().getName() === world ) {
-				players.push( instance.getName() );	
+			for ( var i = 0; i < playerCount; i++ ) {
+				var instance = iterator.next();
+
+				if ( instance.getWorld().getName() === world ) {
+					players.push( instance );	
+				}
+			}
+
+		} else {
+			for ( var i = 0; i < playerCount; i++ ) {
+				players.push( iterator.next() );	
 			}
 		}
 
-	} else {
-		for ( var i = 0; i < playerCount; i++ ) {
-			players.push( iterator.next().getName() );	
-		}
+	} catch ( error ) {
+		// Do Nothing
 	}
 
 	return players;

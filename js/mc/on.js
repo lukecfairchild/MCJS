@@ -54,7 +54,7 @@ module.exports = function ( /* eventType, callBack, [ priority ] */ ) {
 		handlerList = getHandlerListForEventType( eventType );
 	}
 
-	var eventObject;
+	var eventObject = {};
 
 	var returns  = {};
 	var filePath = PATH + '/mc/events/' + eventType + '.js';
@@ -75,37 +75,32 @@ module.exports = function ( /* eventType, callBack, [ priority ] */ ) {
 				Cleanup.trigger();
 
 			} else {
-				if ( eventObject ) {
 
-					var rawMethods = event.getClass().getMethods();
+				var rawMethods = event.getClass().getMethods();
 
-					for ( var i in rawMethods ) {
-						var method = rawMethods[ i ].getName().toString();
+				for ( var i in rawMethods ) {
+					var method = rawMethods[ i ].getName().toString();
 
-						if ( eventObject[ method ] === undefined ) {
-							returns[ method ] = ( function () {
+					if ( eventObject[ method ] === undefined ) {
+						returns[ method ] = ( function () {
 
-								var args = [];
+							var args = [];
 
-								for ( var i in arguments ) {
-									args.push( arguments[ i ] );
-								}
+							for ( var i in arguments ) {
+								args.push( arguments[ i ] );
+							}
 
-								if ( args.length ) {
-									return event[ this ]( args );
+							if ( args.length ) {
+								return event[ this ]( args );
 
-								} else {
-									return event[ this ]();
-								}
-							} ).bind( method );
+							} else {
+								return event[ this ]();
+							}
+						} ).bind( method );
 
-						} else {
-							returns[ method ] = eventObject[ method ].bind( event );
-						}
+					} else {
+						returns[ method ] = eventObject[ method ].bind( event );
 					}
-
-				} else {
-					methods = event;
 				}
 
 				callBack.call( result, returns );
