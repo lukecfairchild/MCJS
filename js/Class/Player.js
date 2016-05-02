@@ -24,31 +24,16 @@ var Player = new Class( function ( player ) {
 
 Player.prototype.getBedSpawnLocation = function () {
 
-	var location = this.getBedSpawnLocation();
+	var Location = require( './Location.js' );
 
-	return {
-		'x'     : Number( location.getX() ),
-		'y'     : Number( location.getY() ),
-		'z'     : Number( location.getZ() ),
-		'yaw'   : Number( location.getYaw() ),
-		'pitch' : Number( location.getPitch() ),
-		'world' : location.getWorld().getName()
-	};
-}
+	return new Location( this.getBedSpawnLocation() );
+};
 
 Player.prototype.getLocation = function () {
 
-	var location = this.getLocation();
+	var Location = require( './Location.js' );
 
-	return {
-		'x'     : Number( location.getX() ),
-		'y'     : Number( location.getY() ),
-		'z'     : Number( location.getZ() ),
-		'yaw'   : Number( location.getYaw() ),
-		'pitch' : Number( location.getPitch() ),
-		'world' : location.getWorld().getName()
-	};
-}
-
+	return new Location( this.getLocation() );
+};
 
 module.exports = Player;
