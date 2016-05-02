@@ -22,3 +22,10 @@ module.exports.setPlayer = function ( username ) {
 
 	this.setPlayer( org.bukkit.Bukkit.getPlayer( username ) );
 };
+
+module.exports.getPlayer = function () {
+
+	var Player = require( '../../Class/Player.js' );
+
+	return new Player( this.getPlayer() );
+};

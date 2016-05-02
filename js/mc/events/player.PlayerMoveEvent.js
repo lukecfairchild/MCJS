@@ -27,3 +27,10 @@ module.exports.getFrom = function () {
 		'world' : location.getWorld().getName()
 	};
 };
+
+module.exports.getPlayer = function () {
+
+	var Player = require( '../../Class/Player.js' );
+
+	return new Player( this.getPlayer() );
+};

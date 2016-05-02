@@ -5,7 +5,7 @@ var mc = require( './MC.js' );
 mc.on( 'player.PlayerChatEvent', function ( event ) {
 
 	print( Object.keys( event ) );
-	print( event.getPlayer() );
+	print( event.getPlayer().getName() );
 	print( event.getMessage() );
 	print( event.getRecipients() );
 	print( event.getEventName() );
@@ -21,7 +21,7 @@ mc.on( 'player.PlayerMoveEvent', function ( event ) {
 	if ( now > delay + 1000 ) {
 
 		delay = now;
-		console.log( 'yay4' + event.getPlayer() );
+		console.log( event.getPlayer().getLocation() );
 	}
 } );
 
@@ -39,4 +39,3 @@ mc.command( '/run [$]', function ( event ) {
 
 	eval( event.arguments.$ );
 } );
-
