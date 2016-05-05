@@ -12,7 +12,7 @@ var Player = new Class( function ( player ) {
 		var method = rawMethods[ i ].getName().toString();
 
 		if ( !( method in this ) ) {
-			this[ method ] = function () {
+			this[ method ] = function ( /* arguments */ ) {
 
 				var args = [];
 
