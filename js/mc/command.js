@@ -7,7 +7,9 @@ var regexEscape = function ( string ) {
 	return string.replace( /[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, '\\$&' );
 };
 
-var commandCreate = function( alias, callBack ){
+var commandCreate = function( rawAlias, callBack ){
+
+	var alias = rawAlias + ' ';
 
 	///////////////// Parser Object /////////////////
 	var parser = {
@@ -236,7 +238,7 @@ var commandCreate = function( alias, callBack ){
 	var variables = [];
 	var defaults  = {};
 
-	for( var i in commandArray ){
+	for ( var i in commandArray ) {
 		var value = commandArray[ i ].value;
 		var type  = commandArray[ i ].type;
 

@@ -2,22 +2,26 @@
 
 var Player = new Class( function ( player ) {
 
-	var rawMethods = ( new org.bukkit.entity.Player( {} ) ).getClass().getMethods();
+	var rawMethods = player.getClass().getMethods();
+
+	for ( var i in this ) {
+		this[ i ] = this[ i ].bind( player );
+	}
 
 	for ( var i in rawMethods ) {
 		var method = rawMethods[ i ].getName().toString();
 
 		if ( !( method in this ) ) {
-			this[ method ] = player[ method ];
-		}
-	}
+			this[ method ] = function () {
 
-	for ( var i in this ) {
+				var args = [];
 
-		if ( typeof this[ i ] === 'function'
-		&&   this[ i ].bind ) {
+				for ( var key in arguments ) {
+					args.push( 'arguments[ \'' + key + '\' ]' );
+				}
 
-			this[ i ] = this[ i ].bind( player );
+				return eval( ' player[ this ]( ' + args.join() + ' );' );
+			}.bind( method );
 		}
 	}
 } );
