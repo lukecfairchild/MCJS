@@ -17,10 +17,10 @@ var Player = new Class( function ( player ) {
 				var args = [];
 
 				for ( var key in arguments ) {
-					args.push( 'arguments[ \'' + key + '\' ]' );
+					args.push( 'arguments[ "' + key + '" ]' );
 				}
 
-				return eval( ' player[ this ]( ' + args.join() + ' );' );
+				return eval( 'player[ this ]( ' + args.join() + ' );' );
 			}.bind( method );
 		}
 	}
