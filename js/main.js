@@ -11,9 +11,9 @@ mc.on( 'player.PlayerChatEvent', function ( event ) {
 	print( event.getEventName() );
 } );
 
-
-var delay = java.lang.System.currentTimeMillis();
 /*
+var delay = java.lang.System.currentTimeMillis();
+
 mc.on( 'player.PlayerMoveEvent', function ( event ) {
 
 	var now = java.lang.System.currentTimeMillis();
