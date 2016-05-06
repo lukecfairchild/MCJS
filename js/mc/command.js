@@ -9,7 +9,7 @@ var regexEscape = function ( string ) {
 
 var commandCreate = function( rawAlias, callBack ){
 
-	var alias = rawAlias + ' ';
+	var alias = ' ' + rawAlias + ' ';
 
 	///////////////// Parser Object /////////////////
 	var parser = {
@@ -178,7 +178,7 @@ var commandCreate = function( rawAlias, callBack ){
 					currentObject.type	= [];
 					currentObject.value	= char;
 
-					if( inside.length !== 0 ){
+					if ( inside.length !== 0 ) {
 
 						for ( var i in inside ) {
 							currentObject.type.push( parser[ inside[ i ] ].type );
@@ -187,7 +187,7 @@ var commandCreate = function( rawAlias, callBack ){
 					} else {
 						currentObject.type.push( 'text' );
 
-						if( inside.indexOf( '[' ) > -1 ) {
+						if ( inside.indexOf( '[' ) > -1 ) {
 							currentObject.type.push( 'optional' );
 						}
 					}
@@ -231,6 +231,15 @@ var commandCreate = function( rawAlias, callBack ){
 				} );
 			}
 		}
+	}
+
+	if ( !commandArray.length ) {
+		commandArray.push( {
+			'value' : alias,
+			'type'  : [
+				'text'
+			]
+		} );
 	}
 
 	// Generate Regex from object
@@ -298,6 +307,19 @@ var commandCreate = function( rawAlias, callBack ){
 	} );
 };
 
+var commandExists = function ( command ) {
+
+	for ( var index in aliases ) {
+		var matches = command.match( new RegExp( aliases[ index ].regex, 'i' ) );
+
+		if ( matches !== null && matches[ 0 ] ) {
+			return true;
+		}
+	}
+
+	return false;
+};
+
 var commandCall = function ( event, command ) {
 
 	for ( var index in aliases ) {
@@ -306,7 +328,7 @@ var commandCall = function ( event, command ) {
 		var matches   = command.match( new RegExp( aliases[ index ].regex, 'i' ));
 		var results   = {};
 
-		if ( matches !== null ) {
+		if ( matches !== null && matches[ 0 ] ) {
 
 			for ( var i in variables ) {
 				results[ variables[ i ] ] = matches[ Number( i ) + 1 ];
@@ -324,19 +346,6 @@ var commandCall = function ( event, command ) {
 			aliases[ index ].callBack( event );
 		}
 	}
-};
-
-var commandExists = function ( command ) {
-
-	for ( var index in aliases ) {
-		var matches = command.match( new RegExp( aliases[ index ].regex, 'i' ) );
-
-		if( matches !== null ){
-			return true;
-		}
-	}
-
-	return false;
 };
 
 var on = require( './on.js' );
@@ -358,7 +367,7 @@ on( 'server.ServerCommandEvent', function ( event ) {
 
 on( 'player.PlayerCommandPreprocessEvent', function ( event ) { 
 
-	var command	= '/' + event.getMessage();
+	var command	= event.getMessage();
 
 	if ( commandExists( command ) ) {
 

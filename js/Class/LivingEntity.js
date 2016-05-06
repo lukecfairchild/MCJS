@@ -1,6 +1,6 @@
 'use strict';
 
-var Player = new Class( function ( bukkitObject ) {
+var LivingEntity = new Class( function ( bukkitObject ) {
 
 	var rawMethods = bukkitObject.getClass().getMethods();
 
@@ -26,21 +26,4 @@ var Player = new Class( function ( bukkitObject ) {
 	}
 } );
 
-Player.extends( require( './HumanEntity.js' ) );
-Player.extends( require( './LivingEntity.js' ) );
-
-Player.prototype.getBedSpawnLocation = function () {
-
-	var Location = require( './Location.js' );
-
-	return new Location( this.getBedSpawnLocation() );
-};
-
-Player.prototype.getLocation = function () {
-
-	var Location = require( './Location.js' );
-
-	return new Location( this.getLocation() );
-};
-
-module.exports = Player;
+module.exports = LivingEntity;

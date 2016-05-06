@@ -91,23 +91,11 @@ var Class = function ( InternalObject ) {
 	ExternalObject.extends = function ( ExtendingClass ) {
 
 		for ( var property in ExtendingClass.prototype ) {
-
-			if ( typeof ExtendingClass.prototype[ property ] === 'function' ) {
-				ExternalObject.prototype[ property ] = ExtendingClass.prototype[ property ].bind( ExternalObject.prototype );
-
-			} else {
-				ExternalObject.prototype[ property ] = ExtendingClass.prototype[ property ];
-			}
+			ExternalObject.prototype[ property ] = ExtendingClass.prototype[ property ];
 		}
 
 		for ( var property in ExtendingClass.prototype.private ) {
-
-			if ( typeof ExtendingClass.prototype.private[ property ] === 'function' ) {
-				ExternalObject.prototype.private[ property ] = ExtendingClass.prototype.private[ property ].bind( ExternalObject.prototype );
-
-			} else {
-				ExternalObject.prototype.private[ property ] = ExtendingClass.prototype.private[ property ];
-			}
+			ExternalObject.prototype.private[ property ] = ExtendingClass.prototype.private[ property ];
 		}
 	};
 

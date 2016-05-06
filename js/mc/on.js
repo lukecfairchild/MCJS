@@ -86,16 +86,11 @@ module.exports = function ( /* eventType, callBack, [ priority ] */ ) {
 
 							var args = [];
 
-							for ( var i in arguments ) {
-								args.push( arguments[ i ] );
+							for ( var key in arguments ) {
+								args.push( 'arguments[ "' + key + '" ]' );
 							}
 
-							if ( args.length ) {
-								return event[ this ]( args );
-
-							} else {
-								return event[ this ]();
-							}
+							return eval( 'event[ this ]( ' + args.join() + ' );' );
 						} ).bind( method );
 
 					} else {

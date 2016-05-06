@@ -21,21 +21,56 @@ mc.on( 'player.PlayerMoveEvent', function ( event ) {
 	if ( now > delay + 1000 ) {
 
 		delay = now;
-		console.log( event.getPlayer().getLocation() );
+		//console.log( event.getPlayer().getLocation() );
 	}
 } );
 
 mc.on( 'player.PlayerJoinEvent', function ( event ) {
 
-	mc.broadcast( 'Welcome ' + event.getPlayer() );
-} );
-
-mc.command( '/test [$]', function ( event ) {
-
-	event.getPlayer().sendMessage( event.arguments.$ );
+	mc.broadcast( 'Welcome ' + event.getPlayer().getName() );
 } );
 
 mc.command( '/run [$]', function ( event ) {
 
 	eval( event.arguments.$ );
+} );
+
+mc.command( '/test', function ( event ) {
+
+	var player = event.getPlayer();
+
+	console.log( player.getExpToLevel() );
+
+	console.log( player.getName() );
+	console.log( player.getLocation() );
+} );
+
+mc.command( '/fly $state', function ( event ) {
+
+	var state;
+
+	var player = event.getPlayer();
+
+	switch ( event.arguments.state ) {
+		case 'true' : {
+			state = true;
+
+			break;
+		}
+
+		case 'false' : {
+			state = false;
+
+			break;
+		}
+
+		default : {
+			player.sendMessage( 'Invalid choice, choose: "true" or "false"' );
+
+			return;
+		}
+	}
+	
+	player.sendMessage( 'Flight set to ' + state );
+	player.setAllowFlight( state );
 } );
