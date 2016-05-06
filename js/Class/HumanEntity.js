@@ -26,10 +26,11 @@ var HumanEntity = new Class( function ( bukkitObject ) {
 	}
 } );
 
-HumanEntity.prototype.getExpToLevel = function () {
-	console.log( 'yay' );
+HumanEntity.prototype.getEnderChest = function () {
 	
-	return this.getExpToLevel();
+	var inventoryObject = this.getEnderChest();
+	
+	return inventoryObject;
 };
 
 module.exports = HumanEntity;

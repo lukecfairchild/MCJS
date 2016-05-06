@@ -13,7 +13,7 @@ mc.on( 'player.PlayerChatEvent', function ( event ) {
 
 
 var delay = java.lang.System.currentTimeMillis();
-
+/*
 mc.on( 'player.PlayerMoveEvent', function ( event ) {
 
 	var now = java.lang.System.currentTimeMillis();
@@ -21,9 +21,10 @@ mc.on( 'player.PlayerMoveEvent', function ( event ) {
 	if ( now > delay + 1000 ) {
 
 		delay = now;
-		//console.log( event.getPlayer().getLocation() );
+		console.log( event.getPlayer().getLocation() );
 	}
 } );
+*/
 
 mc.on( 'player.PlayerJoinEvent', function ( event ) {
 
