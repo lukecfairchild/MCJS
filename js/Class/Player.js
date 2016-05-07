@@ -46,6 +46,6 @@ Player.prototype.getLocation = function () {
 Player.prototype.isOnline = function () {
 
 	return this.isOnline();
-}
+};
 
 module.exports = Player;

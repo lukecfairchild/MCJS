@@ -14,7 +14,7 @@ module.exports = function ( username ) {
 
 	if ( uuid ) {
 		player = org.bukkit.Bukkit.getPlayer( uuid )
-			|| org.bukkit.Bukkit.getOfflinePlayer( uuid )
+			|| org.bukkit.Bukkit.getOfflinePlayer( uuid );
 	}
 
 	if ( !player ) {
