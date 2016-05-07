@@ -43,4 +43,9 @@ Player.prototype.getLocation = function () {
 	return new Location( this.getLocation() );
 };
 
+Player.prototype.isOnline = function () {
+
+	return this.isOnline();
+}
+
 module.exports = Player;
