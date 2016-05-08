@@ -2,6 +2,8 @@
 
 module.exports = function ( world ) {
 
+	var Player = require( '../Class/Player.js' );
+
 	var players = [];
 
 	var players = org.bukkit.Bukkit.getOnlinePlayers();
@@ -16,13 +18,13 @@ module.exports = function ( world ) {
 				var instance = iterator.next();
 
 				if ( instance.getWorld().getName() === world ) {
-					players.push( instance );	
+					players.push( new Player( instance ) );	
 				}
 			}
 
 		} else {
 			for ( var i = 0; i < playerCount; i++ ) {
-				players.push( iterator.next() );	
+				players.push( new Player( iterator.next() ) );	
 			}
 		}
 
