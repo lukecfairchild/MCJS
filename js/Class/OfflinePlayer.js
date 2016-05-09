@@ -1,6 +1,6 @@
 'use strict';
 
-var LivingEntity = new Class( function ( bukkitObject ) {
+var OfflinePlayer = new Class( function ( bukkitObject ) {
 
 	var rawMethods = bukkitObject.getClass().getMethods();
 
@@ -26,11 +26,26 @@ var LivingEntity = new Class( function ( bukkitObject ) {
 	}
 } );
 
-LivingEntity.prototype.getEyeLocation = function () {
+OfflinePlayer.prototype.getBedSpawnLocation = function () {
 
 	var Location = require( './Location.js' );
 
-	return new Location( this.getEyeLocation() );
-}
+	return new Location( this.getBedSpawnLocation() );
+};
 
-module.exports = LivingEntity;
+OfflinePlayer.prototype.getPlayer = function () {
+
+	var returns = null;
+
+	var Player = require( './Player.js' );
+
+	var bukkitPlayerObject =  this.getPlayer();
+
+	if ( bukkitPlayerObject ) {
+		returns = new Player( bukkitPlayerObject );
+	}
+
+	return returns;
+};
+
+module.exports = OfflinePlayer;

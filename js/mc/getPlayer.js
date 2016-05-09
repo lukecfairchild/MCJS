@@ -18,9 +18,12 @@ module.exports = function ( username ) {
 	}
 
 	if ( !player ) {
-		player = org.bukkit.Bukkit.getPlayer( username )
-			|| org.bukkit.Bukkit.getOfflinePlayer( username );
+		player = org.bukkit.Bukkit.getPlayer( username );
 	}
 
-	return new Player( player.getPlayer() );
+	if ( !player ) {
+		player = org.bukkit.Bukkit.getOfflinePlayer( username );
+	}
+
+	return new Player( player.getPlayer() || player );
 };

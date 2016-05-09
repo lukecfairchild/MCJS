@@ -28,6 +28,7 @@ var Player = new Class( function ( bukkitObject ) {
 
 Player.extends( require( './HumanEntity.js' ) );
 Player.extends( require( './LivingEntity.js' ) );
+Player.extends( require( './OfflinePlayer.js' ) );
 
 Player.prototype.getBedSpawnLocation = function () {
 
