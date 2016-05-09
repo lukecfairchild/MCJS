@@ -31,6 +31,6 @@ LivingEntity.prototype.getEyeLocation = function () {
 	var Location = require( './Location.js' );
 
 	return new Location( this.getEyeLocation() );
-}
+};
 
 module.exports = LivingEntity;

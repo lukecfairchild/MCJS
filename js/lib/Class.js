@@ -82,10 +82,10 @@ var Class = function ( InternalObject ) {
 	};
 */
 	// Add ExternalObject .private attribute
-	Object.defineProperty( ExternalObject.prototype, 'private', {
+	/*Object.defineProperty( ExternalObject.prototype, 'private', {
 		'enumerable' : false,
 		'value'      : {}
-	} );
+	} );*/
 
 	// Add index for extending other classes
 	ExternalObject.extends = function ( ExtendingClass ) {
@@ -94,9 +94,9 @@ var Class = function ( InternalObject ) {
 			ExternalObject.prototype[ property ] = ExtendingClass.prototype[ property ];
 		}
 
-		for ( var property in ExtendingClass.prototype.private ) {
+		/*for ( var property in ExtendingClass.prototype.private ) {
 			ExternalObject.prototype.private[ property ] = ExtendingClass.prototype.private[ property ];
-		}
+		}*/
 	};
 
 	return ExternalObject;
