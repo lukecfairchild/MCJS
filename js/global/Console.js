@@ -2,7 +2,7 @@
 
 var Console = new Class( function () {} );
 
-Console.prototype.log = function ( message ) {
+Console.prototype.log = function ( rawMessage ) {
 
 	var enclosure = '\'';
 	// var jsonAlign = ( function () {
@@ -299,12 +299,16 @@ Console.prototype.log = function ( message ) {
 	};
 	// } )();
 
-	if ( typeof message === 'object' ) {
-		java.lang.System.out.println( jsonAlign( message, null, '	', true ) );
+	var message;
+
+	if ( typeof rawMessage === 'object' ) {
+		message = jsonAlign( rawMessage, null, '	', true );
 
 	} else {
-		java.lang.System.out.println( String( message ) );
+		message = String( rawMessage );
 	}
+
+	org.bukkit.Bukkit.getConsoleSender().sendMessage( message );
 };
 
 Console.prototype.info = function () {

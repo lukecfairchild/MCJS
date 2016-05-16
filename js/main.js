@@ -40,10 +40,16 @@ mc.command( '/test', function ( event ) {
 
 	var player = event.getPlayer();
 
-	console.log( player.getExpToLevel() );
+	var loc = player.getLocation();
 
-	console.log( player.getName() );
-	console.log( player.getLocation() );
+	loc.y += 1;
+
+	var newLoc = {
+		'x' : loc.x,
+		'y' : loc.y
+	};
+
+	player.setLocation( newLoc );
 } );
 
 mc.command( '/fly $state', function ( event ) {
