@@ -57,8 +57,8 @@ Database.prototype.connect = function ( database, options ) {
 
 		this.connections[ database ] = connection;
 
-	} finally {
-		// Do Nothing
+	} catch ( error ) {
+		throw new Error( 'Error in MySQL.query( \'' + database + '\', options ): connection failed: ' + error );
 	}
 };
  
@@ -132,6 +132,8 @@ Database.prototype.query = function ( database, query, args ) {
 				}
 			}
 		}
+	} catch ( error ) {
+		throw new Error( 'Error in MySQL.query( \'' + database + '\', query ): ' + error );
 		
 	} finally {
 
