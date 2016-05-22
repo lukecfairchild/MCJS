@@ -91,39 +91,45 @@ Database.prototype.query = function ( database, query, args ) {
 
 	var results = [];
 
+	var resultSet;
+	var statement;
+
 	try {
-		var statement = this.connections[ database ].prepareStatement( query );
-		var resultSet = statement.executeQuery();
+		statement = this.connections[ database ].prepareStatement( query );
 
-		resultSet.last();
+		if ( statement.execute() ) {
+			resultSet = statement.getResultSet();
 
-		var resultAmount = resultSet.getRow();
+			resultSet.last();
 
-		resultSet.first();
+			var resultAmount = resultSet.getRow();
 
-		var meta         = resultSet.getMetaData();
-		var columnAmount = meta.getColumnCount();
+			resultSet.first();
 
-		var columns = [];
+			var meta         = resultSet.getMetaData();
+			var columnAmount = meta.getColumnCount();
 
-		for ( var i = 1; i < columnAmount + 1; i++ ) {
-			columns.push(  meta.getColumnName( i ) );
-		}
+			var columns = [];
 
-		for ( var resultIndex = 1; resultIndex < resultAmount + 1; resultIndex++ ) {
-
-			var object = {};
-
-			for ( var i in columns ) {
-				var column = columns[ i ];
-
-				object[ column ] = resultSet.getString( columns[ i ] );
+			for ( var i = 1; i < columnAmount + 1; i++ ) {
+				columns.push(  meta.getColumnName( i ) );
 			}
 
-			results.push( object );
+			for ( var resultIndex = 1; resultIndex < resultAmount + 1; resultIndex++ ) {
 
-			if ( resultIndex !== resultAmount ) {
-				resultSet.next();
+				var object = {};
+
+				for ( var i in columns ) {
+					var column = columns[ i ];
+
+					object[ column ] = resultSet.getString( columns[ i ] );
+				}
+
+				results.push( object );
+
+				if ( resultIndex !== resultAmount ) {
+					resultSet.next();
+				}
 			}
 		}
 		
