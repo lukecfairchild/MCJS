@@ -81,3 +81,33 @@ mc.command( '/fly $state', function ( event ) {
 	player.sendMessage( 'Flight set to ' + state );
 	player.setAllowFlight( state );
 } );
+
+
+var MySQL = require( './lib/MySQL.js' );
+
+MySQL.connect( 'main', {
+	'username' : 'user',
+	'password' : 'pass',
+	'url'      : 'localhost',
+	'port'     : 3306,
+	'database' : 'database'
+} );
+
+var player1 = MySQL.query( 'main', 'SELECT nickname, ip FROM player WHERE username = ?', [
+	'kookster'
+] )[ 0 ];
+console.log( player1.ip );
+console.log( player1.nickname );
+
+var player2 = MySQL.query( 'main', 'SELECT nickname, ip FROM player WHERE username = ?', [
+	'kookster'
+] )[ 0 ];
+console.log( player2.ip );
+console.log( player2.nickname );
+
+var player3 = MySQL.query( 'main', 'SELECT nickname, ip FROM player WHERE username = ?', [
+	'kookster'
+] )[ 0 ];
+
+console.log( player3.ip );
+console.log( player3.nickname );

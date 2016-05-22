@@ -82,7 +82,7 @@ Console.prototype.log = function ( rawMessage ) {
 			}
 
 			case 'string' : {
-				return quote( value );
+				return quote( value + '\u00A7r' );
 			}
 
 			case 'number' : {
