@@ -62,12 +62,14 @@ Database.prototype.connect = function ( database, options ) {
 	}
 };
  
-Database.prototype.query = function ( database, query, args ) {
+Database.prototype.query = function ( database, rawQuery, rawArgs ) {
 
 	if ( !this.connections[ database ] ) {
 		throw new Error( 'Error in MySQL.query( \'' + database + '\', query ): invalid database connection' );
 	}
 
+	var args    = rawArgs || [];
+	var query   = rawQuery;
 	var indexes = [];
 
 	var i = -1;
@@ -75,8 +77,6 @@ Database.prototype.query = function ( database, query, args ) {
 	while ( ( i = query.indexOf( '?', i + 1 ) ) >= 0 ) {
 		indexes.push( i );
 	}
-
-	args = args || [];
 
 	if ( args.length !== indexes.length ) {
 		throw new Error( 'Error in MySQL.query( \'' + database + '\', query ): number of arguments does not match number of replacements' );

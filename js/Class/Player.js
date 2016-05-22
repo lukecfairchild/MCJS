@@ -62,8 +62,6 @@ Player.prototype.setLocation = function ( location ) {
 
 	if ( errors.length ) {
 		throw new Error( 'Error in (Player.js).setLocation( ' + JSON.stringify( location ) +' ): ' + errors );
-
-		return;
 	}
 
 
