@@ -8,6 +8,8 @@ MCJS is a simplified version of the bukkit/spigot api fully done
 in javascript using it's native methods.
 
 Here is a brief example of some of the things you can do with MCJS:
+
+This example we are creating a simple command.
 ```javascript
 mc.command( '/hello world', function ( event ) {
 	
@@ -22,6 +24,7 @@ In game do:
 /hello world
 ```
 
+This example will Welcome any player that joins the server:
 ```javascript
 mc.on( 'player.PlayerJoinEvent', function ( event ) {
 
