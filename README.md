@@ -17,6 +17,6 @@ mc.command( '/hello world', function ( event ) {
 ```
 
 In game do:
-```javascript
+```
 /hello world
 ```
