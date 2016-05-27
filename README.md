@@ -17,7 +17,7 @@ mc.command( '/hello world', function ( event ) {
 	
 	var player = event.getPlayer();
 
-	player.sendMessage( 'Hello ' + player.getUsername() );
+	player.sendMessage( 'Hello ' + player.getName() );
 } );
 ```
 
@@ -30,7 +30,7 @@ This example will Welcome any player that joins the server:
 ```javascript
 mc.on( 'player.PlayerJoinEvent', function ( event ) {
 
-	var username = event.getPlayer().getDisplayName();
+	var username = event.getPlayer().getName();
 
 	mc.broadcast( 'Welcome ' + username + ' to the server!' );
 }
