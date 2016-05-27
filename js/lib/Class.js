@@ -3,7 +3,9 @@
 /**
  * @class
  */
-var Class = function ( InternalObject ) {
+var Class = function ( rawInternalObject ) {
+
+	var InternalObject = rawInternalObject || function () {};
 
 	var ExternalObject = function () {
 
