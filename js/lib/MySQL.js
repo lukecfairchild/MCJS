@@ -1,11 +1,21 @@
 'use strict';
 
-var Database = function () {
+/**
+ * MySQL class
+ * @constructor
+ */
+var MySQL = function () {
 
 	this.connections = {};
 };
 
-Database.prototype.connect = function ( database, options ) {
+/**
+ * @implements {MySQL}
+ * @param {string} database - This is a alias for you to use to refrence a database connection.
+ * @param {object} options
+ *		username - test
+ */
+MySQL.prototype.connect = function ( database, options ) {
 
 	if ( typeof options !== 'object' ) {
 		throw new Error( 'Error in MySQL.connect( \'' + database + '\', options ): Invalid options parameter type:'
@@ -61,8 +71,14 @@ Database.prototype.connect = function ( database, options ) {
 		throw new Error( 'Error in MySQL.query( \'' + database + '\', options ): connection failed: ' + error );
 	}
 };
- 
-Database.prototype.query = function ( database, rawQuery, rawArgs ) {
+
+/**
+ * @implements {MySQL}
+ * @param {string} database - Alias for refrencing a database connection.
+ * @param {string} query - Query to be sent to the target mysql database.
+ * @param {array} arguments - Arguments to be passed into the query.
+ */
+MySQL.prototype.query = function ( database, rawQuery, rawArgs ) {
 
 	if ( !this.connections[ database ] ) {
 		throw new Error( 'Error in MySQL.query( \'' + database + '\', query ): invalid database connection' );
@@ -159,4 +175,4 @@ Database.prototype.query = function ( database, rawQuery, rawArgs ) {
 	return results;
 };
 
-module.exports = new Database();
+module.exports = new MySQL();

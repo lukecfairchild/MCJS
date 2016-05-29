@@ -14,11 +14,12 @@
 global.__plugin  = org.bukkit.Bukkit.getPluginManager().getPlugin( 'CommandHelper' );
 
 
-/**
- * Initiate require()
- */
-
 var Require = load( PATH + '/lib/Require.js' );
+
+/**
+ * @function
+ * @param {string} path - Specify a target javascript file to load.
+ */
 var require = Require( PATH, [ 'libpath1', 'libpath2' ] );
 
 global.Class = require( '/lib/Class.js' );

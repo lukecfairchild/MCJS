@@ -1,5 +1,9 @@
 'use strict';
 
+/**
+ * @constructor
+ * @return {object} - x, y, z, yaw, pitch, world
+ */
 var Location = function ( location ) {
 
 	return {

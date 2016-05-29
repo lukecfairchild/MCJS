@@ -1,5 +1,8 @@
 'use strict';
 
+/**
+ * @class
+ */
 var OfflinePlayer = new Class( function ( bukkitObject ) {
 
 	var rawMethods = bukkitObject.getClass().getMethods();
@@ -26,6 +29,10 @@ var OfflinePlayer = new Class( function ( bukkitObject ) {
 	}
 } );
 
+/**
+ * @implements OfflinePlayer
+ * @return Location
+ */
 OfflinePlayer.prototype.getBedSpawnLocation = function () {
 
 	var Location = require( './Location.js' );
@@ -33,6 +40,10 @@ OfflinePlayer.prototype.getBedSpawnLocation = function () {
 	return new Location( this.getBedSpawnLocation() );
 };
 
+/**
+ * @implements OfflinePlayer
+ * @return {Player}
+ */
 OfflinePlayer.prototype.getPlayer = function () {
 
 	var returns = null;

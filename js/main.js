@@ -86,28 +86,37 @@ mc.command( '/fly $state', function ( event ) {
 var MySQL = require( './lib/MySQL.js' );
 
 MySQL.connect( 'main', {
-	'username' : 'user',
-	'password' : 'pass',
-	'url'      : 'localhost',
+	'username' : 'letsbuild',
+	'password' : 'e8nNtJp96uTXrD9V',
+	'url'      : '192.168.2.100',
 	'port'     : 3306,
-	'database' : 'database'
+	'database' : 'letsbuild_commandhelper'
 } );
 
-var player1 = MySQL.query( 'main', 'SELECT nickname, ip FROM player WHERE username = ?', [
-	'kookster'
-] )[ 0 ];
-console.log( player1.ip );
-console.log( player1.nickname );
-
-var player2 = MySQL.query( 'main', 'SELECT nickname, ip FROM player WHERE username = ?', [
-	'kookster'
-] )[ 0 ];
-console.log( player2.ip );
-console.log( player2.nickname );
-
-var player3 = MySQL.query( 'main', 'SELECT nickname, ip FROM player WHERE username = ?', [
+var player1 = MySQL.query( 'main', 'SELECT rank FROM player WHERE username = ?', [
 	'kookster'
 ] )[ 0 ];
 
-console.log( player3.ip );
-console.log( player3.nickname );
+console.log( player1 );
+
+/*console.log( player1.rank );
+
+MySQL.query( 'main', 'UPDATE player SET rank = ? WHERE username = ?', [
+	'default',
+	'kookster'
+] );
+
+var player2 = MySQL.query( 'main', 'SELECT rank FROM player WHERE username = ?', [
+	'kookster'
+] )[ 0 ];
+console.log( player2.rank );
+
+MySQL.query( 'main', 'UPDATE player SET rank = ? WHERE username = ?', [
+	'owner',
+	'kookster'
+] );
+
+var player2 = MySQL.query( 'main', 'SELECT rank FROM player WHERE username = ?', [
+	'kookster'
+] )[ 0 ];
+console.log( player2.rank );*/

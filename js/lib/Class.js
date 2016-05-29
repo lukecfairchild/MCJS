@@ -1,102 +1,132 @@
 'use strict';
 
-/* ====================================== *\
-         Class Constructor Function
-\* ====================================== */
+/**
+ * @class
+ */
+var Class = function ( rawInternalObject ) {
 
-var Class = function ( InternalObject ) {
+	var InternalObject = rawInternalObject || function () {};
 
-	var ExternalObject = InternalObject;
-/*
+	var parents = {};
+
+	Object.defineProperty( InternalObject, 'getParents', {
+		'enumerable' : false,
+		'value'      : function () {
+
+			return parents;
+		}
+	} );
+
 	var ExternalObject = function () {
 
-		// Add internal .private attribute
-		if ( InternalObject.prototype.private === undefined ) {
-			Object.defineProperty( InternalObject.prototype, 'private', {
-				'enumerable' : false,
-				'value'      : {}
-			} );
-		}
+		var returnObject = {};
 
-		// Add public properties to InternalObject
-		for ( var property in ExternalObject.prototype ) {
-
-			if ( typeof ExternalObject.prototype[ property ] === 'function' ) {
-				InternalObject.prototype[ property ] = ExternalObject.prototype[ property ].bind( InternalObject.prototype );
-
-			} else {
-				InternalObject.prototype[ property ] = ExternalObject.prototype[ property ];
-			}
-		}
-
-		// Add private properties to InternalObject
-		for ( var property in ExternalObject.prototype.private ) {
-
-			if ( typeof ExternalObject.prototype.private[ property ] === 'function' ) {
-				InternalObject.prototype.private[ property ] = ExternalObject.prototype.private[ property ].bind( InternalObject.prototype );
-
-			} else {
-				InternalObject.prototype.private[ property ] = ExternalObject.prototype.private[ property ];
-			}
-		}
-
-		// Initiate the object after adding all properties
-		var initiatedObject = new InternalObject( arguments );
-
-		// Remap ExternalObject to initiatedObject
-		for ( var property in initiatedObject ) {
-
-			if ( typeof initiatedObject[ property ] === 'function' ) {
-				this[ property ] = initiatedObject[ property ].bind( initiatedObject );
-
-			} else {
-				this[ property ] = initiatedObject[ property ];
-			}
-		}
-
-		for ( var property in initiatedObject ) {
-
-			if ( typeof initiatedObject[ property ] === 'function' ) {
-				initiatedObject[ property ] = initiatedObject[ property ].bind( initiatedObject );
-
-			} else {
-				initiatedObject[ property ] = initiatedObject[ property ];
-			}
-		}
-
-		for ( var property in initiatedObject.private ) {
-
-			if ( typeof initiatedObject.private[ property ] === 'function' ) {
-				initiatedObject.private[ property ] = initiatedObject.private[ property ].bind( initiatedObject );
-
-			} else {
-				initiatedObject.private[ property ] = initiatedObject.private[ property ];
-			}
-		}
-
-		// Delete ExternalObject .private attribute
-		Object.defineProperty( this, 'private', {
+		Object.defineProperty( returnObject, 'getClass', {
 			'enumerable' : false,
-			'value'      : undefined
+			'value'      : function () {
+
+				return InternalObject;
+			}
 		} );
+
+		var args = [];
+
+		for ( var i in arguments ) {
+			args.push( arguments[ i ] );
+		}
+
+		InternalObject.apply( this, args );
+
+		for ( var i in this ) {
+
+			if ( typeof this[ i ] === 'function' ) {
+				returnObject[ i ] = this[ i ].bind( this );
+
+			} else {
+				returnObject[ i ] = this[ i ];
+			}
+		}
+
+		return returnObject;
 	};
-*/
-	// Add ExternalObject .private attribute
-	/*Object.defineProperty( ExternalObject.prototype, 'private', {
+
+	/*Object.defineProperty( ExternalObject.prototype, 'parents', {
 		'enumerable' : false,
 		'value'      : {}
 	} );*/
 
+	Object.defineProperty( ExternalObject.prototype, 'private', {
+		'enumerable' : false,
+		'value'      : {}
+	} );
+
+	Object.defineProperty( ExternalObject.prototype, 'getClass', {
+		'enumerable' : false,
+		'value'      : function () {
+
+			return InternalObject;
+		}
+	} );
+
 	// Add index for extending other classes
 	ExternalObject.extends = function ( ExtendingClass ) {
 
-		for ( var property in ExtendingClass.prototype ) {
-			ExternalObject.prototype[ property ] = ExtendingClass.prototype[ property ];
+		if ( ExtendingClass.prototype 
+		&&   typeof ExtendingClass.prototype.getClass === 'function'
+		&&   ExtendingClass.prototype.getClass().name !== '' ) {
+
+			var classObject = function () {
+
+				var args = [];
+
+				for ( var i in arguments ) {
+					args.push( arguments[ i ] );
+				}
+
+				return ExtendingClass.apply( ExtendingClass.prototype, args );
+			};
+
+			for ( var i in ExtendingClass.prototype ) {
+				var target = ExtendingClass.prototype[ i ];
+
+				if ( typeof target === 'function' ) {
+					classObject[ i ] = target.bind( ExternalObject.prototype );
+
+				} else {
+					classObject[ i ] = target;
+				}
+			}
+
+			parents[ ExtendingClass.prototype.getClass().name ] = classObject;
 		}
 
-		/*for ( var property in ExtendingClass.prototype.private ) {
-			ExternalObject.prototype.private[ property ] = ExtendingClass.prototype.private[ property ];
-		}*/
+		for ( var property in ExtendingClass.prototype ) {
+			var target = ExtendingClass.prototype[ property ];
+
+			if ( ExternalObject.prototype[ property ] === undefined ) {
+
+				if ( typeof target === 'function' ) {
+					ExternalObject.prototype[ property ] = target.bind( ExternalObject.prototype );
+
+				} else {
+					ExternalObject.prototype[ property ] = target;
+				}
+			}
+		}
+
+		for ( var property in ExtendingClass.prototype.private ) {
+			var target = ExtendingClass.prototype.private[ property ];
+
+			if ( ExternalObject.prototype[ property ] === undefined ) {
+
+				if ( typeof target === 'function' ) {
+					ExternalObject.prototype.private[ property ] = target.bind( ExternalObject.prototype );
+
+				} else {
+					ExternalObject.prototype.private[ property ] = target;
+				}
+			}
+		}
 	};
 
 	return ExternalObject;

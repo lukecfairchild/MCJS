@@ -1,5 +1,11 @@
 'use strict';
 
+/**
+ * @class
+ * @augments {HumanEntity}
+ * @augments {LivingEntity}
+ * @augments {OfflinePlayer}
+ */
 var Player = new Class( function ( bukkitObject ) {
 
 	var rawMethods = bukkitObject.getClass().getMethods();
@@ -30,6 +36,10 @@ Player.extends( require( './HumanEntity.js' ) );
 Player.extends( require( './LivingEntity.js' ) );
 Player.extends( require( './OfflinePlayer.js' ) );
 
+/**
+ * @implements Player
+ * @return {Location}
+ */
 Player.prototype.getBedSpawnLocation = function () {
 
 	var Location = require( './Location.js' );
@@ -37,6 +47,10 @@ Player.prototype.getBedSpawnLocation = function () {
 	return new Location( this.getBedSpawnLocation() );
 };
 
+/**
+ * @implements Player
+ * @return {Location}
+ */
 Player.prototype.getLocation = function () {
 
 	var Location = require( './Location.js' );
@@ -44,6 +58,10 @@ Player.prototype.getLocation = function () {
 	return new Location( this.getLocation() );
 };
 
+/**
+ * @implements Player
+ * @param {Location} location
+ */
 Player.prototype.setLocation = function ( location ) {
 
 	var errors = [];
@@ -88,6 +106,10 @@ Player.prototype.setLocation = function ( location ) {
 	this.teleport( bukkitLocation );
 };
 
+/**
+ * @implements Player
+ * @return {boolean}
+ */
 Player.prototype.isOnline = function () {
 
 	return this.isOnline();
