@@ -50,11 +50,6 @@ var Class = function ( rawInternalObject ) {
 		return returnObject;
 	};
 
-	/*Object.defineProperty( ExternalObject.prototype, 'parents', {
-		'enumerable' : false,
-		'value'      : {}
-	} );*/
-
 	Object.defineProperty( ExternalObject.prototype, 'private', {
 		'enumerable' : false,
 		'value'      : {}
