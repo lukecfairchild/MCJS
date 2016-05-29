@@ -121,4 +121,5 @@ var player2 = MySQL.query( 'main', 'SELECT rank FROM player WHERE username = ?',
 	'kookster'
 ] )[ 0 ];
 
-console.log( player2.rank );*/
+console.log( player2.rank );
+*/
