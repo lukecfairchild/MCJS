@@ -4,7 +4,7 @@
 
 [![Visit our IRC channel](https://kiwiirc.com/buttons/irc.esper.net/MCJS.png)](https://kiwiirc.com/client/irc.esper.net/#MCJS)
 
-[![Documentation]](https://letsbuild.net/jenkins/job/MCJS/lastStableBuild/artifact/out/index.html)
+[![Documentation(http://i.imgur.com/ITAGk6P.png)]](https://letsbuild.net/jenkins/job/MCJS/lastStableBuild/artifact/out/index.html)
 
 I created MCJS which is short for Minecraft Javascript to make it easier 
 to code using bukkit/spigot's API. Since I am not a fan of java
