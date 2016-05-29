@@ -99,7 +99,8 @@ var player1 = MySQL.query( 'main', 'SELECT rank FROM player WHERE username = ?',
 
 console.log( player1 );
 
-/*console.log( player1.rank );
+/*
+console.log( player1.rank );
 
 MySQL.query( 'main', 'UPDATE player SET rank = ? WHERE username = ?', [
 	'default',
