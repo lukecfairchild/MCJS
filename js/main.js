@@ -117,7 +117,7 @@ MySQL.query( 'main', 'UPDATE player SET rank = ? WHERE username = ?', [
 	'owner',
 	'kookster'
 ] );
-    
+     
 var player2 = MySQL.query( 'main', 'SELECT rank FROM player WHERE username = ?', [
 	'kookster'
 ] )[ 0 ];
