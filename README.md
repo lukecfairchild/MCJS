@@ -1,8 +1,8 @@
 # MCJS
 
-[![Build Status](https://travis-ci.org/lukecfairchild/MCJS.svg?branch=master)](https://travis-ci.org/lukecfairchild/MCJS)
+[![Build Status](https://travis-ci.org/lukecfairchild/MCJS.svg?branch=master)](https://travis-ci.org/lukecfairchild/MCJS){:target="_blank"}
 
-[![Visit our IRC channel](https://kiwiirc.com/buttons/irc.esper.net/MCJS.png)](https://kiwiirc.com/client/irc.esper.net/#MCJS)
+[![Visit our IRC channel](https://kiwiirc.com/buttons/irc.esper.net/MCJS.png)](https://kiwiirc.com/client/irc.esper.net/#MCJS){:target="_blank"}
 
 [![Documentation](http://i.imgur.com/ITAGk6P.png)](https://letsbuild.net/jenkins/job/MCJS/lastStableBuild/artifact/out/index.html)
 

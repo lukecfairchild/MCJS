@@ -1,10 +1,10 @@
 # MCJS
 
-[![Build Status](https://travis-ci.org/lukecfairchild/MCJS.svg?branch=master)](https://travis-ci.org/lukecfairchild/MCJS)
+[![Build Status](https://travis-ci.org/lukecfairchild/MCJS.svg?branch=master)](https://travis-ci.org/lukecfairchild/MCJS){:target="_blank"}
 
-[![Visit our IRC channel](https://kiwiirc.com/buttons/irc.esper.net/MCJS.png)](https://kiwiirc.com/client/irc.esper.net/#MCJS)
+[![Visit our IRC channel](https://kiwiirc.com/buttons/irc.esper.net/MCJS.png)](https://kiwiirc.com/client/irc.esper.net/#MCJS){:target="_blank"}
 
-[![GitHub](https://letsbuild.net/jenkins/static/72206d2f/plugin/github/logov3.png) GitHub](https://github.com/lukecfairchild/MCJS) 
+[![GitHub](https://letsbuild.net/jenkins/static/72206d2f/plugin/github/logov3.png) GitHub](https://github.com/lukecfairchild/MCJS)
 
 I created MCJS which is short for Minecraft Javascript to make it easier 
 to code using bukkit/spigot's API. Since I am not a fan of java
