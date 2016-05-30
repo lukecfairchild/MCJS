@@ -6,7 +6,7 @@
 
 [![Documentation](http://i.imgur.com/ITAGk6P.png)](https://letsbuild.net/jenkins/job/MCJS/lastStableBuild/artifact/out/index.html)
 
-[![GitHub](https://letsbuild.net/jenkins/static/72206d2f/plugin/github/logov3.png)](https://github.com/lukecfairchild/MCJS) GitHub
+[![GitHub](https://letsbuild.net/jenkins/static/72206d2f/plugin/github/logov3.png)GitHub](https://github.com/lukecfairchild/MCJS) 
 
 I created MCJS which is short for Minecraft Javascript to make it easier 
 to code using bukkit/spigot's API. Since I am not a fan of java
