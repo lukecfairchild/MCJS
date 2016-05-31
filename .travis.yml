@@ -2,8 +2,7 @@ notifications:
   irc: 
     channels:
       - "irc.esper.net#MCJS"
-    use_notice: true
-    skip_join: true
+    on_success: change
 install:
   - npm install eslint
 script:
