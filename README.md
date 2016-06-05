@@ -6,7 +6,7 @@
 
 [![Documentation](http://i.imgur.com/ITAGk6P.png)](https://letsbuild.net/jenkins/job/MCJS/lastStableBuild/artifact/out/index.html)
 
-[![Trello]()](https://trello.com/b/1wgOwyfv/mcjs)
+[![Trello](http://i.imgur.com/STUcSnp.png)](https://trello.com/b/1wgOwyfv/mcjs)
 
 I created MCJS which is short for Minecraft Javascript to make it easier 
 to code using bukkit/spigot's API. Since I am not a fan of java
