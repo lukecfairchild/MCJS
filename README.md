@@ -1,11 +1,8 @@
 # MCJS
 
 [![Build Status](https://travis-ci.org/lukecfairchild/MCJS.svg?branch=master)](https://travis-ci.org/lukecfairchild/MCJS)
-
 [![Visit our IRC channel](https://kiwiirc.com/buttons/irc.esper.net/MCJS.png)](https://kiwiirc.com/client/irc.esper.net/#MCJS)
-
 [![Documentation](http://i.imgur.com/ITAGk6P.png)](https://letsbuild.net/jenkins/job/MCJS/lastStableBuild/artifact/out/index.html)
-
 [![Trello](http://i.imgur.com/STUcSnp.png)](https://trello.com/b/1wgOwyfv/mcjs)
 
 I created MCJS which is short for Minecraft Javascript to make it easier 
