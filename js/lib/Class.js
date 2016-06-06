@@ -7,7 +7,8 @@ var Class = function ( rawInternalObject ) {
 
 	var InternalObject = rawInternalObject || function () {};
 
-	var parents = {};
+	var parents  = {};
+	var instance = {};
 
 	Object.defineProperty( InternalObject, 'getParents', {
 		'enumerable' : false,
@@ -18,6 +19,15 @@ var Class = function ( rawInternalObject ) {
 	} );
 
 	var ExternalObject = function () {
+
+		for ( var i in this.private ) {
+
+			if ( typeof this.private[ i ] === 'function' ) {
+				this.private[ i ] = this.private[ i ].bind( this );
+			}
+		}
+
+		instance = this;
 
 		var returnObject = {};
 
@@ -78,9 +88,10 @@ var Class = function ( rawInternalObject ) {
 					args.push( arguments[ i ] );
 				}
 
-				return ExtendingClass.apply( ExternalObject.prototype, args );
+				return ExtendingClass.call( instance, args );
 			};
 
+			// This allows this.getClass().getParents().someClass.someFunction
 			for ( var i in ExtendingClass.prototype ) {
 				var target = ExtendingClass.prototype[ i ];
 
