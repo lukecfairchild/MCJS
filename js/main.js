@@ -84,10 +84,10 @@ mc.command( '/fly $state', function ( event ) {
 
 
 var MySQL = require( './lib/MySQL.js' );
-
+/*
 MySQL.connect( 'main', {
 	'username' : 'letsbuild',
-	'password' : 'e8nNtJp96uTXrD9V',
+	'password' : 'e8nNtJp96uTXrD9V', // Don't try to run, password is different now.
 	'url'      : '192.168.2.100',
 	'port'     : 3306,
 	'database' : 'letsbuild_commandhelper'
@@ -98,7 +98,7 @@ var player1 = MySQL.query( 'main', 'SELECT rank FROM player WHERE username = ?',
 ] )[ 0 ];
 
 console.log( player1 );
-
+*/
 /*
 console.log( player1.rank );
 
