@@ -78,7 +78,7 @@ var Class = function ( rawInternalObject ) {
 					args.push( arguments[ i ] );
 				}
 
-				return ExtendingClass.apply( ExtendingClass.prototype, args );
+				return ExtendingClass.apply( ExternalObject.prototype, args );
 			};
 
 			for ( var i in ExtendingClass.prototype ) {
