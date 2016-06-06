@@ -69,7 +69,7 @@ module.exports = function ( /* eventType, callBack, [ priority ] */ ) {
 
 			var lastCHReload = com.laytonsmith.core.Globals.GetGlobalConstruct( 'lastReload' ).getInt();
 
-			if ( lastCHReload > Server.scriptLoadTime ) {
+			if ( lastCHReload > MCJS.getLoadTime() ) {
 				var Cleanup = require( '../lib/Cleanup.js' );
 
 				Cleanup.trigger();
@@ -103,7 +103,7 @@ module.exports = function ( /* eventType, callBack, [ priority ] */ ) {
 		} 
 	} );
 
-	listener.reg = new bkRegisteredListener( null, eventExecutor, priority, __plugin, true );
+	listener.reg = new bkRegisteredListener( null, eventExecutor, priority, MCJS.getInstance(), true );
 	handlerList.register( listener.reg );
 
 	result.unregister = function () {

@@ -5,15 +5,6 @@
  * functions and variables needed for the environment
  */
 
-
-/**
- * Initiate __plugin variable
- * This is needed for when interacting with many of bukkit's API's
- */
-
-global.__plugin  = org.bukkit.Bukkit.getPluginManager().getPlugin( 'CommandHelper' );
-
-
 var Require = load( PATH + '/lib/Require.js' );
 
 /**

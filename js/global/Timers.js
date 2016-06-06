@@ -40,11 +40,11 @@ Timers.prototype.setTimeout = function ( callback, delayInMillis ) {
 
 	var delay  = Math.ceil( delayInMillis / 50 ) || 1;
 	var id     = uuid();
-	var timer  = org.bukkit.Bukkit.scheduler.runTaskLater( __plugin, function () {
+	var timer  = org.bukkit.Bukkit.scheduler.runTaskLater( MCJS.getInstance(), function () {
 
 		var lastCHReload = com.laytonsmith.core.Globals.GetGlobalConstruct( 'lastReload' ).getInt();
 
-		if ( lastCHReload > Server.scriptLoadTime ) {
+		if ( lastCHReload > MCJS.getLoadTime() ) {
 			var Cleanup = require( '../lib/Cleanup.js' );
 
 			Cleanup.trigger();
@@ -75,11 +75,11 @@ Timers.prototype.setInterval = function ( callback, intervalInMillis ) {
 
 	var delay  = Math.ceil( intervalInMillis / 50 ) || 1;
 	var id     = uuid();
-	var timer  = org.bukkit.Bukkit.scheduler.runTaskTimer( __plugin, function () {
+	var timer  = org.bukkit.Bukkit.scheduler.runTaskTimer( MCJS.getInstance(), function () {
 
 		var lastCHReload = com.laytonsmith.core.Globals.GetGlobalConstruct( 'lastReload' ).getInt();
 
-		if ( lastCHReload > Server.scriptLoadTime ) {
+		if ( lastCHReload > MCJS.getLoadTime() ) {
 			var Cleanup = require( '../lib/Cleanup.js' );
 
 			Cleanup.trigger();
