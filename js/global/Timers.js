@@ -10,30 +10,30 @@ var uuid = function () {
 	return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
 };
 
-var Timers = function () {
+var Timers = new Class( function () {
 
 	var Cleanup = require( '../lib/Cleanup.js' );
 
-	this.timers = {};
+	this.private.timers = {};
 
 	Cleanup.add( function () {
 
-		for ( var index in this.timers ) {
-			this.timers[ index ].cancel();
+		for ( var index in this.private.timers ) {
+			this.private.timers[ index ].cancel();
 		}
 
-		this.timers = {};
+		this.private.timers = {};
 
 	}.bind( this ) );
-};
+} );
 
 Timers.prototype.clearAllTasks = function () {
 
-	for ( var index in this.timers ) {
-		this.timers[ index ].cancel();
+	for ( var index in this.private.timers ) {
+		this.private.timers[ index ].cancel();
 	}
 
-	this.timers = {};
+	this.private.timers = {};
 };
 
 Timers.prototype.setTimeout = function ( callback, delayInMillis ) {
@@ -44,13 +44,13 @@ Timers.prototype.setTimeout = function ( callback, delayInMillis ) {
 
 		var lastCHReload = com.laytonsmith.core.Globals.GetGlobalConstruct( 'lastReload' ).getInt();
 
-		if ( lastCHReload > Script.loadTime ) {
+		if ( lastCHReload > Server.scriptLoadTime ) {
 			var Cleanup = require( '../lib/Cleanup.js' );
 
 			Cleanup.trigger();
 
 		} else {
-			delete this.timers[ id ];
+			delete this.private.timers[ id ];
 			callback.call( {
 				'cancel' : function () {
 
@@ -60,12 +60,12 @@ Timers.prototype.setTimeout = function ( callback, delayInMillis ) {
 		}
 	}.bind( this ), delay );
 
-	this.timers[ id ] = timer;
+	this.private.timers[ id ] = timer;
 
 	return {
 		'cancel' : function () {
 
-			delete this.timers[ id ];
+			delete this.private.timers[ id ];
 			timer.cancel();
 		}.bind( this )
 	};
@@ -79,7 +79,7 @@ Timers.prototype.setInterval = function ( callback, intervalInMillis ) {
 
 		var lastCHReload = com.laytonsmith.core.Globals.GetGlobalConstruct( 'lastReload' ).getInt();
 
-		if ( lastCHReload > Script.loadTime ) {
+		if ( lastCHReload > Server.scriptLoadTime ) {
 			var Cleanup = require( '../lib/Cleanup.js' );
 
 			Cleanup.trigger();
@@ -88,19 +88,19 @@ Timers.prototype.setInterval = function ( callback, intervalInMillis ) {
 			callback.call( {
 				'cancel' : function () {
 
-					delete this.timers[ id ];
+					delete this.private.timers[ id ];
 					timer.cancel();
 				}.bind( this )
 			} );
 		}
 	}.bind( this ), delay, delay );
 
-	this.timers[ id ] = timer;
+	this.private.timers[ id ] = timer;
 
 	return {
 		'cancel' : function () {
 
-			delete this.timers[ id ];
+			delete this.private.timers[ id ];
 			timer.cancel();
 		}.bind( this )
 	};

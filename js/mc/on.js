@@ -69,7 +69,7 @@ module.exports = function ( /* eventType, callBack, [ priority ] */ ) {
 
 			var lastCHReload = com.laytonsmith.core.Globals.GetGlobalConstruct( 'lastReload' ).getInt();
 
-			if ( lastCHReload > Script.loadTime ) {
+			if ( lastCHReload > Server.scriptLoadTime ) {
 				var Cleanup = require( '../lib/Cleanup.js' );
 
 				Cleanup.trigger();
