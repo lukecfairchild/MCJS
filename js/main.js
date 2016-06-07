@@ -44,11 +44,6 @@ mc.command( '/test', function ( event ) {
 
 	loc.y += 1;
 
-	var newLoc = {
-		'x' : loc.x,
-		'y' : loc.y
-	};
-
 	player.setLocation( loc );
 } );
 
