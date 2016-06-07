@@ -49,7 +49,7 @@ mc.command( '/test', function ( event ) {
 		'y' : loc.y
 	};
 
-	player.setLocation( newLoc );
+	player.setLocation( loc );
 } );
 
 mc.command( '/fly $state', function ( event ) {
@@ -82,9 +82,9 @@ mc.command( '/fly $state', function ( event ) {
 	player.setAllowFlight( state );
 } );
 
-
-var MySQL = require( './lib/MySQL.js' );
 /*
+var MySQL = require( './lib/MySQL.js' );
+
 MySQL.connect( 'main', {
 	'username' : 'letsbuild',
 	'password' : 'e8nNtJp96uTXrD9V', // Don't try to run, password is different now.
