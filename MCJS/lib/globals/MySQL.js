@@ -86,6 +86,7 @@ MySQL.prototype.connect = function ( database, options ) {
 
 
 /**
+ * Allows you to send the specified MySQL database a query, if there is results it will be returned in a array.
  * @implements {MySQL}
  * @param {String} database - Alias for refrencing a database connection.
  * @param {String} query - Query to be sent to the target mysql database.
