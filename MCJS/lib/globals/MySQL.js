@@ -12,6 +12,7 @@ var MySQL = function () {
 
 
 /**
+ * Allows you to start and store a MySQL database connection for executing queries against.
  * @implements {MySQL}
  * @param {String} database - This is a alias for you to use to refrence a database connection.
  * @param {Object} options - This is the option object for specifying your connection to the MySQL database.
