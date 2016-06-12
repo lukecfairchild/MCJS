@@ -12,7 +12,7 @@ MCJS.prototype.getInstance = function () {
 
 MCJS.prototype.reload = function () {
 
-	this.instance.reload()
+	this.instance.reload();
 };
 
 MCJS.prototype.addCleanupTask = function ( task ) {

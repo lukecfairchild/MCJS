@@ -2,7 +2,7 @@
 
 
 /**
- * @class
+ * @namespace
  */
 
 var File = function () {};
