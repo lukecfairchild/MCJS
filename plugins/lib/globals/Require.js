@@ -120,6 +120,22 @@
 		};
 	};
 
+	var _getPluginDir = function () {
+
+		var Paths  = java.nio.file.Paths;
+		var System = java.lang.System;
+
+		return Paths.get( Paths.get( System.getProperty( "user.dir" ), "plugins" ).toString(), "MCJS" ).toString().replace( /\\/g, '/' );
+	};
+
+	var _getPluginsDir = function () {
+
+		var Paths  = java.nio.file.Paths;
+		var System = java.lang.System;
+
+		return Paths.get( System.getProperty( "user.dir" ), "plugins" ).toString().replace( /\\/g, '/' );
+	};
+
 	_require = function ( parentFile, path ) {
 
 		var buffered;
@@ -188,7 +204,11 @@
 			compiledWrapper = eval( code );
 
 		} catch ( error ) {
-			throw error;
+			var errorMessage = '[ERROR] '.orange() + canonizedFilename + ':' + error.lineNumber + '\n'
+				+ String( code.split( '\n' )[ error.lineNumber - 1 ] ).trim() + '\n\n'
+				+ error.toString() + '\n';
+
+			org.bukkit.Bukkit.getConsoleSender().sendMessage( errorMessage );
 		}
 
 		var __dirname = String( file.parentFile.canonicalPath );
@@ -209,7 +229,11 @@
 			);
 
 		} catch ( error ) {
-			throw error;
+			var errorMessage = '[ERROR] '.orange() + canonizedFilename + ':' + error.lineNumber + '\n'
+				+ String( code.split( '\n' )[ error.lineNumber - 1 ] ).trim() + '\n\n'
+				+ error.toString() + '\n';
+
+			org.bukkit.Bukkit.getConsoleSender().sendMessage( errorMessage );
 		}
 
 		if ( hooks ) { 

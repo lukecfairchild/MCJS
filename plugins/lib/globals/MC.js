@@ -7,7 +7,7 @@
 
 var MC = new Class( function () {
 
-	var files = new java.io.File( PATH + '/lib/mc' ).listFiles();
+	var files = new java.io.File( PATH + '/lib/globals/mc' ).listFiles();
 
 	for ( var index in files ) {
 		var file  = String( files[ index ] );
@@ -111,4 +111,4 @@ MC.prototype.getPlayers = function ( world ) {
 };
 
 
-module.exports.MC = new MC();
+module.exports = new MC();

@@ -2,18 +2,27 @@
 
 var MCJS = new Class( function () {
 
-	this.private.loadTime = ( new Date() ).getTime();
-	this.private.instance = org.bukkit.Bukkit.getPluginManager().getPlugin( 'MCJS' );
+	this.instance = org.bukkit.Bukkit.getPluginManager().getPlugin( 'MCJS' );
 } );
-
-MCJS.prototype.getLoadTime = function () {
-
-	return this.private.loadTime;
-};
 
 MCJS.prototype.getInstance = function () {
 
-	return this.private.instance;
+	return this.instance;
 };
 
-module.exports.MCJS = new MCJS();
+MCJS.prototype.reload = function () {
+
+	this.instance.reload()
+};
+
+MCJS.prototype.addCleanupTask = function ( task ) {
+
+	if ( typeof task === 'function' ) {
+		__instance.cleanup.push( task );
+
+	} else {
+		throw new error( 'Invalid cleanup task' );
+	}
+};
+
+module.exports = new MCJS();

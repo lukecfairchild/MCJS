@@ -5,52 +5,39 @@
  * functions and variables needed for the environment
  */
 
-var Require = load( PATH + '/lib/Require.js' );
+var Require = load( PATH + '/lib/globals/Require.js' );
+
 
 /**
  * @function
  * @param {string} path - Specify a target javascript file to load.
  */
-var require = Require( PATH, [ 'libpath1', 'libpath2' ] );
 
-global.Class = require( './lib/Class.js' );
+var require = Require( PATH, [ 'libpath1', 'libpath2' ] );
 
 
 /*
  * Load all globals
- * These are loaded from the global folder based off their module.exports keys
- * IE module.export.test = 'yay'
- * would globally set the variable test as 'yay'
  */
 
-var files = new java.io.File( PATH + '/lib/globals' ).listFiles();
+global.Class = require( './lib/globals/Class.js' );
+global.MCJS  = require( './lib/globals/MCJS.js' );
 
-for ( var fileIndex in files ) {
-	var properties = require( files[ fileIndex ] );
+require( './lib/globals/Object.js' );
+require( './lib/globals/String.js' );
 
-	if ( typeof properties === 'object' ) {
+var Timers = require( './lib/globals/Timers.js' );
 
-		for ( var property in properties ) {
+global.setInterval   = Timers.setInterval;
+global.setTimeout    = Timers.setTimeout;
+global.clearAllTasks = Timers.clearAllTasks;
+global.console       = require( './lib/globals/console.js' );
 
-			if ( typeof properties[ property ] === 'function' ) {
-				global[ property ] = properties[ property ].bind( properties );
-
-			} else {
-				global[ property ] = properties[ property ];
-			}
-		}
-	}
-}
+global.File  = require( './lib/globals/File.js' );
+global.MySQL = require( './lib/globals/MySQL.js' );
 
 
-/*
- * Load the MC object into global scope.
- */
-
-global.MC.command( '/chr', function () {
-
-	global.MCJS.reload();
-} );
+global.MC   = require( './lib/globals/MC.js' );
 
 
 /*

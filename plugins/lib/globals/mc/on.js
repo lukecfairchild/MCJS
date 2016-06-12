@@ -1,9 +1,6 @@
 'use strict';
 
-var bkEventPriority      = org.bukkit.event.EventPriority;
-var bkEventExecutor      = org.bukkit.plugin.EventExecutor;
-var bkRegisteredListener = org.bukkit.plugin.RegisteredListener;
-var bkEventPackage       = 'org.bukkit.event.';
+var bkEventPackage = 'org.bukkit.event.';
 
 var getHandlerListForEventType = function ( eventType ) {
 
@@ -34,10 +31,10 @@ module.exports = function ( /* eventType, callBack, [ priority ] */ ) {
 	var result   = { };
 
 	if ( priority === undefined ) {
-		priority = bkEventPriority.HIGHEST;
+		priority = org.bukkit.event.EventPriority.HIGHEST;
 
 	} else {
-		priority = bkEventPriority[ priority.toUpperCase() ];
+		priority = org.bukkit.event.EventPriority[ priority.toUpperCase() ];
 	}
 
 	if ( typeof eventType === 'string' ) {
@@ -64,7 +61,7 @@ module.exports = function ( /* eventType, callBack, [ priority ] */ ) {
 		eventObject = require( filePath );
 	}
 
-	eventExecutor = new bkEventExecutor( {
+	eventExecutor = new org.bukkit.plugin.EventExecutor( {
 		'execute' : function ( l, event ) {
 
 			var rawMethods = event.getClass().getMethods();
@@ -93,7 +90,7 @@ module.exports = function ( /* eventType, callBack, [ priority ] */ ) {
 		} 
 	} );
 
-	listener.reg = new bkRegisteredListener( null, eventExecutor, priority, MCJS.getInstance(), true );
+	listener.reg = new org.bukkit.plugin.RegisteredListener( null, eventExecutor, priority, MCJS.getInstance(), true );
 	handlerList.register( listener.reg );
 
 	result.unregister = function () {
@@ -101,9 +98,7 @@ module.exports = function ( /* eventType, callBack, [ priority ] */ ) {
 		handlerList.unregister( listener.reg );
 	};
 
-	var Cleanup = require( '../Cleanup.js' );
-
-	Cleanup.add( result.unregister );
+	MCJS.addCleanupTask( result.unregister );
 
 	return result;
 };

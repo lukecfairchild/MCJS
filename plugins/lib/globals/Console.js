@@ -351,4 +351,4 @@ Console.prototype.assert = function () {
 	throw new Error( 'NOT IMPLIMENTED' );
 };
 
-module.exports.console = new Console();
+module.exports = new Console();
