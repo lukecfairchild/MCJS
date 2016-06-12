@@ -13,12 +13,12 @@ var MySQL = function () {
 
 /**
  * @implements {MySQL}
- * @param {string} database - This is a alias for you to use to refrence a database connection.
- * @param {object} options
- *		username - Required
- *		password - Required
- *		database - Required
- *		url      - Required
+ * @param {String} database - This is a alias for you to use to refrence a database connection.
+ * @param {Object} options
+ * @param {String} options.username - Required
+ * @param {String} options.password - Required
+ * @param {String} options.database - Required
+ * @param {String} options.url - Required
  */
 
 MySQL.prototype.connect = function ( database, options ) {
