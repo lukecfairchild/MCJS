@@ -10,6 +10,7 @@ var File = function () {};
 
 /**
  * @implements File
+ * @param {String} path - Specify a target text file to read.
  * @return {String}
  */
 
@@ -45,6 +46,8 @@ File.prototype.read = function ( filePath ) {
 
 /**
  * @implements File
+ * @param {String} path - Specify a target file path.
+ * @param {String} data - The data to be written to the file.
  */
 
 File.prototype.write = function ( filePath, data ) {
@@ -60,6 +63,8 @@ File.prototype.write = function ( filePath, data ) {
 
 /**
  * @implements File
+ * @param {String} path - Specify a target file path.
+ * @param {String} data - The data to be appended to the file.
  */
 
 File.prototype.append = function ( filePath, data ) {
@@ -72,6 +77,11 @@ File.prototype.append = function ( filePath, data ) {
 	file.close();
 };
 
+
+/**
+ * @implements File
+ * @param {String} path - Specify a target file path for deletion.
+ */
 
 File.prototype.delete = function ( filePath ) {
 
