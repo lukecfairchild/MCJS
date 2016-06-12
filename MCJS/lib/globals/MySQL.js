@@ -20,6 +20,13 @@ var MySQL = function () {
  * @param {String} options.database - Database name on the MySQL database.
  * @param {String} options.url - URL to get to the MySQL database.
  * @param {Number} [options.port=3306] - Port for connecting to the MySQL database.
+ * @example
+ * MySQL.query( 'main', {
+ * 	'username' : 'test',
+ * 	'password' : 'foo',
+ * 	'database' : 'minecraft',
+ * 	'url'      : 'localhost'
+ * } );
  */
 
 MySQL.prototype.connect = function ( database, options ) {
@@ -83,6 +90,8 @@ MySQL.prototype.connect = function ( database, options ) {
  * @param {String} database - Alias for refrencing a database connection.
  * @param {String} query - Query to be sent to the target mysql database.
  * @param {Array} arguments - Arguments to be passed into the query.
+ * @example
+ * var results = MySQL.query( 'main', 'SELECT * FROM table' );
  */
 
 MySQL.prototype.query = function ( database, rawQuery, rawArgs ) {
