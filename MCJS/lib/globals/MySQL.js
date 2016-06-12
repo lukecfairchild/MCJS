@@ -19,6 +19,7 @@ var MySQL = function () {
  * @param {String} options.password - Required
  * @param {String} options.database - Required
  * @param {String} options.url - Required
+ * @param {Number|3306} options.port - Required
  */
 
 MySQL.prototype.connect = function ( database, options ) {
