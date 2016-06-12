@@ -14,7 +14,9 @@
         "clearInterval" : true,
         "console"       : true,
         "global"        : true,
-        "GLOBAL"        : true
+        "GLOBAL"        : true,
+        "MCJS"          : true,
+        "MC"            : true
     },
     "rules": {
         "semi"                       : 2,
