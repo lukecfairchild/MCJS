@@ -91,6 +91,7 @@ MySQL.prototype.connect = function ( database, options ) {
  * @param {String} database - Alias for refrencing a database connection.
  * @param {String} query - Query to be sent to the target mysql database.
  * @param {Array} arguments - Arguments to be passed into the query.
+ * @return {Array} - This is a array of results if there are any.
  * @example
  * var results = MySQL.query( 'main', 'SELECT * FROM table' );
  */
