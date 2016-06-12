@@ -98,9 +98,7 @@ module.exports = function ( /* eventType, callBack, [ priority ] */ ) {
 		handlerList.unregister( listener.reg );
 	};
 
-	var Cleanup = require( '../../Cleanup.js' );
-
-	Cleanup.add( result.unregister );
+	MCJS.addCleanupTask( result.unregister );
 
 	return result;
 };

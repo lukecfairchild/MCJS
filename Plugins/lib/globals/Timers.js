@@ -12,11 +12,9 @@ var uuid = function () {
 
 var Timers = new Class( function () {
 
-	var Cleanup = require( '../Cleanup.js' );
-
 	this.private.timers = {};
 
-	Cleanup.add( function () {
+	MCJS.addCleanupTask( function () {
 
 		for ( var index in this.private.timers ) {
 			this.private.timers[ index ].cancel();

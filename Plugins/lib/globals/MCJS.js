@@ -15,4 +15,14 @@ MCJS.prototype.reload = function () {
 	this.instance.reload()
 };
 
+MCJS.prototype.addCleanupTask = function ( task ) {
+
+	if ( typeof task === 'function' ) {
+		__instance.cleanup.push( task );
+
+	} else {
+		throw new error( 'Invalid cleanup task' );
+	}
+};
+
 module.exports = new MCJS();
