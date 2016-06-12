@@ -14,7 +14,7 @@ var MySQL = function () {
 /**
  * @implements {MySQL}
  * @param {String} database - This is a alias for you to use to refrence a database connection.
- * @param {Object} options
+ * @param {Object} options - This is the option object for specifying your connection to the MySQL database.
  * @param {String} options.username - Username for connecting to the database.
  * @param {String} options.password - Password for connecting to the database.
  * @param {String} options.database - Database name on the MySQL database.
@@ -80,9 +80,9 @@ MySQL.prototype.connect = function ( database, options ) {
 
 /**
  * @implements {MySQL}
- * @param {string} database - Alias for refrencing a database connection.
- * @param {string} query - Query to be sent to the target mysql database.
- * @param {array} arguments - Arguments to be passed into the query.
+ * @param {String} database - Alias for refrencing a database connection.
+ * @param {String} query - Query to be sent to the target mysql database.
+ * @param {Array} arguments - Arguments to be passed into the query.
  */
 
 MySQL.prototype.query = function ( database, rawQuery, rawArgs ) {
