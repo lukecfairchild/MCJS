@@ -1,10 +1,5 @@
 'use strict';
 
-/**
- * This file handles initiating all the global objects
- * functions and variables needed for the environment
- */
-
 var Require = load( PATH + '/lib/globals/Require.js' );
 
 
