@@ -21,9 +21,10 @@ var MC = new Class( function () {
 
 
 /**
- * @memberof MC
+ * @implements {MC}
  * @param {string} message - Message to send all players
  */
+
 MC.prototype.broadcast = function ( message ) {
 
 	console.log( message );
@@ -37,10 +38,11 @@ MC.prototype.broadcast = function ( message ) {
 
 
 /**
- * @memberof MC
+ * @implements {MC}
  * @param {string} username/uuid - Player username or uuid.
  * @return {Player}
  */
+
 MC.prototype.getPlayer = function ( username ) {
 
 	var Player = require( '/lib/Class/Player.js' );
@@ -71,10 +73,11 @@ MC.prototype.getPlayer = function ( username ) {
 
 
 /**
- * @memberof MC
+ * @implements {MC}
  * @param {string} [world] - World name.
  * @return [ {Player} ]
  */
+
 MC.prototype.getPlayers = function ( world ) {
 
 	var Player = require( '../Class/Player.js' );
