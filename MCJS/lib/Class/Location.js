@@ -1,7 +1,7 @@
 'use strict';
 
 /**
- * @typedef Location
+ * @typedef LocationObject
  * @type Object
  * @property {Number} x
  * @property {Number} y
@@ -14,7 +14,7 @@
 
 /**
  * @constructor
- * @return {Location}
+ * @return {LocationObject}
  */
 
 var Location = function ( location ) {
