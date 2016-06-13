@@ -10,7 +10,7 @@ var Location = function ( location ) {
 
 
 	/**
-	 * @implements {LocationObject}
+	 * @implements {Location}
 	 * @typedef LocationObject
 	 * @property {Number} x
 	 * @property {Number} y
