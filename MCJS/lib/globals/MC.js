@@ -2,7 +2,7 @@
 
 
 /**
- * @global
+ * @var
  */
 
 var MC = new Class( function () {
