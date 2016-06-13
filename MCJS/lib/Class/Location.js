@@ -2,7 +2,13 @@
 
 /**
  * @constructor
- * @return {object} - x, y, z, yaw, pitch, world
+ * @return {Object} Location
+ * @return {Number} Location.x
+ * @return {Number} Location.y
+ * @return {Number} Location.z
+ * @return {Number} Location.yaw
+ * @return {Number} Location.pitch
+ * @return {String} Location.world
  */
 var Location = function ( location ) {
 
