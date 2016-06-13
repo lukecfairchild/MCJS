@@ -9,6 +9,7 @@ var File = function () {};
 
 
 /**
+ * Allows you to read and return the value of a file.
  * @implements File
  * @param {String} path - Specify a target text file to read.
  * @return {String}
@@ -45,6 +46,7 @@ File.prototype.read = function ( filePath ) {
 
 
 /**
+ * Allows you to write data to a file.
  * @implements File
  * @param {String} path - Specify a target file path.
  * @param {String} data - The data to be written to the file.
@@ -62,6 +64,7 @@ File.prototype.write = function ( filePath, data ) {
 
 
 /**
+ * Allows you to append data to a value.
  * @implements File
  * @param {String} path - Specify a target file path.
  * @param {String} data - The data to be appended to the file.
@@ -79,6 +82,7 @@ File.prototype.append = function ( filePath, data ) {
 
 
 /**
+ * Allows you to delete a file at the specified path.
  * @implements File
  * @param {String} path - Specify a target file path for deletion.
  */
