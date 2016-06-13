@@ -1,9 +1,22 @@
 'use strict';
 
 /**
- * @constructor
- * @return {{x: Number, y: Number, z: Number, yaw: Number, pitch: Number, wolrd: String}} Location
+ * @typedef Location
+ * @type Object
+ * @property {Number} x
+ * @property {Number} y
+ * @property {Number} z
+ * @property {Number} yaw
+ * @property {Number} pitch
+ * @property {String} world
  */
+
+
+/**
+ * @constructor
+ * @return {Location}
+ */
+
 var Location = function ( location ) {
 
 	return {
