@@ -2,7 +2,7 @@
 
 
 /**
- * @namespace
+ * @global
  */
 
 var MC = new Class( function () {

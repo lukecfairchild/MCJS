@@ -1,6 +1,17 @@
 'use strict';
 
+
+/**
+ * @global
+ */
+
 var Console = new Class( function () {} );
+
+
+/**
+ * @implements Console
+ * @param {String} message - Message to be shown on console.
+ */
 
 Console.prototype.log = function ( rawMessage ) {
 
@@ -311,44 +322,85 @@ Console.prototype.log = function ( rawMessage ) {
 	org.bukkit.Bukkit.getConsoleSender().sendMessage( message );
 };
 
+
+/**
+ * @implements Console
+ */
+
 Console.prototype.info = function () {
 
 	throw new Error( 'NOT IMPLIMENTED' );
 };
+
+
+/**
+ * @implements Console
+ */
 
 Console.prototype.warn = function () {
 
 	throw new Error( 'NOT IMPLIMENTED' );
 };
 
+
+/**
+ * @implements Console
+ */
+
 Console.prototype.error = function () {
 
 	throw new Error( 'NOT IMPLIMENTED' );
 };
+
+
+/**
+ * @implements Console
+ */
 
 Console.prototype.dir = function () {
 
 	throw new Error( 'NOT IMPLIMENTED' );
 };
 
+
+/**
+ * @implements Console
+ */
+
 Console.prototype.time = function () {
 
 	throw new Error( 'NOT IMPLIMENTED' );
 };
+
+
+/**
+ * @implements Console
+ */
 
 Console.prototype.timeEnd = function () {
 
 	throw new Error( 'NOT IMPLIMENTED' );
 };
 
+
+/**
+ * @implements Console
+ */
+
 Console.prototype.trace = function () {
 
 	throw new Error( 'NOT IMPLIMENTED' );
 };
 
+
+/**
+ * @implements Console
+ */
+
 Console.prototype.assert = function () {
 
 	throw new Error( 'NOT IMPLIMENTED' );
 };
+
 
 module.exports = new Console();

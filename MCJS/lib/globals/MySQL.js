@@ -2,7 +2,7 @@
 
 /**
  * MySQL allows you to connect to a MySQL database and make queries to it.
- * @namespace
+ * @global
  */
 
 var MySQL = new Class( function () {
