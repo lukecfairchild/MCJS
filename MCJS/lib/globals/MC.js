@@ -21,7 +21,7 @@ var MC = new Class( function () {
 
 
 /**
- * @property MC
+ * @memberof MC
  * @param {string} message - Message to send all players
  */
 MC.prototype.broadcast = function ( message ) {
@@ -37,7 +37,7 @@ MC.prototype.broadcast = function ( message ) {
 
 
 /**
- * @property MC
+ * @memberof MC
  * @param {string} username/uuid - Player username or uuid.
  * @return {Player}
  */
@@ -71,7 +71,7 @@ MC.prototype.getPlayer = function ( username ) {
 
 
 /**
- * @property MC
+ * @memberof MC
  * @param {string} [world] - World name.
  * @return [ {Player} ]
  */
