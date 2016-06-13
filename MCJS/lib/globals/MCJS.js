@@ -3,7 +3,7 @@
 
 /**
  * This allows you to handle plugin specific information like reloads and its instance.
- * @global
+ * @namespace
  */
 
 var MCJS = new Class( function () {
