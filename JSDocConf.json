@@ -3,14 +3,7 @@
 		"allowUnknownTags" : true
 	},
 	"source" : {
-		"include" : [
-			"./MCJS",
-			"./MCJS/lib",
-			"./MCJS/lib/Class",
-			"./MCJS/lib/globals",
-			"./MCJS/lib/globals/mc",
-			"./MCJS/lib/globals/mc/events"
-		],
+		"include" : [],
 		"includePattern" : ".+\\.js(doc|x)?$",
 		"excludePattern" : "(^|\\/|\\\\)_"
 	},
