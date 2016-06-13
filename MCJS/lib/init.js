@@ -4,8 +4,10 @@ var Require = load( PATH + '/lib/globals/Require.js' );
 
 
 /**
+ * Function for loading other javascripts.
  * @function
  * @param {string} path - Specify a target javascript file to load.
+ * @return {Object} exports - If the target javascript file set module.exports to anything this will be the result of it.
  */
 
 var require = Require( PATH, [ 'libpath1', 'libpath2' ] );
