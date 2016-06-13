@@ -5,10 +5,10 @@
  * @namespace
  */
 
-var MySQL = function () {
+var MySQL = new Class( function () {
 
-	this.connections = {};
-};
+	this.private.connections = {};
+} );
 
 
 /**
@@ -78,7 +78,7 @@ MySQL.prototype.connect = function ( database, options ) {
 			connection.close();
 		} );
 
-		this.connections[ database ] = connection;
+		this.private.connections[ database ] = connection;
 
 	} catch ( error ) {
 		throw new Error( 'Error in MySQL.query( \'' + database + '\', options ): connection failed: ' + error );
@@ -99,7 +99,7 @@ MySQL.prototype.connect = function ( database, options ) {
 
 MySQL.prototype.query = function ( database, rawQuery, rawArgs ) {
 
-	if ( !this.connections[ database ] ) {
+	if ( !this.private.connections[ database ] ) {
 		throw new Error( 'Error in MySQL.query( \'' + database + '\', query ): invalid database connection' );
 	}
 
@@ -130,7 +130,7 @@ MySQL.prototype.query = function ( database, rawQuery, rawArgs ) {
 	var statement;
 
 	try {
-		statement = this.connections[ database ].prepareStatement( query );
+		statement = this.private.connections[ database ].prepareStatement( query );
 
 		if ( statement.execute() ) {
 			resultSet = statement.getResultSet();
