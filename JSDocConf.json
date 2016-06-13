@@ -1,0 +1,33 @@
+{
+	"tags" : {
+		"allowUnknownTags" : true
+	},
+	"source" : {
+		"include" : [
+			"./MCJS",
+			"./MCJS/lib",
+			"./MCJS/lib/Class",
+			"./MCJS/lib/globals",
+			"./MCJS/lib/globals/mc",
+			"./MCJS/lib/globals/mc/events"
+		],
+		"includePattern" : ".+\\.js(doc|x)?$",
+		"excludePattern" : "(^|\\/|\\\\)_"
+	},
+	"plugins"   : [],
+	"templates" : {
+		"cleverLinks"    : false,
+		"monospaceLinks" : false,
+		"default"        : {
+			"outputSourceFiles" : true
+		},
+		"systemName"      : "MCJS",
+		"footer"          : "",
+		"copyright"       : "",
+		"navType"         : "vertical",
+		"theme"           : "spacelab",
+		"linenums"        : true,
+		"collapseSymbols" : false,
+		"inverseNav"      : true
+	}
+}
