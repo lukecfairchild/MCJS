@@ -2,7 +2,7 @@
 
 
 /**
- * @var
+ * @namespace
  */
 
 var MC = new Class( function () {
@@ -21,7 +21,7 @@ var MC = new Class( function () {
 
 
 /**
- * @implements {MC}
+ * @member 
  * @param {string} message - Message to send all players
  */
 
@@ -38,7 +38,7 @@ MC.prototype.broadcast = function ( message ) {
 
 
 /**
- * @implements {MC}
+ * @member 
  * @param {string} username/uuid - Player username or uuid.
  * @return {Player}
  */
@@ -73,7 +73,7 @@ MC.prototype.getPlayer = function ( username ) {
 
 
 /**
- * @implements {MC}
+ * @member 
  * @param {string} [world] - World name.
  * @return [ {Player} ]
  */
