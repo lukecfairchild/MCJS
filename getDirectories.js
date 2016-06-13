@@ -327,10 +327,3 @@ var config = JSON.parse( fs.readFileSync( fileName, 'utf-8' ) );
 config.source.include = dirs;
 
 fs.writeFileSync( fileName, jsonAlign( config ), 'utf-8' );
-
-/*
-			"./MCJS/lib/globals/mc/events",
-			"./MCJS/lib/globals/mc",
-			"./MCJS/lib/globals",
-			"./MCJS/lib/Class",
-			"./MCJS/lib"*/

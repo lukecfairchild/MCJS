@@ -61,4 +61,5 @@ MCJS.prototype.addCleanupTask = function ( task ) {
 	}
 };
 
+
 module.exports = new MCJS();

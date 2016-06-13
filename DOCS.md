@@ -15,7 +15,7 @@ Here is a brief example of some of the things you can do with MCJS:
 
 This example we are creating a simple command.
 ```javascript
-mc.command( '/hello world', function ( event ) {
+MC.command( '/hello world', function ( event ) {
 	
 	var player = event.getPlayer();
 
@@ -30,10 +30,10 @@ In game do:
 
 This example will Welcome any player that joins the server:
 ```javascript
-mc.on( 'player.PlayerJoinEvent', function ( event ) {
+MC.on( 'player.PlayerJoinEvent', function ( event ) {
 
 	var username = event.getPlayer().getName();
 
-	mc.broadcast( 'Welcome ' + username + ' to the server!' );
+	MC.broadcast( 'Welcome ' + username + ' to the server!' );
 }
 ```
