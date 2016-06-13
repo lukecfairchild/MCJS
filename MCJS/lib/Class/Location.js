@@ -1,16 +1,5 @@
 'use strict';
 
-/**
- * @typedef LocationObject
- * @type Object
- * @property {Number} x
- * @property {Number} y
- * @property {Number} z
- * @property {Number} yaw
- * @property {Number} pitch
- * @property {String} world
- */
-
 
 /**
  * @constructor
@@ -18,6 +7,19 @@
  */
 
 var Location = function ( location ) {
+
+
+	/**
+	 * 
+	 * @typedef LocationObject
+	 * @type Object
+	 * @property {Number} x
+	 * @property {Number} y
+	 * @property {Number} z
+	 * @property {Number} yaw
+	 * @property {Number} pitch
+	 * @property {String} world
+	 */
 
 	return {
 		'x'     : Number( location.getX() ),
