@@ -48,6 +48,10 @@ Directory.prototype.create = function ( dirPath ) {
  * @return {Array} paths
  * @example
  * var files = Directory.list( './new Folder' );
+ *
+ * for ( var i in files ) {
+ * 	console.log( files[ i ] );
+ * }
  */
 
 Directory.prototype.list = function ( dirPath ) {
