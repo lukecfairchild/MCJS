@@ -21,7 +21,7 @@ global.Class = require( './lib/globals/Class.js' );
 global.MCJS  = require( './lib/globals/MCJS.js' );
 
 require( './lib/globals/Object.js' );
-require( './lib/globals/String.js' );
+require( './lib/globals/Colors.js' );
 
 var Timers = require( './lib/globals/Timers.js' );
 
@@ -30,8 +30,9 @@ global.setTimeout    = Timers.setTimeout;
 global.clearAllTasks = Timers.clearAllTasks;
 global.console       = require( './lib/globals/console.js' );
 
-global.File  = require( './lib/globals/File.js' );
-global.MySQL = require( './lib/globals/MySQL.js' );
+global.File      = require( './lib/globals/File.js' );
+global.Directory = require( './lib/globals/Directory.js' );
+global.MySQL     = require( './lib/globals/MySQL.js' );
 
 
 global.MC   = require( './lib/globals/MC.js' );

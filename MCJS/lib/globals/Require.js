@@ -149,7 +149,13 @@
 		var line = null;
 
 		for ( var index in global ) {
-			head += 'var ' + index + ' = global.' + index + '; '; 
+			head += ''
+				+ 'var ' + index + '; '
+				+ 'if ( global.' + index + '.prototype ) { '
+					+ index + ' = new global.' + index + '( {__filename:__filename,__dirname:__dirname} ); '
+				+ '} else { '
+					+ index + ' = global.' + index + '; '
+				+ '} ';
 		}
 
 		if ( !file ) {

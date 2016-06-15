@@ -1,5 +1,6 @@
 'use strict';
 
+/*
 if ( !Object.prototype.splice ) {
 	Object.defineProperty( Object.prototype, 'splice', {
 		'value' : function () {
@@ -19,3 +20,4 @@ if ( !Object.prototype.slice ) {
 		'enumerable' : false
 	} );
 }
+*/

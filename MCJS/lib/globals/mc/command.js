@@ -66,7 +66,8 @@ var commandCreate = function( rawAlias, callBack ){
 			var changed;
 
 			if ( inside.indexOf( '\\' ) > -1 ) {
-				inside.splice( inside.indexOf( '\\' ), 1 );
+				[].splice.call( inside, inside.indexOf( '\\' ), 1 );
+				//inside.splice( inside.indexOf( '\\' ), 1 );
 
 			} else {
 				// Check to see if current groups get closed
@@ -102,7 +103,8 @@ var commandCreate = function( rawAlias, callBack ){
 						} );
 					}
 
-					inside.splice( inside.indexOf( remove[ i ] ), 1 );
+					[].spice.call( inside, inside.indexOf( remove[ i ] ), 1 );
+					//inside.splice( inside.indexOf( remove[ i ] ), 1 );
 				}
 
 	            // Check if character starts a group and has not been started

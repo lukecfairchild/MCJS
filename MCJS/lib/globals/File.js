@@ -5,7 +5,24 @@
  * @namespace
  */
 
-var File = function () {};
+var File = new Class( function ( file ) {
+
+	this.private.fileInfo = file;
+} );
+
+
+File.prototype.private.resolvePath = function ( filePath ) {
+
+	var isAbsolute = ( new java.io.File( filePath ) ).isAbsolute();
+
+	var path = filePath;
+
+	if ( !isAbsolute ) {
+		path = java.nio.file.Paths.get( this.private.fileInfo.__dirname, filePath ).toString();
+	}
+
+	return path;
+};
 
 
 /**
@@ -17,16 +34,16 @@ var File = function () {};
 
 File.prototype.read = function ( filePath ) {
 
-	var path = java.nio.file.Paths.get( PATH, filePath ).toString();
+	var path = this.private.resolvePath( filePath );
 
 	var contents = [];
 	var line     = undefined;
 
-	var file = new java.io.File( PATH + filePath );
+	var file = new java.io.File( path );
 
 	if ( file.exists() ) {
 
-		var fileReader = new java.io.FileReader( PATH + filePath );
+		var fileReader = new java.io.FileReader( path );
 
 		var bufferReader = new java.io.BufferedReader( fileReader );
 
@@ -49,17 +66,32 @@ File.prototype.read = function ( filePath ) {
  * Allows you to write data to a file.
  * @implements File
  * @param {String} path - Specify a target file path.
- * @param {String} data - The data to be written to the file.
+ * @param {String} [data] - The data to be written to the file.
  */
 
 File.prototype.write = function ( filePath, data ) {
 
+	var path = this.private.resolvePath( filePath );
+
 	var FileWriter = Java.type( 'java.io.FileWriter' );
 
-	var file = new FileWriter( PATH + filePath );
+	var file = new FileWriter( path );
 
-	file.write( data );
+	file.write( data || '' );
 	file.close();
+};
+
+
+/**
+ * Alias for File.write().
+ * @implements File
+ * @param {String} path - Specify a target file path.
+ * @param {String} [data] - The data to be written to the file.
+ */
+
+File.prototype.create = function ( filePath, data ) {
+
+	this.write( filePath, data );
 };
 
 
@@ -72,9 +104,11 @@ File.prototype.write = function ( filePath, data ) {
 
 File.prototype.append = function ( filePath, data ) {
 
+	var path = this.private.resolvePath( filePath );
+
 	var FileWriter = Java.type( 'java.io.FileWriter' );
 
-	var file = new FileWriter( PATH + filePath, true );
+	var file = new FileWriter( path, true );
 
 	file.write( data );
 	file.close();
@@ -89,8 +123,10 @@ File.prototype.append = function ( filePath, data ) {
 
 File.prototype.delete = function ( filePath ) {
 
-	new java.io.File( PATH + filePath ).delete();
+	var path = this.private.resolvePath( filePath );
+
+	new java.io.File( path ).delete();
 };
 
 
-module.exports = new File();
+module.exports = File;

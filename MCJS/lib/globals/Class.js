@@ -138,4 +138,7 @@ var Class = function ( rawInternalObject ) {
 	return ExternalObject;
 };
 
-module.exports = Class;
+module.exports = function () {
+
+	return Class
+};

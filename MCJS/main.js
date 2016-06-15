@@ -13,3 +13,6 @@ MC.command( '/hi', function () {
 
 	MC.broadcast( 'hi!' );
 } );
+
+
+require( './New folder/a.js' );
