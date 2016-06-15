@@ -30,6 +30,8 @@ File.prototype.private.resolvePath = function ( filePath ) {
  * @implements File
  * @param {String} path - Specify a target text file to read.
  * @return {String}
+ * @example
+ * var data = File.read( './text.txt' );
  */
 
 File.prototype.read = function ( filePath ) {
@@ -67,6 +69,9 @@ File.prototype.read = function ( filePath ) {
  * @implements File
  * @param {String} path - Specify a target file path.
  * @param {String} [data] - The data to be written to the file.
+ * @example
+ * File.write( './text.txt' );
+ * File.write( './text.txt', 'yay' );
  */
 
 File.prototype.write = function ( filePath, data ) {
@@ -87,6 +92,9 @@ File.prototype.write = function ( filePath, data ) {
  * @implements File
  * @param {String} path - Specify a target file path.
  * @param {String} [data] - The data to be written to the file.
+ * @example
+ * File.create( './text.txt' );
+ * File.create( './text.txt', 'yay' );
  */
 
 File.prototype.create = function ( filePath, data ) {
@@ -100,6 +108,8 @@ File.prototype.create = function ( filePath, data ) {
  * @implements File
  * @param {String} path - Specify a target file path.
  * @param {String} data - The data to be appended to the file.
+ * @example
+ * File.append( './text.txt', 'yay' );
  */
 
 File.prototype.append = function ( filePath, data ) {
@@ -119,6 +129,8 @@ File.prototype.append = function ( filePath, data ) {
  * Allows you to delete a file at the specified path.
  * @implements File
  * @param {String} path - Specify a target file path for deletion.
+ * @example
+ * File.delete( './text.txt' );
  */
 
 File.prototype.delete = function ( filePath ) {
