@@ -29,6 +29,8 @@ Directory.prototype.private.resolvePath = function ( dirPath ) {
  * Allows you to create a directory.
  * @implements Directory
  * @param {String} path - Specify a target directory path.
+ * @example
+ * Directory.create( './new Folder' );
  */
 
 Directory.prototype.create = function ( dirPath ) {
@@ -44,6 +46,8 @@ Directory.prototype.create = function ( dirPath ) {
  * @implements Directory
  * @param {String} path - Specify a target directory path.
  * @return {Array} paths
+ * @example
+ * var files = Directory.list( './new Folder' );
  */
 
 Directory.prototype.list = function ( dirPath ) {
@@ -65,6 +69,8 @@ Directory.prototype.list = function ( dirPath ) {
  * Allows you to delete a directory.
  * @implements Directory
  * @param {String} path - Specify a target directory path.
+ * @example
+ * Directory.delete( './new Folder' );
  */
 
 Directory.prototype.delete = function ( dirPath ) {
