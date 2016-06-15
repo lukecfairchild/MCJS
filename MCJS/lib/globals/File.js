@@ -71,6 +71,7 @@ File.prototype.read = function ( filePath ) {
  * @param {String} [data] - The data to be written to the file.
  * @example
  * File.write( './text.txt' );
+ * // or
  * File.write( './text.txt', 'yay' );
  */
 
@@ -94,6 +95,7 @@ File.prototype.write = function ( filePath, data ) {
  * @param {String} [data] - The data to be written to the file.
  * @example
  * File.create( './text.txt' );
+ * // or
  * File.create( './text.txt', 'yay' );
  */
 
