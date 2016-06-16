@@ -40,7 +40,7 @@ Player.extends( require( './OfflinePlayer.js' ) );
 
 
 /**
- * Gets the Location where the player will respawn.
+ * Gets the Location where this player will respawn.
  * @implements Player
  * @return {Location}
  */
@@ -65,7 +65,7 @@ Player.prototype.getSpawnLocation = function () {
 
 
 /**
- * Get the previously set compass target.
+ * Get this players previously set compass target.
  * @implements Player
  * @return {Location}
  */
@@ -79,7 +79,7 @@ Player.prototype.getCompassTarget = function () {
 
 
 /**
- * Gets the current players location.
+ * Gets this current players location.
  * @implements Player
  * @return {Location}
  */
@@ -93,7 +93,7 @@ Player.prototype.getLocation = function () {
 
 
 /**
- * Changes the players current location to the target location.
+ * Changes this players current location to the target location.
  * @implements Player
  * @param {Location} location
  */
@@ -144,7 +144,7 @@ Player.prototype.setLocation = function ( location ) {
 
 
 /**
- * Gets wether the player is online or not.
+ * Gets if this player is online or not.
  * @implements Player
  * @return {boolean}
  */
@@ -156,7 +156,7 @@ Player.prototype.isOnline = function () {
 
 
 /**
- * Says a message as the player.
+ * Says a message as this player.
  * @implements Player
  * @param {String} message
  * @example
@@ -174,7 +174,7 @@ Player.prototype.chat = function ( message ) {
 
 
 /**
- * Runs a command as the the player.
+ * Runs a command as this player.
  * @implements Player
  * @param {String} command 
  * @example
@@ -192,7 +192,7 @@ Player.prototype.run = function ( command ) {
 
 
 /**
- * Gets the players IP address.
+ * Gets this players IP address.
  * @implements Player
  * @return {String} ip
  * @example
@@ -206,7 +206,7 @@ Player.prototype.getIp = function () {
 
 
 /**
- * Gets if the player is allowed to fly or not currently.
+ * Gets if this player is allowed to fly or not currently.
  * @implements Player
  * @return {Boolean} canFly
  * @example
