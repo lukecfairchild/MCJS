@@ -11,14 +11,16 @@ var Directory = new Class( function ( fileInfo ) {
 } );
 
 
-Directory.prototype.private.resolvePath = function ( dirPath ) {
+Directory.prototype.private.resolvePath = function ( rawDirPath ) {
+
+	var dirPath = rawDirPath || '';
 
 	var isAbsolute = ( new java.io.File( dirPath ) ).isAbsolute();
 
 	var path = dirPath;
 
 	if ( !isAbsolute ) {
-		path = java.nio.file.Paths.get( this.private.fileInfo.__dirname, dirPath.replace( '\./', '' ) ).toString();
+		path = java.nio.file.Paths.get( this.private.fileInfo.__dirname, dirPath.replace( /^\.\//, '' ) ).toString();
 	}
 
 	return path;

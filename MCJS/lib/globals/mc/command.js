@@ -103,7 +103,7 @@ var commandCreate = function( rawAlias, callBack ){
 						} );
 					}
 
-					[].spice.call( inside, inside.indexOf( remove[ i ] ), 1 );
+					[].splice.call( inside, inside.indexOf( remove[ i ] ), 1 );
 					//inside.splice( inside.indexOf( remove[ i ] ), 1 );
 				}
 

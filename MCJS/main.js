@@ -15,4 +15,10 @@ MC.command( '/hi', function () {
 } );
 
 
-require( './New folder/a.js' );
+/*require( './New folder/a.js' );
+*/
+
+MC.command( '/run $', function ( event ) {
+
+	eval( event.arguments.$ );
+} );

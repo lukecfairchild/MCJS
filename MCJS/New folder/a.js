@@ -1,7 +1,9 @@
 
 console.log( File.read( './test/b.js' ) );
 
-console.log( Directory.list( './test' ) );
+console.log( Directory.list() );
+
+require( 'C:/Users/Luke/Desktop/devServer/plugins/MCJS/New folder/c.js' );
 
 /*Directory.create( './test 2' );
 File.create( './test 2/yay.txt' );

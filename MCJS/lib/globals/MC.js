@@ -45,7 +45,7 @@ MC.prototype.broadcast = function ( message ) {
 
 MC.prototype.getPlayer = function ( username ) {
 
-	var Player = require( '/lib/Class/Player.js' );
+	var Player = require( '../Class/Player.js' );
 
 	var uuid;
 	var player;
