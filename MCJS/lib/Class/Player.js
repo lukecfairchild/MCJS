@@ -79,6 +79,7 @@ Player.prototype.getCompassTarget = function () {
 
 
 /**
+ * Gets the current players location.
  * @implements Player
  * @return {Location}
  */
@@ -92,6 +93,7 @@ Player.prototype.getLocation = function () {
 
 
 /**
+ * Changes the players current location to the target location.
  * @implements Player
  * @param {Location} location
  */
@@ -142,6 +144,7 @@ Player.prototype.setLocation = function ( location ) {
 
 
 /**
+ * Gets wether the player is online or not.
  * @implements Player
  * @return {boolean}
  */
@@ -153,6 +156,7 @@ Player.prototype.isOnline = function () {
 
 
 /**
+ * Says a message as the player.
  * @implements Player
  * @param {String} message
  * @example
@@ -170,6 +174,7 @@ Player.prototype.chat = function ( message ) {
 
 
 /**
+ * Runs a command as the the player.
  * @implements Player
  * @param {String} command 
  * @example
@@ -187,6 +192,7 @@ Player.prototype.run = function ( command ) {
 
 
 /**
+ * Gets the players IP address.
  * @implements Player
  * @return {String} ip
  * @example
@@ -200,6 +206,7 @@ Player.prototype.getIp = function () {
 
 
 /**
+ * Gets if the player is allowed to fly or not currently.
  * @implements Player
  * @return {Boolean} canFly
  * @example
