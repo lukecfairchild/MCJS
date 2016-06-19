@@ -1,8 +1,11 @@
 'use strict';
 
+
 /**
- * @class
+ * Class is a simple way to generate a javascript class with privatized variables.
+ * @global
  */
+
 var Class = function ( rawInternalObject ) {
 
 	var InternalObject = rawInternalObject || function () {};
