@@ -52,6 +52,11 @@ Timers.prototype.clearAllTasks = function () {
  * @param {Function} callback - Function to be ran after delay period.
  * @param {Number} delay - How often then callback should be ran in milliseconds.
  * @return {TimeoutObject} timeout - If the target javascript file set module.exports to anything this will be the result of it.
+ * @example
+ * var timeout = setTimeout( function () {
+ *
+ * 	doStuff();
+ * }, 1000 );
  */
 
 Timers.prototype.setTimeout = function ( callback, delayInMillis ) {
@@ -83,6 +88,11 @@ Timers.prototype.setTimeout = function ( callback, delayInMillis ) {
  * @param {Function} callback - Function to be ran every time after the repeating delay.
  * @param {Number} delay - How often then callback should be ran in milliseconds.
  * @return {IntervalObject} interval - If the target javascript file set module.exports to anything this will be the result of it.
+ * @example
+ * var interval = setInterval( function () {
+ *
+ * 	doStuff();
+ * }, 1000 );
  */
 
 Timers.prototype.setInterval = function ( callback, intervalInMillis ) {
@@ -118,6 +128,8 @@ Timers.prototype.setInterval = function ( callback, intervalInMillis ) {
  * Function for terminating a timeout before it executes.
  * @global
  * @param {TimeoutObject} timeout - Timeout to terminate.
+ * @example
+ * clearTimeout( timeout );
  */
 
 Timers.prototype.clearTimeout = function ( timeout ) {
@@ -135,6 +147,8 @@ Timers.prototype.clearTimeout = function ( timeout ) {
  * Function for terminating a interval.
  * @global
  * @param {IntervalObject} interval - Interval to terminate.
+ * @example
+ * clearInterval( interval );
  */
 
 Timers.prototype.clearInterval = function ( timeout ) {
@@ -146,7 +160,6 @@ Timers.prototype.clearInterval = function ( timeout ) {
 		timeout.cancel();
 	}
 };
-
 
 
 module.exports = new Timers();
