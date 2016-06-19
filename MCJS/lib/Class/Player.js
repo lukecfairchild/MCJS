@@ -183,11 +183,7 @@ Player.prototype.chat = function ( message ) {
 
 Player.prototype.run = function ( command ) {
 
-	if ( !command.match( /^\// ) ) {
-		command = '/' + command;
-	}
-
-	this.chat( command );
+	this.performCommand( command.replace( /^\//, '' ) );
 };
 
 
@@ -233,4 +229,94 @@ Player.prototype.getDisplayName = function () {
 };
 
 
+
+/**
+ * Returns true if the player's time is relative to the server time, otherwise the player's time is absolute and will not change its current time unless done so with setTime().
+ * @implements Player
+ * @return {Boolean}
+ * @example
+ * var timeRelative = player.isTimeRelative(); 
+ */
+
+Player.prototype.isTimeRelative = function () {
+
+	return this.isPlayerTimeRelative();
+};
+
+
+/**
+ * Restores the normal condition where the player's time is synchronized with the server time.
+ * @implements Player
+ * player.resetTime(); 
+ */
+
+Player.prototype.resetTime = function () {
+
+	this.resetPlayerTime();
+};
+
+
+/**
+ * Sets the current time on the player's client. The time will be kept synchronized to its world time with the specified offset.
+ * @param {Number} time
+ */
+
+Player.prototype.setTime = function ( time ) {
+
+	this.setPlayerTime( time, true );
+};
+
+
+/**
+ * When using fixed time the player's time will stay fixed at the specified time parameter. It's up to the caller to continue updating the player's time.
+ * @param {Number} time
+ */
+
+Player.prototype.setFixedTime = function ( time ) {
+
+	this.setPlayerTime( time, false );
+};
+/*
+https://hub.spigotmc.org/javadocs/spigot/
+
+Returns whether the player is sleeping ignored.
+isSleepingIgnored()
+
+isSprinting()
+Gets whether the player is sprinting or not.
+
+kickPlayer(String message)
+Kicks player with custom kick message.
+
+loadData()
+Loads the players current location, health, inventory, motion, and other information from the username.dat file, in the world/player folder.
+
+	saveData()
+Saves the players current location, health, inventory, motion, and other information into the username.dat file, in the world/player folder
+
+playEffect(Location loc, Effect effect, T data)
+Plays an effect to just this player.
+
+playNote(Location loc, Instrument instrument, Note note)
+Play a note for a player at a location.
+
+playSound(Location location, String sound, float volume, float pitch)
+Play a sound for a player at the location.
+
+removeAchievement(Achievement achievement)
+Removes the given achievement and any children achievements that the player has.
+
+resetPlayerWeather()
+Restores the normal condition where the player's weather is controlled by server conditions.
+
+void	sendRawMessage(String message)
+Sends this sender a message raw
+
+void	sendMap(MapView map)
+Render a map and send it to the player in its entirety.
+*/
 module.exports = Player;
+
+/*
+isOnGround()
+*/
