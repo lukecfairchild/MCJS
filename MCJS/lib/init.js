@@ -28,6 +28,8 @@ var Timers = require( './lib/globals/Timers.js' );
 global.setInterval   = Timers.setInterval;
 global.setTimeout    = Timers.setTimeout;
 global.clearAllTasks = Timers.clearAllTasks;
+global.clearInterval = Timers.clearInterval;
+global.clearTimeout  = Timers.clearTimeout;
 global.console       = require( './lib/globals/console.js' );
 
 global.File      = require( './lib/globals/File.js' );
