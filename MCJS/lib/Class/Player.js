@@ -6,6 +6,18 @@
  * @augments {HumanEntity}
  * @augments {LivingEntity}
  * @augments {OfflinePlayer}
+ * @example
+ * var player = MC.getPlayer( 'kookster' );
+ *
+ * MC.command( '/command', function ( event ) {
+ *
+ * 	var player = event.getPlayer();	
+ * } );
+ *
+ * MC.event( 'player.PlayerChatEvent', function ( event ) {
+ *
+ * 	var player = event.getPlayer();	
+ * } );
  */
 
 var Player = new Class( function ( bukkitObject ) {
