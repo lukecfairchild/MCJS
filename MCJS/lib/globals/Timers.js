@@ -91,7 +91,17 @@ Timers.prototype.setTimeout = function ( callback, delayInMillis ) {
  * @example
  * var interval = setInterval( function () {
  *
- * 	doStuff();
+ * 	cancelTimeout( interval );
+ * }, 1000 );
+ *
+ * setInterval( function ( interval ) {
+ *
+ * 	cancelTimeout( interval );
+ * }, 1000 );
+ *
+ * setInterval( function ( interval ) {
+ *
+ * 	interval.cancel();
  * }, 1000 );
  */
 
