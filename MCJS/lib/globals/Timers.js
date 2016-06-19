@@ -25,7 +25,7 @@ var Timers = new Class( function () {
 
 /**
  * Clears all currently set timeouts and intervals
- * @function
+ * @global
  * @example
  * clearAllTasks();
  */
@@ -48,7 +48,7 @@ Timers.prototype.clearAllTasks = function () {
 
 /**
  * Function for causing a callback function to execute after a delay.
- * @function
+ * @global
  * @param {Function} callback - Function to be ran after delay period.
  * @param {Number} delay - How often then callback should be ran in milliseconds.
  * @return {TimeoutObject} timeout - If the target javascript file set module.exports to anything this will be the result of it.
@@ -79,7 +79,7 @@ Timers.prototype.setTimeout = function ( callback, delayInMillis ) {
 
 /**
  * Function for causing a callback function to execute repeatedly after a delay.
- * @function
+ * @global
  * @param {Function} callback - Function to be ran every time after the repeating delay.
  * @param {Number} delay - How often then callback should be ran in milliseconds.
  * @return {IntervalObject} interval - If the target javascript file set module.exports to anything this will be the result of it.
@@ -116,7 +116,7 @@ Timers.prototype.setInterval = function ( callback, intervalInMillis ) {
 
 /**
  * Function for terminating a timeout before it executes.
- * @function
+ * @global
  * @param {TimeoutObject} timeout - Timeout to terminate.
  */
 
@@ -133,7 +133,7 @@ Timers.prototype.clearTimeout = function ( timeout ) {
 
 /**
  * Function for terminating a interval.
- * @function
+ * @global
  * @param {IntervalObject} interval - Interval to terminate.
  */
 
