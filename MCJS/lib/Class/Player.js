@@ -192,7 +192,7 @@ Player.prototype.run = function ( command ) {
  * @implements Player
  * @return {String} ip
  * @example
- * player.getIp; 
+ * var ip = player.getIp; 
  */
 
 Player.prototype.getIp = function () {
@@ -206,7 +206,7 @@ Player.prototype.getIp = function () {
  * @implements Player
  * @return {Boolean} canFly
  * @example
- * player.canFly(); 
+ * var canFly = player.canFly(); 
  */
 
 Player.prototype.canFly = function () {
@@ -216,18 +216,17 @@ Player.prototype.canFly = function () {
 
 
 /**
- * Gets the "friendly" name to display of this player.
+ * Gets the display name of this player.
  * @implements Player
  * @return {String} displayName
  * @example
- * player.getDisplayName(); 
+ * var displayName = player.getDisplayName(); 
  */
 
 Player.prototype.getDisplayName = function () {
 
 	return this.getDisplayName();
 };
-
 
 
 /**
@@ -247,6 +246,7 @@ Player.prototype.isTimeRelative = function () {
 /**
  * Restores the normal condition where the player's time is synchronized with the server time.
  * @implements Player
+ * @example
  * player.resetTime(); 
  */
 
@@ -259,6 +259,9 @@ Player.prototype.resetTime = function () {
 /**
  * Sets the current time on the player's client. The time will be kept synchronized to its world time with the specified offset.
  * @param {Number} time
+ * @implements Player
+ * @example
+ * player.setTime( 1000 );
  */
 
 Player.prototype.setTime = function ( time ) {
@@ -270,12 +273,17 @@ Player.prototype.setTime = function ( time ) {
 /**
  * When using fixed time the player's time will stay fixed at the specified time parameter. It's up to the caller to continue updating the player's time.
  * @param {Number} time
+ * @implements Player
+ * @example
+ * player.setFixedTime( 1000 );
  */
 
 Player.prototype.setFixedTime = function ( time ) {
 
 	this.setPlayerTime( time, false );
 };
+
+
 /*
 https://hub.spigotmc.org/javadocs/spigot/
 
@@ -315,6 +323,7 @@ Sends this sender a message raw
 void	sendMap(MapView map)
 Render a map and send it to the player in its entirety.
 */
+
 module.exports = Player;
 
 /*
