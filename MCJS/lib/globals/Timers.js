@@ -12,78 +12,141 @@ var uuid = function () {
 
 var Timers = new Class( function () {
 
-	this.private.timers = {};
+	this.private.intervals = {};
+	this.private.timeouts  = {};
 
 	MCJS.addCleanupTask( function () {
 
-		for ( var index in this.private.timers ) {
-			this.private.timers[ index ].cancel();
-		}
-
-		this.private.timers = {};
+		this.clearAllTasks();
 
 	}.bind( this ) );
 } );
 
+
+/**
+ * Clears all currently set timeouts and intervals
+ * @function
+ * @example
+ * clearAllTasks();
+ */
+
 Timers.prototype.clearAllTasks = function () {
 
-	for ( var index in this.private.timers ) {
-		this.private.timers[ index ].cancel();
+	for ( var index in this.private.intervals ) {
+		this.private.intervals[ index ].cancel();
 	}
 
-	this.private.timers = {};
+	this.private.intervals = {};
+
+	for ( var index in this.private.timeouts ) {
+		this.private.timeouts[ index ].cancel();
+	}
+
+	this.private.timeouts = {};
 };
+
+
+/**
+ * Function for causing a callback function to execute after a delay.
+ * @function
+ * @param {Function} callback - Function to be ran after delay period.
+ * @param {Number} delay - How often then callback should be ran in milliseconds.
+ * @return {TimeoutObject} timeout - If the target javascript file set module.exports to anything this will be the result of it.
+ */
 
 Timers.prototype.setTimeout = function ( callback, delayInMillis ) {
 
 	var delay  = Math.ceil( delayInMillis / 50 ) || 1;
 	var id     = uuid();
-	var timer  = org.bukkit.Bukkit.scheduler.runTaskLater( MCJS.getInstance(), function () {
+	var timeout  = org.bukkit.Bukkit.scheduler.runTaskLater( MCJS.getInstance(), function () {
 
-		delete this.private.timers[ id ];
-		callback.call( {
-			'cancel' : function () {
-
-				timer.cancel();
-			}
-		} );
+		delete this.private.timeout[ id ];
+		callback();
 	}.bind( this ), delay );
 
-	this.private.timers[ id ] = timer;
+	this.private.timeout[ id ] = timeout;
 
 	return {
+		'type'   : 'timeout',
 		'cancel' : function () {
 
-			delete this.private.timers[ id ];
-			timer.cancel();
+			delete this.private.timeout[ id ];
+			timeout.cancel();
 		}.bind( this )
 	};
 };
+
+
+/**
+ * Function for causing a callback function to execute repeatedly after a delay.
+ * @function
+ * @param {Function} callback - Function to be ran every time after the repeating delay.
+ * @param {Number} delay - How often then callback should be ran in milliseconds.
+ * @return {IntervalObject} interval - If the target javascript file set module.exports to anything this will be the result of it.
+ */
 
 Timers.prototype.setInterval = function ( callback, intervalInMillis ) {
 
 	var delay  = Math.ceil( intervalInMillis / 50 ) || 1;
 	var id     = uuid();
-	var timer  = org.bukkit.Bukkit.scheduler.runTaskTimer( MCJS.getInstance(), function () {
+	var interval  = org.bukkit.Bukkit.scheduler.runTaskTimer( MCJS.getInstance(), function () {
 
-		callback.call( {
+		callback( {
+			'type'   : 'interval',
 			'cancel' : function () {
 
-				delete this.private.timers[ id ];
-				timer.cancel();
+				delete this.private.intervals[ id ];
+				interval.cancel();
 			}.bind( this )
 		} );
 	}.bind( this ), delay, delay );
 
-	this.private.timers[ id ] = timer;
+	this.private.intervals[ id ] = interval;
 
 	return {
+		'type'   : 'interval',
 		'cancel' : function () {
 
-			delete this.private.timers[ id ];
-			timer.cancel();
+			delete this.private.intervals[ id ];
+			interval.cancel();
 		}.bind( this )
 	};
 };
+
+
+/**
+ * Function for terminating a timeout before it executes.
+ * @function
+ * @param {TimeoutObject} timeout - Timeout to terminate.
+ */
+
+Timers.prototype.clearTimeout = function ( timeout ) {
+
+	if ( typeof timeout === 'object'
+	&&   timeout.type === 'timeout'
+	&&   typeof timeout.cancel === 'function' ) {
+
+		timeout.cancel();
+	}
+};
+
+
+/**
+ * Function for terminating a interval.
+ * @function
+ * @param {IntervalObject} interval - Interval to terminate.
+ */
+
+Timers.prototype.clearInterval = function ( timeout ) {
+
+	if ( typeof timeout === 'object'
+	&&   timeout.type === 'interval'
+	&&   typeof timeout.cancel === 'function' ) {
+
+		timeout.cancel();
+	}
+};
+
+
 
 module.exports = new Timers();
