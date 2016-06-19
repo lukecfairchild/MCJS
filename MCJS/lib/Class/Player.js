@@ -2,6 +2,7 @@
 
 
 /**
+ * The Player class is used in several places, MC.getPlayer(), inside events, and inside command events.
  * @class
  * @augments {HumanEntity}
  * @augments {LivingEntity}
