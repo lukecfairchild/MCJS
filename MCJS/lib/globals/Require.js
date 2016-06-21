@@ -142,21 +142,17 @@
 		var moduleInfo;
 		var canonizedFilename;
 
-		var file = resolveModuleToFile( path, parentFile );
-		var head = '( function( exports, module, require, __filename, __dirname, global ){ ';
-		var code = '';
-		var tail = '} ).bind( global )';
-		var line = null;
+		var globals = ''
 
-		for ( var index in global ) {
-			head += ''
-				+ 'var ' + index + '; '
-				+ 'if ( global.' + index + '.prototype ) { '
-					+ index + ' = new global.' + index + '( {__filename:__filename,__dirname:__dirname} ); '
-				+ '} else { '
-					+ index + ' = global.' + index + '; '
-				+ '} ';
+		if ( Object.keys( global ).length ) {
+			globals = ', ' + Object.keys( global ).join( ', ' )
 		}
+
+		var file = resolveModuleToFile( path, parentFile );
+		var head = '( function( exports, module, require, __filename, __dirname, global' + globals + ' ){ ';
+		var code = '';
+		var tail = '} )';
+		var line = null;
 
 		if ( !file ) {
 			var errMsg = String( fmt(
@@ -210,7 +206,7 @@
 			compiledWrapper = eval( code );
 
 		} catch ( error ) {
-			var errorMessage = '[ERROR] '.orange() + canonizedFilename + ':' + error.lineNumber + '\n'
+			var errorMessage = '[ERROR] ' + canonizedFilename + ':' + error.lineNumber + '\n'
 				+ String( code.split( '\n' )[ error.lineNumber - 1 ] ).trim() + '\n\n'
 				+ error.toString() + '\n';
 
@@ -228,6 +224,22 @@
 			global
 		];
 
+		for ( var i in global ) {
+
+			if ( i !== 'Class'
+			&&   global[ i ]
+			&&   global[ i ].prototype ) {
+
+				parameters.push( new global[ i ]( {
+					'__filename' : canonizedFilename,
+					'__dirname'  : __dirname
+				} ) );
+
+			} else {
+				parameters.push( global[ i ] );
+			}
+		}
+
 		try {
 			compiledWrapper.apply(
 				moduleInfo.exports,  /* this */
@@ -235,7 +247,7 @@
 			);
 
 		} catch ( error ) {
-			var errorMessage = '[ERROR] '.orange() + canonizedFilename + ':' + error.lineNumber + '\n'
+			var errorMessage = '[ERROR] ' + canonizedFilename + ':' + error.lineNumber + '\n'
 				+ String( code.split( '\n' )[ error.lineNumber - 1 ] ).trim() + '\n\n'
 				+ error.toString() + '\n';
 

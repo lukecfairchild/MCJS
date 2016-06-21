@@ -6,6 +6,7 @@
  * @global
  */
 
+
 var Class = function ( rawInternalObject ) {
 
 	var InternalObject = rawInternalObject || function () {};
@@ -141,7 +142,4 @@ var Class = function ( rawInternalObject ) {
 	return ExternalObject;
 };
 
-module.exports = function () {
-
-	return Class
-};
+module.exports = Class;

@@ -4,7 +4,7 @@ var Require = load( PATH + '/lib/globals/Require.js' );
 
 
 /**
- * Function for loading other javascripts.
+ * Function for loading other javascript files.
  * @function
  * @param {string} filePath - Specify a target javascript file to load.
  * @return {Object} exports - If the target javascript file set module.exports to anything this will be the result of it.
@@ -12,6 +12,7 @@ var Require = load( PATH + '/lib/globals/Require.js' );
 
 var require = Require( PATH, [ 'libpath1', 'libpath2' ] );
 
+//load( PATH + '/lib/test.js');
 
 /*
  * Load all globals
@@ -36,12 +37,11 @@ global.File      = require( './lib/globals/File.js' );
 global.Directory = require( './lib/globals/Directory.js' );
 global.MySQL     = require( './lib/globals/MySQL.js' );
 
-
-global.MC   = require( './lib/globals/MC.js' );
+global.MC = require( './lib/globals/MC.js' );
 
 
 /*
- * Environment is now complete and the main code can now run.
+ * Environment is now complete run the main code.
  */
 
 require( './main.js' );

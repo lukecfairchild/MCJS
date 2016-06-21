@@ -5,7 +5,7 @@
  * @namespace
  */
 
-var Console = new Class( function () {} );
+var Console = function () {};
 
 
 /**
