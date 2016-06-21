@@ -165,17 +165,17 @@ MC.prototype.getPlayers = function ( world ) {
 
 
 /**
-* @property MC
-* @param {String} eventType - The event you want to trigger your callback.
-* @param {Function} callback - This function will be ran every time the target eventType happens.
-* @example
-* MC.on( 'player.PlayerChatEvent', function ( event ) {
-*
-* 	var player = event.getPlayer();
-*
-* 	console.log( player.getUsername() + ' spoke' );
-* } );
-*/
+ * @property MC
+ * @param {String} eventType - The event you want to trigger your callback.
+ * @param {Function} callback - This function will be ran every time the target eventType happens.
+ * @example
+ * MC.on( 'player.PlayerChatEvent', function ( event ) {
+ *
+ * 	var player = event.getPlayer();
+ *
+ * 	console.log( player.getUsername() + ' spoke' );
+ * } );
+ */
 
 MC.prototype.on = function ( eventType, callBack /*, [ priority ] */ ) {
 
