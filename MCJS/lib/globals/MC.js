@@ -6,7 +6,10 @@
 
 var MC = function () {
 
-	this.aliases = [];
+	Object.defineProperty( this, 'aliases', {
+		'enumerable' : false,
+		'value'      : []
+	} );
 
 	var commandCall = function ( event, command ) {
 
@@ -134,7 +137,7 @@ MC.prototype.getPlayers = function ( world ) {
 
 	var players = [];
 
-	var players = org.bukkit.Bukkit.getOnlinePlayers();
+	var rawPlayers = org.bukkit.Bukkit.getOnlinePlayers();
 
 	try {
 		var iterator    = rawPlayers.iterator();
@@ -607,10 +610,10 @@ MC.prototype.command = function( rawAlias, callBack ){
  * var commandExist = MC.commandExists( '/yay' );
  */
 
-MC.prototype.commandExists = function ( command ) {
+MC.prototype.commandExists = function ( alias ) {
 
 	for ( var index in this.aliases ) {
-		var matches = command.match( new RegExp( this.aliases[ index ].regex, 'i' ) );
+		var matches = alias.match( new RegExp( this.aliases[ index ].regex, 'i' ) );
 
 		if ( matches !== null && matches[ 0 ] ) {
 			return true;
@@ -618,6 +621,84 @@ MC.prototype.commandExists = function ( command ) {
 	}
 
 	return false;
+};
+
+
+MC.prototype.getEntity = function ( uuid /*, [ world ] */ ) {
+
+	var entitie
+
+	var worlds = arguments[ 1 ] ? [ arguments[ 1 ] ] : this.getWorlds();
+
+	for ( var i in worlds ) {
+		v
+	}
+};
+
+
+MC.prototype.getEntities = function ( /* [ world ] */ ) {
+
+	var World = require( '../Class/World.js' );
+
+	var entities = [];
+
+	var worlds = arguments[ 0 ] !== undefined ? [ this.getWorld( arguments[ 0 ] ) ] : this.getWorlds();
+
+	for ( var i in worlds ) {
+		var world = worlds[ i ];
+
+		entities = entities.concat( world.getEntities() );
+	}
+
+	return entities;
+};
+
+
+MC.prototype.getWorlds = function () {
+
+	var World = require( '../Class/World.js' );
+
+	var worlds = [];
+
+	var rawWorlds = org.bukkit.Bukkit.getWorlds();
+
+	try {
+		var iterator   = rawWorlds.iterator();
+		var worldCount = rawWorlds.size();
+
+		for ( var i = 0; i < worldCount; i++ ) {
+			worlds.push( new World( iterator.next() ) );	
+		}
+
+	} catch ( error ) {
+		// Do Nothing
+	}
+
+	return worlds;
+};
+
+MC.prototype.getWorld = function ( name ) {
+
+	var World = require( '../Class/World.js' );
+
+	return new World( org.bukkit.Bukkit.getWorld( name ) );
+};
+
+MC.prototype.mainThread = function ( callback ) {
+
+	var timeout  = org.bukkit.Bukkit.scheduler.runTaskLater( MCJS.getInstance(), function () {
+
+		callback();
+	}, 1 );
+};
+
+
+MC.prototype.newThread = function ( callback ) {
+
+	var javaTimer = Java.type( 'java.util.Timer' );
+	var timer     = new javaTimer( 'setTimerRequest', true );
+
+	timer.schedule( callback, 0 );
 };
 
 

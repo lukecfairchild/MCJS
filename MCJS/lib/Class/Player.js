@@ -23,28 +23,10 @@
 
 var Player = new Class( function ( bukkitObject ) {
 
-	var rawMethods = bukkitObject.getClass().getMethods();
-
-	for ( var i in this ) {
-		this[ i ] = this[ i ].bind( bukkitObject );
-	}
-
-	for ( var i in rawMethods ) {
-		var method = rawMethods[ i ].getName().toString();
-
-		if ( !( method in this ) ) {
-			this[ method ] = function ( /* arguments */ ) {
-
-				var args = [];
-
-				for ( var key in arguments ) {
-					args.push( 'arguments[ "' + key + '" ]' );
-				}
-
-				return eval( 'bukkitObject[ this ]( ' + args.join() + ' );' );
-			}.bind( method );
-		}
-	}
+	Object.defineProperty( this, 'bukkit', {
+		'enumerable' : false,
+		'value'      : bukkitObject
+	} );
 } );
 
 Player.extends( require( './HumanEntity.js' ) );
@@ -64,13 +46,13 @@ Player.prototype.getSpawnLocation = function () {
 
 	var Location = require( './Location.js' );
 
-	var location = this.getBedSpawnLocation();
+	var location = this.bukkit.getBedSpawnLocation();
 
 	if ( location ) {
 		location = new Location( location );
 
 	} else {
-		location = new Location( this.getWorld().getSpawnLocation() );
+		location = new Location( this.bukkit.getWorld().getSpawnLocation() );
 	}
 
 	return location;
@@ -87,7 +69,7 @@ Player.prototype.getCompassTarget = function () {
 
 	var Location = require( './Location.js' );
 
-	return new Location( this.getCompassTarget() );
+	return new Location( this.bukkit.getCompassTarget() );
 };
 
 
@@ -101,7 +83,7 @@ Player.prototype.getLocation = function () {
 
 	var Location = require( './Location.js' );
 
-	return new Location( this.getLocation() );
+	return new Location( this.bukkit.getLocation() );
 };
 
 
@@ -164,7 +146,7 @@ Player.prototype.setLocation = function ( location ) {
 
 Player.prototype.isOnline = function () {
 
-	return this.isOnline();
+	return this.bukkit.isOnline();
 };
 
 
@@ -182,7 +164,7 @@ Player.prototype.chat = function ( message ) {
 		message = ''.reset() + message;
 	}
 
-	this.chat( message );
+	this.bukkit.chat( message );
 };
 
 
@@ -196,7 +178,7 @@ Player.prototype.chat = function ( message ) {
 
 Player.prototype.run = function ( command ) {
 
-	this.performCommand( command.replace( /^\//, '' ) );
+	this.bukkit.performCommand( command.replace( /^\//, '' ) );
 };
 
 
@@ -210,7 +192,7 @@ Player.prototype.run = function ( command ) {
 
 Player.prototype.getIp = function () {
 
-	return this.getAddress().getHostName();
+	return this.bukkit.getAddress().getHostName();
 };
 
 
@@ -224,7 +206,7 @@ Player.prototype.getIp = function () {
 
 Player.prototype.canFly = function () {
 
-	return this.getAllowFlight();
+	return this.bukkit.getAllowFlight();
 };
 
 
@@ -238,7 +220,7 @@ Player.prototype.canFly = function () {
 
 Player.prototype.getDisplayName = function () {
 
-	return this.getDisplayName();
+	return this.bukkit.getDisplayName();
 };
 
 
@@ -252,7 +234,7 @@ Player.prototype.getDisplayName = function () {
 
 Player.prototype.isTimeRelative = function () {
 
-	return this.isPlayerTimeRelative();
+	return this.bukkit.isPlayerTimeRelative();
 };
 
 
@@ -265,7 +247,7 @@ Player.prototype.isTimeRelative = function () {
 
 Player.prototype.resetTime = function () {
 
-	this.resetPlayerTime();
+	this.bukkit.resetPlayerTime();
 };
 
 
@@ -279,7 +261,7 @@ Player.prototype.resetTime = function () {
 
 Player.prototype.setTime = function ( time ) {
 
-	this.setPlayerTime( time, true );
+	this.bukkit.setPlayerTime( time, true );
 };
 
 
@@ -293,9 +275,14 @@ Player.prototype.setTime = function ( time ) {
 
 Player.prototype.setFixedTime = function ( time ) {
 
-	this.setPlayerTime( time, false );
+	this.bukkit.setPlayerTime( time, false );
 };
 
+
+Player.prototype.sendMessage = function ( message ) {
+
+	this.bukkit.sendMessage( message );
+};
 
 /*
 https://hub.spigotmc.org/javadocs/spigot/
