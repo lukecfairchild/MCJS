@@ -279,6 +279,12 @@ Player.prototype.setFixedTime = function ( time ) {
 };
 
 
+/**
+ * Send a message to the player.
+ * @implements Player
+ * @param {String} message - Message to be sent to the player.
+ */
+
 Player.prototype.sendMessage = function ( message ) {
 
 	this.bukkit.sendMessage( message );
