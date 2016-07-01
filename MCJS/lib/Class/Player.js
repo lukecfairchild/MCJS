@@ -302,14 +302,23 @@ Player.prototype.isSprinting = function () {
 	return this.bukkit.isSprinting();
 };
 
+
+/**
+ * Kicks player with custom kick message.
+ * @param {String} message - Message that will be displayed to the user when they are kicked.
+ */
+
+Player.prototype.kick = function ( message ) {
+
+	this.bukkit.kickPlayer( message );
+};
+
 /*
 https://hub.spigotmc.org/javadocs/spigot/
 
 Returns whether the player is sleeping ignored.
 isSleepingIgnored()
 
-kickPlayer(String message)
-Kicks player with custom kick message.
 
 loadData()
 Loads the players current location, health, inventory, motion, and other information from the username.dat file, in the world/player folder.
