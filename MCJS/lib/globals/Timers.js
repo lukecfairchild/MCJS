@@ -65,17 +65,17 @@ Timers.prototype.setTimeout = function ( callback, delayInMillis ) {
 	var id     = uuid();
 	var timeout  = org.bukkit.Bukkit.scheduler.runTaskLater( MCJS.getInstance(), function () {
 
-		delete this.private.timeout[ id ];
+		delete this.private.timeouts[ id ];
 		callback();
 	}.bind( this ), delay );
 
-	this.private.timeout[ id ] = timeout;
+	this.private.timeouts[ id ] = timeout;
 
 	return {
 		'type'   : 'timeout',
 		'cancel' : function () {
 
-			delete this.private.timeout[ id ];
+			delete this.private.timeouts[ id ];
 			timeout.cancel();
 		}.bind( this )
 	};
