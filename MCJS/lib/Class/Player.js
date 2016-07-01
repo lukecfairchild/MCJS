@@ -284,14 +284,23 @@ Player.prototype.sendMessage = function ( message ) {
 	this.bukkit.sendMessage( message );
 };
 
+
+/**
+ * Gets whether the player is sprinting or not.
+ * @implements Player
+ * @return {Boolean} sprinting - Returns if the player is sprinting or not.
+ */
+
+Player.prototype.isSprinting = function () {
+
+	return this.bukkit.isSprinting();
+};
+
 /*
 https://hub.spigotmc.org/javadocs/spigot/
 
 Returns whether the player is sleeping ignored.
 isSleepingIgnored()
-
-isSprinting()
-Gets whether the player is sprinting or not.
 
 kickPlayer(String message)
 Kicks player with custom kick message.
