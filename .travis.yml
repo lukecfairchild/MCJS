@@ -4,6 +4,8 @@ notifications:
       - "irc.esper.net#MCJS"
     on_success: change
 language: node_js
+node_js:
+  - "4.3"
 script:
   - cd /home/travis/build/lukecfairchild/MCJS
   - npm install -s eslint
