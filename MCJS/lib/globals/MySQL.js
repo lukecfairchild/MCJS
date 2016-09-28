@@ -22,7 +22,7 @@ var MySQL = new Class( function () {
  * @param {String} options.url - URL to get to the MySQL database.
  * @param {Number} [options.port=3306] - Port for connecting to the MySQL database.
  * @example
- * MySQL.query( 'main', {
+ * MySQL.connect( 'main', {
  * 	'username' : 'test',
  * 	'password' : 'foo',
  * 	'database' : 'minecraft',
