@@ -74,9 +74,9 @@ Console.prototype.log = function ( rawMessage ) {
 
 		// If the value has a toJSON method, call it to obtain a replacement value.
 		if ( value
-			&& typeof value === 'object'
-			&& typeof value.toJSON === 'function' 
-		) {
+		&& typeof value === 'object'
+		&& typeof value.toJSON === 'function' ) {
+
 			value = value.toJSON( key );
 		}
 
@@ -218,12 +218,10 @@ Console.prototype.log = function ( rawMessage ) {
 								start = false;
 							}
 
-						} else {
-							if ( start === false
-							&&   !alignAllValues ) {
+						} else if ( start === false
+						&&   !alignAllValues ) {
 
-								start = i;
-							}
+							start = i;
 						}
 					}
 				}
@@ -260,7 +258,8 @@ Console.prototype.log = function ( rawMessage ) {
 		var space          = rawSpace;
 		var replacer       = rawReplacer;
 		var alignAllValues = rawAlignAllValues;
-		gap = '';
+
+		gap    = '';
 		indent = '';
 
 		// Since this module aligns JSON strings, set a default number of spaces so
@@ -271,13 +270,14 @@ Console.prototype.log = function ( rawMessage ) {
 
 		// If the space parameter is a number, make an indent string containing that
 		// many spaces.
-		if (typeof space === 'number') {
-			for (i = 0; i < space; i += 1) {
+		if ( typeof space === 'number' ) {
+
+			for ( i = 0; i < space; i += 1 ) {
 				indent += ' ';
 			}
 
 		// If the space parameter is a string, it will be used as the indent string.
-		} else if (typeof space === 'string') {
+		} else if ( typeof space === 'string' ) {
 			indent = space;
 		}
 

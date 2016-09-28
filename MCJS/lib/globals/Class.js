@@ -80,7 +80,7 @@ var Class = function ( rawInternalObject ) {
 	// Add index for extending other classes
 	ExternalObject.extends = function ( ExtendingClass ) {
 
-		if ( ExtendingClass.prototype 
+		if ( ExtendingClass.prototype
 		&&   typeof ExtendingClass.prototype.getClass === 'function'
 		&&   ExtendingClass.prototype.getClass().name !== '' ) {
 

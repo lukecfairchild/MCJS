@@ -7,7 +7,7 @@ module.exports = function ( context ) {
 
 			var rawSource = context.getSourceCode();
 
-			var lines = rawSource.getText().split( '\n' );
+			var lines = rawSource.getText().replace( /\r/g, '' ).split( '\n' );
 			var line  = lines[ node.loc.end.line ];
 
 			if ( typeof line === 'string' ) {
@@ -53,7 +53,7 @@ module.exports = function ( context ) {
 
 			var rawSource = context.getSourceCode();
 
-			var lines = rawSource.getText().split( '\n' );
+			var lines = rawSource.getText().replace( /\r/g, '' ).split( '\n' );
 			var line  = lines[ node.loc.end.line ];
 
 			if ( typeof line === 'string' ) {
@@ -100,7 +100,7 @@ module.exports = function ( context ) {
 			var rawSource = context.getSourceCode();
 			var source    = context.getSourceCode( node );
 
-			var lines = rawSource.getText().split( '\n' );
+			var lines = rawSource.getText().replace( /\r/g, '' ).split( '\n' );
 			var line  = lines[ node.loc.end.line ];
 
 			if ( line

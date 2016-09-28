@@ -27,9 +27,9 @@ var HumanEntity = new Class( function ( bukkitObject ) {
 } );
 
 HumanEntity.prototype.getEnderChest = function () {
-	
+
 	var inventoryObject = this.getEnderChest();
-	
+
 	return inventoryObject;
 };
 

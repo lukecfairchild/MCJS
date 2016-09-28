@@ -22,7 +22,7 @@ World.prototype.getEntities = function () {
 		var entityCount = rawEntities.size();
 
 		for ( var i = 0; i < entityCount; i++ ) {
-			entities.push( new Entity( iterator.next() ) );	
+			entities.push( new Entity( iterator.next() ) );
 		}
 
 	} catch ( error ) {

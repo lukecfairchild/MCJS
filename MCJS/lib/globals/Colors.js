@@ -36,7 +36,7 @@ for ( var i in colors ) {
 				}
 			} );
 		}
-	} ) ( i, colors[ i ] );
+	} )( i, colors[ i ] );
 }
 
 if ( !String.prototype.colorize ) {

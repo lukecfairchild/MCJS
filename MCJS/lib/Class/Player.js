@@ -12,12 +12,12 @@
  *
  * MC.command( '/command', function ( event ) {
  *
- * 	var player = event.getPlayer();	
+ * 	var player = event.getPlayer();
  * } );
  *
  * MC.event( 'player.PlayerChatEvent', function ( event ) {
  *
- * 	var player = event.getPlayer();	
+ * 	var player = event.getPlayer();
  * } );
  */
 
@@ -110,7 +110,7 @@ Player.prototype.setLocation = function ( location ) {
 	}
 
 	if ( errors.length ) {
-		throw new Error( 'Error in (Player.js).setLocation( ' + JSON.stringify( location ) +' ): ' + errors );
+		throw new Error( 'Error in (Player.js).setLocation( ' + JSON.stringify( location ) + ' ): ' + errors );
 	}
 
 
@@ -155,7 +155,7 @@ Player.prototype.isOnline = function () {
  * @implements Player
  * @param {String} message
  * @example
- * player.chat( 'hi!' ); 
+ * player.chat( 'hi!' );
  */
 
 Player.prototype.chat = function ( message ) {
@@ -171,9 +171,9 @@ Player.prototype.chat = function ( message ) {
 /**
  * Runs a command as this player.
  * @implements Player
- * @param {String} command 
+ * @param {String} command
  * @example
- * player.run( '/command' ); 
+ * player.run( '/command' );
  */
 
 Player.prototype.run = function ( command ) {
@@ -187,7 +187,7 @@ Player.prototype.run = function ( command ) {
  * @implements Player
  * @return {String} ip
  * @example
- * var ip = player.getIp; 
+ * var ip = player.getIp;
  */
 
 Player.prototype.getIp = function () {
@@ -201,7 +201,7 @@ Player.prototype.getIp = function () {
  * @implements Player
  * @return {Boolean} canFly
  * @example
- * var canFly = player.canFly(); 
+ * var canFly = player.canFly();
  */
 
 Player.prototype.canFly = function () {
@@ -215,7 +215,7 @@ Player.prototype.canFly = function () {
  * @implements Player
  * @return {String} displayName
  * @example
- * var displayName = player.getDisplayName(); 
+ * var displayName = player.getDisplayName();
  */
 
 Player.prototype.getDisplayName = function () {
@@ -229,7 +229,7 @@ Player.prototype.getDisplayName = function () {
  * @implements Player
  * @return {Boolean}
  * @example
- * var timeRelative = player.isTimeRelative(); 
+ * var timeRelative = player.isTimeRelative();
  */
 
 Player.prototype.isTimeRelative = function () {
@@ -242,7 +242,7 @@ Player.prototype.isTimeRelative = function () {
  * Restores the normal condition where the player's time is synchronized with the server time.
  * @implements Player
  * @example
- * player.resetTime(); 
+ * player.resetTime();
  */
 
 Player.prototype.resetTime = function () {

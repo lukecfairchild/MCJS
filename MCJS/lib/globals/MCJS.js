@@ -46,7 +46,7 @@ MCJS.prototype.reload = function () {
  * @param {Function} task - A callback function to be ran on termination/reload.
  * @example
  * MCJS.addCleanupTask( function () {
- * 
+ *
  * 	doStuff();
  * } );
  */
@@ -57,7 +57,7 @@ MCJS.prototype.addCleanupTask = function ( task ) {
 		__instance.cleanup.push( task );
 
 	} else {
-		throw new error( 'Invalid cleanup task' );
+		throw new Error( 'Invalid cleanup task' );
 	}
 };
 

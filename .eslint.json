@@ -14,10 +14,17 @@
         "clearInterval" : true,
         "console"       : true,
         "global"        : true,
+        "print"         : true,
         "GLOBAL"        : true,
         "MCJS"          : true,
         "MC"            : true,
-        "org"           : true
+        "org"           : true,
+        "Java"          : true,
+        "java"          : true,
+        "load"          : true,
+        "PATH"          : true,
+        "__instance"    : true,
+        "Class"         : true
     },
     "rules": {
         "semi"                          : 2,
@@ -60,7 +67,6 @@
         "key-spacing"                   : [ "error", { "beforeColon" : true, "afterColon" : true, "align" : "colon" } ],
         "keyword-spacing"               : "error",
         "space-before-blocks"           : "error",
-        "max-len"                       : [ "error", 155, 4, { "ignoreUrls" : true } ],
         "max-statements-per-line"       : [ "error", { "max" : 1 } ],
         "new-parens"                    : "error",
         "newline-after-var"             : [ "error", "always" ],

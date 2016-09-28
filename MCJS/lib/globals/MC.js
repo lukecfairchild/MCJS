@@ -16,7 +16,7 @@ var MC = function () {
 		for ( var index in this.aliases ) {
 			var variables = this.aliases[ index ].variables;
 			var defaults  = this.aliases[ index ].defaults;
-			var matches   = command.match( new RegExp( this.aliases[ index ].regex, 'i' ));
+			var matches   = command.match( new RegExp( this.aliases[ index ].regex, 'i' ) );
 			var results   = {};
 
 			if ( matches !== null && matches[ 0 ] ) {
@@ -55,7 +55,7 @@ var MC = function () {
 	}.bind( this ) );
 
 
-	this.on( 'player.PlayerCommandPreprocessEvent', function ( event ) { 
+	this.on( 'player.PlayerCommandPreprocessEvent', function ( event ) {
 
 		var command	= event.getMessage();
 
@@ -149,13 +149,13 @@ MC.prototype.getPlayers = function ( world ) {
 				var instance = iterator.next();
 
 				if ( instance.getWorld().getName() === world ) {
-					players.push( new Player( instance ) );	
+					players.push( new Player( instance ) );
 				}
 			}
 
 		} else {
 			for ( var i = 0; i < playerCount; i++ ) {
-				players.push( new Player( iterator.next() ) );	
+				players.push( new Player( iterator.next() ) );
 			}
 		}
 
@@ -198,7 +198,7 @@ MC.prototype.on = function ( eventType, callBack /*, [ priority ] */ ) {
 			clazz  = eventType.class;
 			result = clazz.getMethod( 'getHandlerList' ).invoke( null );
 
-		} else { 
+		} else {
 			clazz  = java.lang.Class.forName( 'org.bukkit.event.' + String( eventType ) );
 			result = clazz.getMethod( 'getHandlerList' ).invoke( null );
 		}
@@ -232,7 +232,7 @@ MC.prototype.on = function ( eventType, callBack /*, [ priority ] */ ) {
 	var returns  = {};
 	var filePath = PATH + '/lib/events/' + eventType + '.js';
 	var file     = new java.io.File( filePath );
-	
+
 	if ( file.exists() ) {
 		eventObject = require( filePath );
 	}
@@ -263,7 +263,7 @@ MC.prototype.on = function ( eventType, callBack /*, [ priority ] */ ) {
 			}
 
 			callBack.call( result, returns );
-		} 
+		}
 	} );
 
 	listener.reg = new org.bukkit.plugin.RegisteredListener( null, eventExecutor, priority, MCJS.getInstance(), true );
@@ -293,7 +293,7 @@ MC.prototype.on = function ( eventType, callBack /*, [ priority ] */ ) {
  * } );
  */
 
-MC.prototype.command = function( rawAlias, callBack ){
+MC.prototype.command = function ( rawAlias, callBack ) {
 
 	var alias = ' ' + rawAlias + ' ';
 
@@ -317,7 +317,7 @@ MC.prototype.command = function( rawAlias, callBack ){
 				'"',
 				'\''
 			],
-			'closers'   : [ ']' ]
+			'closers' : [ ']' ]
 		},
 		'\'' : {
 			'type'      : 'string',
@@ -328,7 +328,7 @@ MC.prototype.command = function( rawAlias, callBack ){
 		'"' : {
 			'type'      : 'string',
 			'whitelist' : [ '[' ],
-			'blacklist' : [ "'" ],
+			'blacklist' : [ '\'' ],
 			'closers'   : [ '"' ]
 		}
 	};
@@ -364,7 +364,7 @@ MC.prototype.command = function( rawAlias, callBack ){
 				// Check to see if current groups get closed
 				var remove = [];
 
-				for( var i in inside ) {
+				for ( var i in inside ) {
 					var closers = parser[ inside[ i ] ].closers;
 
 					if ( closers.indexOf( char ) > -1 ) {
@@ -374,7 +374,7 @@ MC.prototype.command = function( rawAlias, callBack ){
 				}
 
 				for ( var i in remove ) {
-		
+
 					// Check for wildcard variables
 					if ( remove[ i ] === '$'
 					&&   currentObject.value === undefined ) {
@@ -398,14 +398,14 @@ MC.prototype.command = function( rawAlias, callBack ){
 					//inside.splice( inside.indexOf( remove[ i ] ), 1 );
 				}
 
-	            // Check if character starts a group and has not been started
-	            if ( parser[ char ]
-	            &&   !( inside.indexOf( char ) > -1 ) ) {
+				// Check if character starts a group and has not been started
+				if ( parser[ char ]
+				&&   !( inside.indexOf( char ) > -1 ) ) {
 
 					var denied		= false;
 					var blacklist	= parser[ char ].blacklist;
 					var whitelist	= parser[ char ].whitelist;
-	                
+
 					// Check if new group is in blacklist
 					if ( blacklist !== null ) {
 
@@ -416,11 +416,11 @@ MC.prototype.command = function( rawAlias, callBack ){
 							}
 						}
 					}
-	               
+
 					// Check if new group is in whitelist
 					if ( whitelist !== null ) {
 
-						for( var i in whitelist ) {
+						for ( var i in whitelist ) {
 
 							if ( !inside.indexOf( whitelist[ i ] ) > -1 ) {
 								denied = true;
@@ -445,8 +445,8 @@ MC.prototype.command = function( rawAlias, callBack ){
 				&&   !( currentObject.type.indexOf( 'text' ) > -1
 				&&      currentObject.type.indexOf( 'optional' ) > -1 ) ) {
 
-					commandArray.push( { 
-						'value' : currentObject.value, 
+					commandArray.push( {
+						'value' : currentObject.value,
 						'type'  : currentObject.type
 					} );
 				}
@@ -490,8 +490,8 @@ MC.prototype.command = function( rawAlias, callBack ){
 				}
 
 				if ( index === stringArray.length - 1 ) {
-					commandArray.push( { 
-						'value' : currentObject.value, 
+					commandArray.push( {
+						'value' : currentObject.value,
 						'type'  : currentObject.type
 					} );
 				}
@@ -514,12 +514,12 @@ MC.prototype.command = function( rawAlias, callBack ){
 
 				arrayType.push( 'variable.wild' );
 
-				if( inside.indexOf( '[' ) > -1 ) {
+				if ( inside.indexOf( '[' ) > -1 ) {
 					arrayType.push( 'optional' );
 				}
 
-				commandArray.push( { 
-					'value' : '$', 
+				commandArray.push( {
+					'value' : '$',
 					'type'  : arrayType
 				} );
 			}
@@ -544,12 +544,12 @@ MC.prototype.command = function( rawAlias, callBack ){
 		var value = commandArray[ i ].value;
 		var type  = commandArray[ i ].type;
 
-		 if ( type.indexOf( 'variable.wild' ) > -1 ) {
+		if ( type.indexOf( 'variable.wild' ) > -1 ) {
 
-		 	if ( variables.indexOf( value ) > -1 ) {
+			if ( variables.indexOf( value ) > -1 ) {
 				throw new Error( 'Duplicate variable name: ' + value );
 
-		 	} else {
+			} else {
 				variables.push( value );
 			}
 
@@ -562,7 +562,7 @@ MC.prototype.command = function( rawAlias, callBack ){
 
 			rawRegex += '(?:[ ]+|[ ]*$)';
 
-		} else if( type.indexOf( 'text' ) > -1 ) {
+		} else if ( type.indexOf( 'text' ) > -1 ) {
 
 			if ( value !== ' ' ) {
 				rawRegex += regexEscape( value ).replace( new RegExp( '(^[ ]*|[ ]*$)', 'g' ), '' ) + '(?:[ ]+|[ ]*$)';
@@ -573,7 +573,7 @@ MC.prototype.command = function( rawAlias, callBack ){
 			if ( variables.indexOf( value ) > -1 ) {
 				throw new Error( 'Duplicate variable name: ' + value );
 
-		 	} else {
+			} else {
 				variables.push( value );
 			}
 
@@ -624,21 +624,40 @@ MC.prototype.commandExists = function ( alias ) {
 };
 
 
-MC.prototype.getEntity = function ( uuid /*, [ world ] */ ) {
+/**
+ * Returns a entity object .
+ * @property MC
+ * @param {String} uuid
+ * @param {
+ * @return {Boolean}
+ * @example
+ * var commandExist = MC.commandExists( '/yay' );
+ */
 
-	var entitie
+MC.prototype.getEntity = function ( /* uuid, [ world ] */ ) {
 
+	var Entity = require( '../Class/Entity.js' );
+
+	var uuid   = arguments[ 0 ];
 	var worlds = arguments[ 1 ] ? [ arguments[ 1 ] ] : this.getWorlds();
 
 	for ( var i in worlds ) {
-		v
+		var world = worlds[ i ];
+
+		var entities = entities.concat( world.getEntities() );
+
+		for ( var i in entities ) {
+			var entity = new Entity( entities[ i ] );
+
+			if ( entity.getUUID() === uuid ) {
+				return entity;
+			}
+		}
 	}
 };
 
 
 MC.prototype.getEntities = function ( /* [ world ] */ ) {
-
-	var World = require( '../Class/World.js' );
 
 	var entities = [];
 
@@ -667,7 +686,7 @@ MC.prototype.getWorlds = function () {
 		var worldCount = rawWorlds.size();
 
 		for ( var i = 0; i < worldCount; i++ ) {
-			worlds.push( new World( iterator.next() ) );	
+			worlds.push( new World( iterator.next() ) );
 		}
 
 	} catch ( error ) {
@@ -686,7 +705,7 @@ MC.prototype.getWorld = function ( name ) {
 
 MC.prototype.mainThread = function ( callback ) {
 
-	var timeout  = org.bukkit.Bukkit.scheduler.runTaskLater( MCJS.getInstance(), function () {
+	org.bukkit.Bukkit.scheduler.runTaskLater( MCJS.getInstance(), function () {
 
 		callback();
 	}, 1 );

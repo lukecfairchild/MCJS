@@ -83,7 +83,7 @@ var Directory = function ( fileInfo ) {
 		var dir = new java.io.File( path );
 
 		if ( dir.isDirectory() ) {
-			
+
 			var files = this.list( path );
 
 			for ( var i in files ) {

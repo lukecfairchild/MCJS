@@ -169,7 +169,7 @@ MySQL.prototype.query = function ( database, rawQuery, rawArgs ) {
 		}
 	} catch ( error ) {
 		throw new Error( 'Error in MySQL.query( \'' + database + '\', query ): ' + error );
-		
+
 	} finally {
 
 		if ( resultSet ) {
