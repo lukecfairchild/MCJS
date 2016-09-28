@@ -6,4 +6,5 @@ notifications:
 install:
   - npm install eslint
 script:
-  - eslint -c .eslint.json ./plugins/MCJS/*
+  - cd /home/travis/build/lukecfairchild
+  - eslint -c .eslint.json ./MCJS/*
