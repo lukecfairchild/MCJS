@@ -3,8 +3,6 @@ notifications:
     channels:
       - "irc.esper.net#MCJS"
     on_success: change
-install:
-  - npm install eslint
 script:
   - cd /home/travis/build/lukecfairchild
-  - eslint -c .eslint.json ./MCJS/*
+  - node ./node_modules/eslint/bin/eslint.js --rulesdir ./eslint-rules -c .eslint.json ./MCJS/*
