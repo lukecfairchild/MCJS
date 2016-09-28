@@ -7,3 +7,4 @@ script:
   - cd /home/travis/build/lukecfairchild
   - npm install -s eslint
   - node ./node_modules/eslint/bin/eslint.js --rulesdir ./eslint-rules -c .eslint.json ./MCJS/*
+  - ls
