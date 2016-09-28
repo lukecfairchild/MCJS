@@ -38,7 +38,6 @@
         "no-labels"                  : "error",
         "no-lone-blocks"             : "error",
         "no-multi-str"               : "error",
-        "no-param-reassign"          : "error",
         "no-return-assign"           : "error",
         "no-self-assign"             : "error",
         "no-self-compare"            : "error",
