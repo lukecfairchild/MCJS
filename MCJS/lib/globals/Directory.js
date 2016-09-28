@@ -64,7 +64,7 @@ var Directory = function ( fileInfo ) {
 			files.push( rawFiles[ i ].toString().replace( /\\/g, '/' ) );
 		}
 
-		return files
+		return files;
 	};
 
 

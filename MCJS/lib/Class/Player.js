@@ -348,8 +348,8 @@ void	sendMap(MapView map)
 Render a map and send it to the player in its entirety.
 */
 
-module.exports = Player;
-
 /*
 isOnGround()
 */
+
+module.exports = Player;
