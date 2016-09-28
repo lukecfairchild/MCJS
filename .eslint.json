@@ -16,7 +16,8 @@
         "global"        : true,
         "GLOBAL"        : true,
         "MCJS"          : true,
-        "MC"            : true
+        "MC"            : true,
+        "org"           : true
     },
     "rules": {
         "semi"                          : 2,
