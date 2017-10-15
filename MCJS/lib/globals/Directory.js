@@ -120,5 +120,4 @@ Directory.prototype.exists = function ( dirPath ) {
 };
 
 
-
 module.exports = Directory;

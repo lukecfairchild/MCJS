@@ -138,8 +138,8 @@ Console.prototype.log = function ( rawMessage ) {
 					v = partial.length === 0
 						? '[]'
 						: gap
-						? '[\n' + gap + partial.join( ',\n' + gap ) + '\n' + mind + ']'
-						: '[' + partial.join( ',' ) + ']';
+							? '[\n' + gap + partial.join( ',\n' + gap ) + '\n' + mind + ']'
+								: '[' + partial.join( ',' ) + ']';
 					gap = mind;
 					return v;
 				}
@@ -233,8 +233,8 @@ Console.prototype.log = function ( rawMessage ) {
 				v = partial.length === 0
 					? '{}'
 					: gap
-					? '{\n' + gap + partial.join( ',\n' + gap ) + '\n' + mind + '}'
-					: '{' + partial.join( ',' ) + '}';
+						? '{\n' + gap + partial.join( ',\n' + gap ) + '\n' + mind + '}'
+							: '{' + partial.join( ',' ) + '}';
 				gap = mind;
 
 				return v;
