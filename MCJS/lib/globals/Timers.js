@@ -1,25 +1,29 @@
 'use strict';
 
-var uuid = function () {
-
-	var s4 = function () {
-
-		return Math.floor( ( 1 + Math.random() ) * 0x10000 ).toString( 16 ).substring( 1 );
-	};
-
-	return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
-};
 
 var Timers = new Class( function () {
 
-	this.private.intervals = {};
-	this.private.timeouts  = {};
+	this.intervals = {};
+	this.timeouts  = {};
 
 	MCJS.addCleanupTask( function () {
 
 		this.clearAllTasks();
 
 	}.bind( this ) );
+
+	this.generateID = function () {
+
+		var uuid = 'xxxxxxxxxxxx4xxxyxxxxxxxxxxxxxxx'.replace( /[xy]/g, function ( c ) {
+
+			var r = Math.random() * 16 | 0;
+			var v = c === 'x' ? r : r & 0x3 | 0x8;
+
+			return v.toString( 16 );
+		} );
+
+		return uuid;
+	};
 } );
 
 
@@ -32,17 +36,17 @@ var Timers = new Class( function () {
 
 Timers.prototype.clearAllTasks = function () {
 
-	for ( var index in this.private.intervals ) {
-		this.private.intervals[ index ].cancel();
+	for ( var index in this.intervals ) {
+		this.intervals[ index ].cancel();
 	}
 
-	this.private.intervals = {};
+	this.intervals = {};
 
-	for ( var index in this.private.timeouts ) {
-		this.private.timeouts[ index ].cancel();
+	for ( var index in this.timeouts ) {
+		this.timeouts[ index ].cancel();
 	}
 
-	this.private.timeouts = {};
+	this.timeouts = {};
 };
 
 
@@ -62,20 +66,21 @@ Timers.prototype.clearAllTasks = function () {
 Timers.prototype.setTimeout = function ( callback, delayInMillis ) {
 
 	var delay  = Math.ceil( delayInMillis / 50 ) || 1;
-	var id     = uuid();
+	var id     = this.generateID();
 	var timeout  = org.bukkit.Bukkit.scheduler.runTaskLater( MCJS.getInstance(), function () {
 
-		delete this.private.timeouts[ id ];
+		delete this.timeouts[ id ];
+
 		callback();
 	}.bind( this ), delay );
 
-	this.private.timeouts[ id ] = timeout;
+	this.timeouts[ id ] = timeout;
 
 	return {
 		'type'   : 'timeout',
 		'cancel' : function () {
 
-			delete this.private.timeouts[ id ];
+			delete this.timeouts[ id ];
 			timeout.cancel();
 		}.bind( this )
 	};
@@ -108,26 +113,28 @@ Timers.prototype.setTimeout = function ( callback, delayInMillis ) {
 Timers.prototype.setInterval = function ( callback, intervalInMillis ) {
 
 	var delay  = Math.ceil( intervalInMillis / 50 ) || 1;
-	var id     = uuid();
+	var id     = this.generateID();
 	var interval  = org.bukkit.Bukkit.scheduler.runTaskTimer( MCJS.getInstance(), function () {
 
 		callback( {
 			'type'   : 'interval',
 			'cancel' : function () {
 
-				delete this.private.intervals[ id ];
+				delete this.intervals[ id ];
+
 				interval.cancel();
 			}.bind( this )
 		} );
 	}.bind( this ), delay, delay );
 
-	this.private.intervals[ id ] = interval;
+	this.intervals[ id ] = interval;
 
 	return {
 		'type'   : 'interval',
 		'cancel' : function () {
 
-			delete this.private.intervals[ id ];
+			delete this.intervals[ id ];
+
 			interval.cancel();
 		}.bind( this )
 	};

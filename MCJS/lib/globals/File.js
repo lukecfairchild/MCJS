@@ -1,28 +1,27 @@
 'use strict';
 
-var resolvePath = function ( rawFilePath, fileInfo ) {
-
-	var filePath = rawFilePath || '';
-
-	var isAbsolute = ( new java.io.File( filePath ) ).isAbsolute();
-
-	var path = filePath;
-
-	if ( !isAbsolute ) {
-		path = java.nio.file.Paths.get( fileInfo.__dirname.replace( /^\.\//, '' ), filePath ).toString();
-	}
-
-	return path;
-};
-
 /**
  * @namespace
+ * @param {String} fileInfo - This is set the require function on file load.
  */
 
-var File = function ( fileInfo ) {
+var File = new Class( function ( fileInfo ) {
 
-	this.fileInfo = fileInfo;
-};
+	this.resolvePath = function ( filePath ) {
+
+		var filePath = filePath || '';
+
+		var isAbsolute = ( new java.io.File( filePath ) ).isAbsolute();
+
+		var path = filePath;
+
+		if ( !isAbsolute ) {
+			path = java.nio.file.Paths.get( fileInfo.__dirname.replace( /^\.\//, '' ), filePath ).toString();
+		}
+
+		return path;
+	};
+} );
 
 
 /**
@@ -36,7 +35,7 @@ var File = function ( fileInfo ) {
 
 File.prototype.read = function ( filePath ) {
 
-	var path = resolvePath( filePath, this.fileInfo );
+	var path = this.resolvePath( filePath );
 
 	var contents = [];
 	var line     = undefined;
@@ -77,7 +76,7 @@ File.prototype.read = function ( filePath ) {
 
 File.prototype.write = function ( filePath, data ) {
 
-	var path = resolvePath( filePath, this.fileInfo );
+	var path = this.resolvePath( filePath );
 
 	var FileWriter = Java.type( 'java.io.FileWriter' );
 
@@ -116,7 +115,7 @@ File.prototype.create = function ( filePath, data ) {
 
 File.prototype.append = function ( filePath, data ) {
 
-	var path = resolvePath( filePath, this.fileInfo );
+	var path = this.resolvePath( filePath );
 
 	var FileWriter = Java.type( 'java.io.FileWriter' );
 
@@ -137,7 +136,7 @@ File.prototype.append = function ( filePath, data ) {
 
 File.prototype.delete = function ( filePath ) {
 
-	var path = resolvePath( filePath, this.fileInfo );
+	var path = this.resolvePath( filePath );
 
 	new java.io.File( path ).delete();
 };
@@ -154,7 +153,7 @@ File.prototype.delete = function ( filePath ) {
 
 File.prototype.exists = function ( filePath ) {
 
-	var path = resolvePath( filePath, this.fileInfo );
+	var path = this.resolvePath( filePath );
 
 	var file = new java.io.File( path );
 

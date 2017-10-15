@@ -13,6 +13,7 @@
         "setInterval"   : true,
         "clearInterval" : true,
         "console"       : true,
+        "process"       : true,
         "global"        : true,
         "print"         : true,
         "GLOBAL"        : true,

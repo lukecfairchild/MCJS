@@ -9,7 +9,7 @@
 
 var MCJS = new Class( function () {
 
-	this.private.instance = org.bukkit.Bukkit.getPluginManager().getPlugin( 'MCJS' );
+	this.instance = org.bukkit.Bukkit.getPluginManager().getPlugin( 'MCJS' );
 } );
 
 
@@ -23,7 +23,7 @@ var MCJS = new Class( function () {
 
 MCJS.prototype.getInstance = function () {
 
-	return this.private.instance;
+	return this.instance;
 };
 
 
@@ -36,7 +36,7 @@ MCJS.prototype.getInstance = function () {
 
 MCJS.prototype.reload = function () {
 
-	this.private.instance.reload();
+	this.instance.reload();
 };
 
 

@@ -125,7 +125,7 @@
 		var Paths  = java.nio.file.Paths;
 		var System = java.lang.System;
 
-		return Paths.get( Paths.get( System.getProperty( "user.dir" ), "plugins" ).toString(), "MCJS" ).toString().replace( /\\/g, '/' );
+		return Paths.get( Paths.get( System.getProperty( 'user.dir' ), 'plugins' ).toString(), 'MCJS' ).toString().replace( /\\/g, '/' );
 	};
 
 	var _getPluginsDir = function () {
@@ -133,7 +133,7 @@
 		var Paths  = java.nio.file.Paths;
 		var System = java.lang.System;
 
-		return Paths.get( System.getProperty( "user.dir" ), "plugins" ).toString().replace( /\\/g, '/' );
+		return Paths.get( System.getProperty( 'user.dir' ), 'plugins' ).toString().replace( /\\/g, '/' );
 	};
 
 	_require = function ( parentFile, path ) {

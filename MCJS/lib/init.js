@@ -21,7 +21,6 @@ var require = Require( PATH, [ 'libpath1', 'libpath2' ] );
 global.Class = require( './lib/globals/Class.js' );
 global.MCJS  = require( './lib/globals/MCJS.js' );
 
-require( './lib/globals/Object.js' );
 require( './lib/globals/Colors.js' );
 
 var Timers = require( './lib/globals/Timers.js' );

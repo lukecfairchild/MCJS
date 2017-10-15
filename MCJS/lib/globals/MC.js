@@ -1,15 +1,13 @@
 'use strict';
 
+
 /**
  * @namespace
  */
 
 var MC = function () {
 
-	Object.defineProperty( this, 'aliases', {
-		'enumerable' : false,
-		'value'      : []
-	} );
+	this.aliases = [];
 
 	var commandCall = function ( event, command ) {
 
