@@ -1,5 +1,6 @@
 # MCJS
 
+[![MCJS Plugin](http://media-minecraftforum.cursecdn.com/avatars/325/832/635357671987904668.png)](https://letsbuild.net/jenkins/job/MCJS-Bukkit/)
 [![Build Status](https://travis-ci.org/lukecfairchild/MCJS.svg?branch=master)](https://travis-ci.org/lukecfairchild/MCJS)
 [![Visit our IRC channel](https://kiwiirc.com/buttons/irc.esper.net/MCJS.png)](https://kiwiirc.com/client/irc.esper.net/#MCJS)
 [![Documentation](http://i.imgur.com/ITAGk6P.png)](https://letsbuild.net/mcjs/index.html)

@@ -27,7 +27,8 @@ MC.command( '/l', function ( event ) {
 	event.getPlayer().sendMessage( 'There is ' + players.length + ' player' + ( players.length === 1 ? '' : 's' ) + ' online.\n' + players.join( ', ' ) );
 } );
 
-/*
+
+/* New thread test
 MC.newThread( function () {
 
 	MC.mainThread( function () {
